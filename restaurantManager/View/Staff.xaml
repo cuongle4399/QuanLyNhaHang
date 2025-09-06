@@ -1,0 +1,82 @@
+﻿<Window x:Class="restaurantManager.Staff"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:restaurantManager"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Asset/Image/logo.ico"
+        xmlns:views="clr-namespace:restaurantManager.View.Fuction.Staff"
+        Title="Nhân Viên" Height="550" Width="900">
+    <Grid>
+        <materialDesign:Card
+ >
+            <TabControl
+    materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+    SnapsToDevicePixels="True"
+    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+    TabStripPlacement="Left"
+   >
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="Food" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Gọi món" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <!--Gọi món ăn-->
+                        <StackPanel
+        Margin="16">
+                        <views:orderFood></views:orderFood>
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="CreditCardSettingsOutline" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Tính tiền" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <!--Thanh toán món ăn-->
+                    <StackPanel Margin="16">
+                        <views:confirmPayFood></views:confirmPayFood>
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Width="auto" Height="auto" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="Logout" />
+                            <TextBlock HorizontalAlignment="Center" Text="Đăng xuất" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel Margin="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <!--<StackPanel.Background>
+                            <ImageBrush ImageSource="/Asset/Image/BackgroundLogout.jpg" Stretch="Fill" ></ImageBrush>
+                        </StackPanel.Background>-->
+                        <Button  Content="Đăng xuất" Click="Logout_Click" Width="200" Height="60" HorizontalAlignment="Center" 
+Style="{StaticResource MaterialDesignRaisedButton}" 
+materialDesign:ButtonProgressAssist.IsIndeterminate="False"/>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </materialDesign:Card>
+    </Grid>
+</Window>
