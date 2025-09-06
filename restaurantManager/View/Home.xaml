@@ -1,0 +1,67 @@
+﻿<Window x:Class="restaurantManager.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Trang Chủ" Height="450" Width="450"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Asset/Image/logo.ico"
+        ResizeMode="NoResize"
+        >
+    <Grid>
+        <materialDesign:Card Padding="20" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"
+                             Width="400" Height="400">
+            <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+
+                <!-- Tab Đăng Nhập -->
+                <TabItem Header="Đăng Nhập">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Đăng Nhập" FontSize="22" FontWeight="Bold" Margin="0,30,0,20" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="txtLoginUsername" Height="35" Margin="0,0,0,10" 
+         materialDesign:HintAssist.Hint="Tài khoản" FontSize="16"/>
+
+                        <!-- PasswordBox + TextBox show pass -->
+                        <Grid Margin="0,0,0,10">
+                            <PasswordBox x:Name="txtLoginPassword" Height="35" 
+                 materialDesign:HintAssist.Hint="Mật khẩu" FontSize="16"/>
+                            <TextBox x:Name="txtShowPassword" materialDesign:HintAssist.Hint="Mật khẩu" Height="35" Visibility="Collapsed" FontSize="16"/>
+                        </Grid>
+
+
+                        <CheckBox x:Name="chkShowLoginPassword" Content="Hiện mật khẩu" Margin="0,0,0,10"></CheckBox>
+
+                        <Button Content="Đăng Nhập" Height="40" Background="#FF6200EE" Foreground="White" FontWeight="Bold"
+                                Style="{StaticResource MaterialDesignRaisedButton}" Click="bthLogin_Click"/>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Tab Đăng Ký -->
+                <TabItem Header="Đăng Ký">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Đăng Ký" FontSize="22" FontWeight="Bold" Margin="0,30,0,20" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="txtRegisterUsername" Height="35" Margin="0,0,0,10" 
+         materialDesign:HintAssist.Hint="Tài khoản" FontSize="16"/>
+
+                        <Grid Margin="0,0,0,10">
+                            <PasswordBox x:Name="txtRegisterPassword" Height="35" 
+                 materialDesign:HintAssist.Hint="Mật khẩu" FontSize="16"/>
+                            <TextBox x:Name="txtShowRegisterPassword"  materialDesign:HintAssist.Hint="Mật khẩu" Height="35" Visibility="Collapsed" FontSize="16"/>
+                        </Grid>
+
+                        <Grid Margin="0,0,0,10">
+                            <PasswordBox x:Name="txtRegisterConfirm" Height="35" 
+                 materialDesign:HintAssist.Hint="Xác nhận mật khẩu" FontSize="16"/>
+                            <TextBox x:Name="txtShowRegisterConfirm" materialDesign:HintAssist.Hint="Xác nhận mật khẩu" Height="35" Visibility="Collapsed" FontSize="16"/>
+                        </Grid>
+
+
+                        <CheckBox x:Name="chkShowRegisterPassword" Content="Hiện mật khẩu" Margin="0,0,0,10" />
+
+                        <Button Content="Đăng Ký" Height="40" Background="#FF03DAC5" Foreground="Black" FontWeight="Bold"
+                                Style="{StaticResource MaterialDesignRaisedButton}" Click="btnRegister_Click"/> 
+                    </StackPanel>
+                </TabItem>
+
+            </TabControl>
+        </materialDesign:Card>
+    </Grid>
+</Window>
