@@ -4,123 +4,86 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:restaurantManager"
-        mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        WindowStartupLocation="CenterScreen"
-        Icon="/Asset/Image/logo.ico"
         xmlns:views="clr-namespace:restaurantManager.View.Fuction.Admin"
-        Title="Quản trị viên" Height="550" Width="900">
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Resources/Image/logo/logo.ico"
+        Title="Quản trị viên"
+        Height="600"
+        MinHeight="600"
+        MinWidth="1000"
+        Width="1000">
+
     <Grid>
-        <materialDesign:Card
- >
-            <TabControl 
-    materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
-    SnapsToDevicePixels="True"
-    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
-    TabStripPlacement="Left"
-   >
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel
-          Width="auto"
-          Height="auto">
-                            <materialDesign:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            Kind="FoodForkDrink" />
-                            <TextBlock
-            HorizontalAlignment="Center"
-            Text="Món ăn" TextWrapping="Wrap"/> 
-                        </StackPanel>
-                    </TabItem.Header>
-                    <!--Quản lý món ăn-->
-                    <StackPanel Margin="16">
-                        <views:menuManager></views:menuManager>
-                    </StackPanel>
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel
-          Width="auto"
-          Height="auto">
-                            <materialDesign:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            Kind="AccountGroup" />
-                            <TextBlock
-            HorizontalAlignment="Center"
-            Text="Nhân viên" TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <!--Quản lý nhân viên-->
-                    <StackPanel Margin="16">
-                        <views:staffManager></views:staffManager>
-                    </StackPanel>
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel
-          Width="auto"
-          Height="auto">
-                            <materialDesign:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            Kind="CashRefund" />
-                            <TextBlock
-            HorizontalAlignment="Center"
-            Text="Thu nhập" TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <!--Quản lý doanh thu-->
-                    <StackPanel Margin="16">
-                        <views:revenueManager></views:revenueManager>
-                    </StackPanel>
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel
-          Width="auto"
-          Height="auto">
-                            <materialDesign:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            Kind="CartPercent" />
-                            <TextBlock
-            HorizontalAlignment="Center"
-            Text="Giảm giá" TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <!--Quản lý khuyến mãi-->
-                    <StackPanel Margin="16">
-                        <views:saleManager></views:saleManager>
-                    </StackPanel>
-                </TabItem>
-                <TabItem >
-    <TabItem.Header>
-        <StackPanel Width="auto" Height="auto" VerticalAlignment="Center">
-            <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="Logout" />
-            <TextBlock HorizontalAlignment="Center" Text="Đăng xuất" TextWrapping="Wrap" Margin="0,4,0,0"/>
-        </StackPanel>
-    </TabItem.Header>
+        <materialDesign:Card>
+            <TabControl SnapsToDevicePixels="True"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                        TabStripPlacement="Left"
+                        materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
 
-    <StackPanel Margin="16" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <!-- Background bằng ảnh --><!--
-        <StackPanel.Background>
-            <ImageBrush Stretch="Fill" 
-                        ImageSource="/Asset/Image/BackgroundLogout.jpg"/>
-        </StackPanel.Background>-->
+                <!-- Tab Món ăn -->
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="FoodForkDrink" HorizontalAlignment="Center" />
+                            <TextBlock Text="Món ăn" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel Margin="16">
+                        <views:menuManager/>
+                    </StackPanel>
+                </TabItem>
 
-        <!-- Button đăng xuất -->
-        <Button Content="Đăng xuất" Width="200" Height="60" HorizontalAlignment="Center"
-                Style="{StaticResource MaterialDesignRaisedButton}"
-                materialDesign:ButtonProgressAssist.IsIndeterminate="False"
-                Click="Logout_Click"/>
-    </StackPanel>
-</TabItem>
+                <!-- Tab Nhân viên -->
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="AccountGroup" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Nhân viên" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel Margin="16">
+                        <views:staffManager/>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Tab Thu nhập -->
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="CashRefund" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Thu nhập" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel Margin="16">
+                        <views:revenueManager/>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Tab Giảm giá -->
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="CartPercent" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Giảm giá" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel Margin="16">
+                        <views:saleManager/>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Tab Đăng xuất -->
+                <TabItem x:Name="LogoutTab"
+                         PreviewMouseDown="LogoutTab_PreviewMouseDown">
+                    <TabItem.Header>
+                        <StackPanel HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="Logout" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Đăng xuất" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
 
             </TabControl>
         </materialDesign:Card>

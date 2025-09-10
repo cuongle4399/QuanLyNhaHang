@@ -13,7 +13,7 @@ namespace restaurantManager.ViewModels
     {
         public static void logout(Window currentWindow)
         {
-            if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 Home home = new Home();
                 home.Show();

@@ -31,7 +31,7 @@ namespace restaurantManager.Services
                 return;
             }
 
-            string query = "SELECT VaiTro FROM NguoiDung WHERE TaiKhoan=@tk AND MatKhau=@mk";
+            string query = "SELECT VaiTro FROM NguoiDung WHERE MaNhanVien=@tk AND MatKhau=@mk";
             object result = DatabaseConnect.ExecuteScalar(query,
                 new SqlParameter("@tk", username),
                 new SqlParameter("@mk", password));
@@ -40,8 +40,6 @@ namespace restaurantManager.Services
             {
                 int vaitro = Convert.ToInt32(result);
                 Models.SessionUser.UserName = username;
-                Models.SessionUser.Password = password;
-                Models.SessionUser.VaiTro = vaitro;
                 if (vaitro == 1)
                 {
                     Admin admin = new Admin();
@@ -74,7 +72,7 @@ namespace restaurantManager.Services
                 return;
             }
 
-            string checkQuery = "SELECT COUNT(*) FROM NguoiDung WHERE TaiKhoan=@tk";
+            string checkQuery = "SELECT COUNT(*) FROM NguoiDung WHERE MaNhanVien=@tk";
             object result = DatabaseConnect.ExecuteScalar(checkQuery, new SqlParameter("@tk", username));
             int exists = (result != null) ? Convert.ToInt32(result) : 0;
 
@@ -84,7 +82,7 @@ namespace restaurantManager.Services
                 return;
             }
 
-            string insertQuery = "INSERT INTO NguoiDung (TaiKhoan, MatKhau, VaiTro) VALUES (@tk, @mk, 0)";
+            string insertQuery = "INSERT INTO NguoiDung (MaNhanVien, MatKhau, VaiTro) VALUES (@tk, @mk, 0)";
             bool success = DatabaseConnect.ExecuteNonQuery(insertQuery,
                 new SqlParameter("@tk", username),
                 new SqlParameter("@mk", password));
