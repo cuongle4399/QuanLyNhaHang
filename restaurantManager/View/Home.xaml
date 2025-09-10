@@ -4,7 +4,7 @@
         Title="Trang Chủ" Height="450" Width="450"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         WindowStartupLocation="CenterScreen"
-        Icon="/Asset/Image/logo.ico"
+        Icon="/Resources/Image/logo/logo.ico"
         ResizeMode="NoResize"
         >
     <Grid>
@@ -19,13 +19,12 @@
                         <TextBox x:Name="txtLoginUsername" Height="35" Margin="0,0,0,10" 
          materialDesign:HintAssist.Hint="Tài khoản" FontSize="16"/>
 
-                        <!-- PasswordBox + TextBox show pass -->
+                        <!-- PasswordBox -->
                         <Grid Margin="0,0,0,10">
                             <PasswordBox x:Name="txtLoginPassword" Height="35" 
                  materialDesign:HintAssist.Hint="Mật khẩu" FontSize="16"/>
                             <TextBox x:Name="txtShowPassword" materialDesign:HintAssist.Hint="Mật khẩu" Height="35" Visibility="Collapsed" FontSize="16"/>
                         </Grid>
-
 
                         <CheckBox x:Name="chkShowLoginPassword" Content="Hiện mật khẩu" Margin="0,0,0,10"></CheckBox>
 

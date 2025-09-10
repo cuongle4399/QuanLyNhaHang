@@ -19,8 +19,10 @@ namespace restaurantManager
         public Admin()
         {
             InitializeComponent();
+            this.Title += $" - Người dùng: {Models.SessionUser.UserName}";
         }
-        private void Logout_Click(object sender, RoutedEventArgs e)
+
+        private void LogoutTab_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             ViewModels.Logout.logout(this);
         }

@@ -9,23 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Asset\Image\BackgroundLogout.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Database\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Asset\Image\BackgroundLogout.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Asset\Image\logo.ico" />
+    <Resource Include="Resources\Image\logo\logo.ico" />
   </ItemGroup>
 
 </Project>
