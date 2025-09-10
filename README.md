@@ -40,7 +40,7 @@ Hệ thống sử dụng **SQL Server** để lưu trữ dữ liệu, theo kiế
 
 ### 1. Cấu trúc nhánh
 - `main` → nhánh chính (code ổn định)  
-- `test` → nhánh kiểm thử (được đổi từ `master`)  
+- `test` → nhánh kiểm thử trước khi đưa vào main 
 - Các nhánh module (mỗi chức năng 1 nhánh riêng):  
   - `menuManager`  
   - `revenueManager`  
@@ -48,16 +48,6 @@ Hệ thống sử dụng **SQL Server** để lưu trữ dữ liệu, theo kiế
   - `staffManager`  
   - `confirmPayFood`  
   - `orderFood`  
-
----
-
-### 2. Đổi `master` → `test`
-Thực hiện 1 lần để chuẩn hóa repo:
-```bash
-git branch -m master test
-git push origin test
-git push origin --delete master
-```
 
 ---
 
@@ -121,7 +111,7 @@ git push origin main
 ---
 
 ## 👨‍💻 Tác giả
-- **Lê Cường** – Team Leader & Developer
+- **Cường Lê** – Team Leader & Developer
 - **Nguyễn Võ Thành Tín** – Developer
 - **Huỳnh Ngọc Khang** – Developer  
 - **Nguyễn Nhất Nguyên** – Developer  
