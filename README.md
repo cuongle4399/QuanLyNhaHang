@@ -75,10 +75,11 @@ git checkout main
 git pull origin main
 ```
 
-#### 🔹 Bước 3: Tạo nhánh riêng
+#### 🔹 Bước 3: Checkout sang nhánh đã được phân công
 Ví dụ phụ trách `OrderFood`:
 ```bash
-git checkout -b orderFood
+git checkout orderFood
+git pull origin orderFood
 ```
 
 #### 🔹 Bước 4: Code + Commit
@@ -116,7 +117,6 @@ git pull origin main
 git merge test
 git push origin main
 ```
-Lưu ý: Chỉ có mình mới được merge vào nhánh main ae nhé
 
 ---
 
