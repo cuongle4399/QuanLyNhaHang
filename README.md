@@ -21,46 +21,6 @@ Hệ thống sử dụng **SQL Server** để lưu trữ dữ liệu, theo kiế
 
 ---
 
-## 🏗️ Cấu trúc thư mục
-```plaintext
-RestaurantManager/
-├── Models/                 # Chứa class dữ liệu (Food, Table, Bill, Employee, ...)
-│
-├── Services/               # Xử lý logic & kết nối Database
-│   ├── DatabaseService.cs
-│   └── AuthService.cs
-│
-├── View/                   # Giao diện XAML
-│   ├── Features/
-│   │   ├── Admin/
-│   │   │   ├── MenuManager.xaml
-│   │   │   ├── RevenueManager.xaml
-│   │   │   ├── SaleManager.xaml
-│   │   │   └── StaffManager.xaml
-│   │   └── Staff/
-│   │       ├── ConfirmPayFood.xaml
-│   │       └── OrderFood.xaml
-│   │
-│   ├── Admin.xaml
-│   ├── Home.xaml
-│   └── Staff.xaml
-│
-├── ViewModels/             # Xử lý logic UI (MVVM)
-│   ├── Admin/
-│   │   ├── MenuManagerViewModel.cs
-│   │   ├── RevenueManagerViewModel.cs
-│   │   ├── SaleManagerViewModel.cs
-│   │   └── StaffManagerViewModel.cs
-│   └── Staff/
-│       ├── ConfirmPayFoodViewModel.cs
-│       └── OrderFoodViewModel.cs
-│
-├── App.xaml
-└── MainWindow.xaml
-```
-
----
-
 ## ⚙️ Cài đặt
 1. Clone project:
    ```bash
@@ -71,7 +31,7 @@ RestaurantManager/
 3. Import database vào SQL Server:
    - Tạo database mới `QuanLyNhaHang`  
    - Chạy script SQL trong thư mục `Database/`  
-4. Cập nhật `Connection String` trong `App.config`  
+4. Cập nhật `Connection String` trong `Services/DatabaseConnect.cs`  
 5. Build & Run  
 
 ---
@@ -101,7 +61,7 @@ git push origin --delete master
 
 ---
 
-### 3. Quy trình làm việc cho thành viên
+### 3. Hướng dẫn quy trình làm việc cho thành viên
 
 #### 🔹 Bước 1: Clone repo
 ```bash
@@ -156,38 +116,15 @@ git pull origin main
 git merge test
 git push origin main
 ```
-
----
-
-## 📏 Quy ước code (Coding Convention)
-
-### 🔹 C#
-- Class, File: PascalCase (`MenuManagerViewModel.cs`)  
-- Biến, thuộc tính: camelCase (`foodList`, `totalAmount`)  
-- Hằng số: UPPER_CASE (`MAX_TABLE`)  
-
-### 🔹 XAML
-- File XAML: PascalCase (`MenuManager.xaml`)  
-- DataContext gắn với ViewModel tương ứng  
-- Dùng `Binding` để kết nối UI ↔ ViewModel (tránh code-behind nhiều)  
-
----
-
-## 📸 Giao diện minh hoạ
-*(Sẽ thêm ảnh screenshot khi chạy app)*  
-
----
-
-## 🔮 Hướng phát triển
-- Dùng **Entity Framework Core** thay ADO.NET  
-- Thêm **biểu đồ doanh thu** (LiveCharts)  
-- Tích hợp **API backend** để phát triển mobile app  
-- Hỗ trợ **đa ngôn ngữ (i18n)**  
+Lưu ý: Chỉ có mình mới được merge vào nhánh main ae nhé
 
 ---
 
 ## 👨‍💻 Tác giả
-- **Lê Cường** – Developer  
+- **Lê Cường** – Team Leader & Developer
+- **Nguyễn Võ Thành Tín** – Developer
+- **Huỳnh Ngọc Khang** – Developer  
+- **Nguyễn Nhất Nguyên** – Developer  
 
 📅 Phiên bản: 1.0.0  
 📌 Công nghệ: WPF, .NET, SQL Server
