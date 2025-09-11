@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock TextAlignment="Center" FontSize="30" FontWeight="Bold" Text="Quản lý nhân viên" Background="DeepSkyBlue" Height="45" VerticalAlignment="Top"></TextBlock>
+        <DockPanel>
+            <TextBlock  DockPanel.Dock="Top" TextAlignment="Center" FontSize="30" FontWeight="Bold" Text="Quản lý nhân viên" Background="DeepSkyBlue" Height="45" VerticalAlignment="Top" ></TextBlock>
+            <!--main content-->
+        </DockPanel>
     </Grid>
 </UserControl>
