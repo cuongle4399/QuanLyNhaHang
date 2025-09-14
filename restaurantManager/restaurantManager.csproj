@@ -9,6 +9,96 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Image\beverage\ca_phe.jpg" />
+    <None Remove="Resources\Image\beverage\chivas_18.jpg" />
+    <None Remove="Resources\Image\beverage\craft_ipa.jpg" />
+    <None Remove="Resources\Image\beverage\heineken.jpg" />
+    <None Remove="Resources\Image\beverage\nuoc_cam.jpg" />
+    <None Remove="Resources\Image\beverage\nuoc_loc.jpg" />
+    <None Remove="Resources\Image\beverage\sake.jpg" />
+    <None Remove="Resources\Image\beverage\sinh_to_xoai.jpg" />
+    <None Remove="Resources\Image\beverage\tiger.jpg" />
+    <None Remove="Resources\Image\beverage\tra_sua.jpg" />
+    <None Remove="Resources\Image\beverage\vang_do.jpg" />
+    <None Remove="Resources\Image\dish\banh_mi.jpg" />
+    <None Remove="Resources\Image\dish\bo_kho.jpg" />
+    <None Remove="Resources\Image\dish\bun_cha.jpg" />
+    <None Remove="Resources\Image\dish\ca_kho.jpg" />
+    <None Remove="Resources\Image\dish\com_tam.jpg" />
+    <None Remove="Resources\Image\dish\ga_nuong.jpg" />
+    <None Remove="Resources\Image\dish\goi_cuon.jpg" />
+    <None Remove="Resources\Image\dish\lau_thai.jpg" />
+    <None Remove="Resources\Image\dish\mi_quang.jpg" />
+    <None Remove="Resources\Image\dish\pho_bo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Image\beverage\ca_phe.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\beverage\chivas_18.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\beverage\craft_ipa.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\beverage\heineken.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\beverage\nuoc_cam.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\beverage\nuoc_loc.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\beverage\sake.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\beverage\sinh_to_xoai.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\beverage\tiger.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\beverage\tra_sua.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\beverage\vang_do.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\dish\banh_mi.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\dish\bo_kho.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\dish\bun_cha.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\dish\ca_kho.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\dish\com_tam.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\dish\ga_nuong.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\dish\goi_cuon.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\dish\lau_thai.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\dish\mi_quang.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Image\dish\pho_bo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
