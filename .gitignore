@@ -1,0 +1,48 @@
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Rider / JetBrains (nếu có xài)
+.idea/
+*.iml
+
+# .NET Core artifacts
+artifacts/
+project.lock.json
+project.fragment.lock.json
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+# Backup & temp
+*.bak
+*.tmp
+*.log
+*.swp
+*.dbmdl
+*.opendb
+*.cache
+
+# Test results
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# Publish
+*.publishsettings
+PublishProfiles/
