@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\Sinh Vien\Làm việc nhóm\QuanLyNhaHang\restaurantManager\App.xaml
-10-1828486783
+10-309881594
 211115621000
-272142232027
+27-702275214
 2021416833898
-View\Admin.xaml;View\Fuction\Admin\invoiceDetailWindow.xaml;View\Fuction\Admin\menuManager.xaml;View\Fuction\Admin\revenueManager.xaml;View\Fuction\Admin\saleManager.xaml;View\Fuction\Admin\staffManager.xaml;View\Fuction\Staff\confirmPayFood.xaml;View\Fuction\Staff\orderFood.xaml;View\Home.xaml;View\Staff.xaml;
+View\Admin.xaml;View\Fuction\Admin\InvoiceDetailWindow.xaml;View\Fuction\Admin\menuManager.xaml;View\Fuction\Admin\revenueManager.xaml;View\Fuction\Admin\saleManager.xaml;View\Fuction\Admin\staffManager.xaml;View\Fuction\Staff\confirmPayFood.xaml;View\Fuction\Staff\orderFood.xaml;View\Home.xaml;View\Staff.xaml;
 
-True
+False
 
