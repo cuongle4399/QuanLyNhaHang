@@ -11,76 +11,79 @@
         Icon="/Resources/Image/logo/logo.ico"
         Title="Quản trị viên"
         Height="600"
-        MinHeight="600"
+        MinHeight="700"
         MinWidth="1000"
-        Width="1000">
+        Width="1000"
+        Background="#1E1E1E">
 
-    <Grid>
-        <materialDesign:Card>
+    <Grid Background="#1E1E1E">
+        <!-- Card nền tối -->
+        <materialDesign:Card Background="#2E2E2E" Padding="0" Margin="0" >
             <TabControl SnapsToDevicePixels="True"
                         Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                         TabStripPlacement="Left"
-                        materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+                        materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                        Background="#2E2E2E"
+                        Foreground="White">
 
                 <!-- Tab Món ăn -->
-                <TabItem>
+                <TabItem Background="#2E2E2E" Foreground="White">
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="FoodForkDrink" HorizontalAlignment="Center" />
-                            <TextBlock Text="Món ăn" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24" Kind="FoodForkDrink" Foreground="White"/>
+                            <TextBlock Text="Món ăn" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <StackPanel Margin="16">
+                    <Grid Margin="16" Background="#2E2E2E">
                         <views:menuManager/>
-                    </StackPanel>
+                    </Grid>
                 </TabItem>
 
                 <!-- Tab Nhân viên -->
-                <TabItem>
+                <TabItem Background="#2E2E2E" Foreground="White">
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="AccountGroup" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Nhân viên" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24" Kind="AccountGroup" Foreground="White"/>
+                            <TextBlock Text="Nhân viên" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <StackPanel Margin="16">
+                    <Grid Margin="16" Background="#2E2E2E">
                         <views:staffManager/>
-                    </StackPanel>
+                    </Grid>
                 </TabItem>
 
                 <!-- Tab Thu nhập -->
-                <TabItem>
+                <TabItem Background="#2E2E2E" Foreground="White">
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="CashRefund" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Thu nhập" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <materialDesign:PackIcon  HorizontalAlignment="Center" Width="24" Height="24" Kind="CashRefund" Foreground="White"/>
+                            <TextBlock Text="Thu nhập" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <StackPanel Margin="16">
+                    <Grid Margin="16" Background="#2E2E2E">
                         <views:revenueManager/>
-                    </StackPanel>
+                    </Grid>
                 </TabItem>
 
                 <!-- Tab Giảm giá -->
-                <TabItem>
+                <TabItem Background="#2E2E2E" Foreground="White">
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="CartPercent" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Giảm giá" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24" Kind="CartPercent" Foreground="White"/>
+                            <TextBlock Text="Giảm giá" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <StackPanel Margin="16">
+                    <Grid Margin="16" Background="#2E2E2E">
                         <views:saleManager/>
-                    </StackPanel>
+                    </Grid>
                 </TabItem>
 
                 <!-- Tab Đăng xuất -->
-                <TabItem x:Name="LogoutTab"
-                         PreviewMouseDown="LogoutTab_PreviewMouseDown">
+                <TabItem x:Name="LogoutTab" PreviewMouseDown="LogoutTab_PreviewMouseDown" Background="#2E2E2E" Foreground="White">
                     <TabItem.Header>
-                        <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="Logout" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Đăng xuất" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                        <StackPanel HorizontalAlignment="Center" Background="#2E2E2E">
+                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24" Kind="Logout" Foreground="White"/>
+                            <TextBlock Text="Đăng xuất" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,4,0,0" Foreground="White"/>
                         </StackPanel>
                     </TabItem.Header>
                 </TabItem>

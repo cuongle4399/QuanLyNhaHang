@@ -15,46 +15,48 @@
         MinWidth="1000"
         Width="1000">
 
-    <Grid>
-        <materialDesign:Card>
-            <TabControl 
+    <Grid Background="#2E2E2E">
+        <materialDesign:Card Background="#2E2E2E" Margin="0" Padding="0">
+            <TabControl  Background="#2E2E2E"
                         SnapsToDevicePixels="True"
                         Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                         TabStripPlacement="Left"
-                        materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+                        materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                        Foreground="White">
+                <!-- TabItem chữ mặc định trắng -->
 
                 <!-- Tab Gọi món -->
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="Food" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Gọi món" HorizontalAlignment="Center"/>
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="Food" Foreground="White" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Gọi món" HorizontalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <StackPanel Margin="16">
+                    <Grid Margin="16">
                         <views:orderFood/>
-                    </StackPanel>
+                    </Grid>
                 </TabItem>
 
                 <!-- Tab Tính tiền -->
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="CreditCardSettingsOutline" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Tính tiền" HorizontalAlignment="Center"/>
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="CreditCardSettingsOutline" Foreground="White" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Tính tiền" HorizontalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <StackPanel Margin="16">
+                    <Grid Margin="16">
                         <views:confirmPayFood/>
-                    </StackPanel>
+                    </Grid>
                 </TabItem>
 
                 <!-- Tab Đăng xuất -->
                 <TabItem x:Name="LogoutTab" PreviewMouseDown="LogoutTab_PreviewMouseDown">
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="Logout" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Đăng xuất" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="Logout" Foreground="White" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Đăng xuất" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,4,0,0" Foreground="White"/>
                         </StackPanel>
                     </TabItem.Header>
                 </TabItem>
