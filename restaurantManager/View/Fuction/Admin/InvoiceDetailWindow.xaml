@@ -28,7 +28,6 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <!-- 3 dòng này là nơi xaml trước đang thiếu -->
             <StackPanel Margin="0,8,0,0">
                 <TextBlock x:Name="txtSubtotal"     FontSize="14" TextAlignment="Right"/>
                 <TextBlock x:Name="txtDiscountLine" FontSize="14" TextAlignment="Right"/>

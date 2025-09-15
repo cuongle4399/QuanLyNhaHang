@@ -33,11 +33,11 @@
             <DatePicker x:Name="dpTo" Width="150" Margin="5,0"/>
             <Button x:Name="btnSearch" Content="Tìm hóa đơn"
                 Width="120" Margin="10,0"
-                Background="SteelBlue" Foreground="White"
+                Background="SteelBlue"
                 Click="btnSearch_Click"/>
             <Button x:Name="btnAll" Content="Tìm tất cả"
                 Width="120" Margin="5,0"
-                Background="DarkOrange" Foreground="White"
+                Background="DarkOrange"
                 Click="btnAll_Click"/>
         </StackPanel>
 
@@ -63,7 +63,6 @@
           ScrollViewer.VerticalScrollBarVisibility="Auto"
           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
           MouseDoubleClick="dgInvoices_MouseDoubleClick">
-            <!-- dàn cột vừa khung, tránh cuộn ngang -->
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding MaDonHang}"/>
                 <DataGridTextColumn Header="Ngày đặt" Binding="{Binding NgayDat}"/>
