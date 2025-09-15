@@ -18,8 +18,8 @@
                 CanUserResizeColumns="False"
                 RowHeight="35" 
                 ColumnHeaderHeight="40"
-                AlternatingRowBackground="Lavender" 
-                RowBackground="White">
+                AlternatingRowBackground="#2E2E2E" 
+                RowBackground="#2E2E2E">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Món ăn"   Binding="{Binding TenMon}" Width="*"/>
                     <DataGridTextColumn Header="SL"       Binding="{Binding SoLuong}" Width="60"/>

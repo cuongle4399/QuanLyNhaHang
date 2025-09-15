@@ -35,11 +35,11 @@
             <DatePicker x:Name="dpTo" Width="150" Margin="5,0"/>
             <Button x:Name="btnSearch" Content="Tìm hóa đơn"
                     Width="120" Margin="10,0"
-                    Background="Black" Foreground="White"
+                    Background="#2E2E2E" Foreground="White"
                     Click="btnSearch_Click"/>
             <Button x:Name="btnAll" Content="Tìm tất cả"
                     Width="120" Margin="5,0"
-                    Background="Black" Foreground="White"
+                    Background="#2E2E2E" Foreground="White"
                     Click="btnAll_Click"/>
         </StackPanel>
 
@@ -52,7 +52,7 @@
         </StackPanel>
 
         <!-- Bảng dữ liệu -->
-        <Border Grid.Row="3" Background="WhiteSmoke" CornerRadius="8" Padding="10">
+        <Border Grid.Row="3" Background="#2E2E2E" CornerRadius="8" Padding="10">
             <DataGrid x:Name="dgInvoices"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
