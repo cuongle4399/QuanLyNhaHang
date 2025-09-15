@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\restaurantManager\\restaurantManager.csproj": {}
+    "D:\\New folder (5)\\restaurantManager\\restaurantManager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\restaurantManager\\restaurantManager.csproj": {
+    "D:\\New folder (5)\\restaurantManager\\restaurantManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\restaurantManager\\restaurantManager.csproj",
+        "projectUniqueName": "D:\\New folder (5)\\restaurantManager\\restaurantManager.csproj",
         "projectName": "restaurantManager",
-        "projectPath": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\restaurantManager\\restaurantManager.csproj",
+        "projectPath": "D:\\New folder (5)\\restaurantManager\\restaurantManager.csproj",
         "packagesPath": "C:\\Users\\Cuong Le\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\restaurantManager\\obj\\",
+        "outputPath": "D:\\New folder (5)\\restaurantManager\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
