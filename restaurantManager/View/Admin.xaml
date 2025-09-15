@@ -31,7 +31,7 @@
                         </StackPanel>
                     </TabItem.Header>
                     <StackPanel Margin="16">
-                        <views:menuManager/>
+                        <views:menuManager Loaded="menuManager_Loaded"/>
                     </StackPanel>
                 </TabItem>
 

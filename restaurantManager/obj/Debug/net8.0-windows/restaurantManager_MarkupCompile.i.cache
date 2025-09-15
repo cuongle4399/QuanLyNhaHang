@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\restaurantManager\obj\Debug\net8.0-windows\
+D:\Sinh Vien\Làm việc nhóm\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\
 restaurantManager
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-C:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\restaurantManager\App.xaml
-9-236344765
+D:\Sinh Vien\Làm việc nhóm\QuanLyNhaHang\restaurantManager\App.xaml
+10-309881594
 
-24-1571630407
-202-925799592
-View\Admin.xaml;View\Fuction\Admin\menuManager.xaml;View\Fuction\Admin\revenueManager.xaml;View\Fuction\Admin\saleManager.xaml;View\Fuction\Admin\staffManager.xaml;View\Fuction\Staff\confirmPayFood.xaml;View\Fuction\Staff\orderFood.xaml;View\Home.xaml;View\Staff.xaml;
+251738084485
+2021416833898
+View\Admin.xaml;View\Fuction\Admin\InvoiceDetailWindow.xaml;View\Fuction\Admin\menuManager.xaml;View\Fuction\Admin\revenueManager.xaml;View\Fuction\Admin\saleManager.xaml;View\Fuction\Admin\staffManager.xaml;View\Fuction\Staff\confirmPayFood.xaml;View\Fuction\Staff\orderFood.xaml;View\Home.xaml;View\Staff.xaml;
 
 False
 

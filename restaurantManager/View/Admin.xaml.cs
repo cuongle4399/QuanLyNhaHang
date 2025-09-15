@@ -26,5 +26,10 @@ namespace restaurantManager
         {
             ViewModels.Logout.logout(this);
         }
+
+        private void menuManager_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
