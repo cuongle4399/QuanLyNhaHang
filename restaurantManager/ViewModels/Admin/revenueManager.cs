@@ -13,7 +13,6 @@ namespace restaurantManager.ViewModels.Admin
     {
         //public DataTable GetInvoices(DateTime from, DateTime to)
         //{
-
         //}
 
         public DataTable GetAllInvoices()
