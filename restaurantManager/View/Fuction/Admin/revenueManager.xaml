@@ -5,8 +5,75 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:restaurantManager.View.Fuction.Admin"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock TextAlignment="Center" FontSize="30" FontWeight="Bold" Text="Quản lý doanh thu" Background="DeepSkyBlue" Height="45" VerticalAlignment="Top"></TextBlock>
+             d:DesignHeight="450" d:DesignWidth="900">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Tiêu đề -->
+        <Border Grid.Row="0" Background="DeepSkyBlue">
+            <TextBlock Text="Quản lý doanh thu"
+                   Foreground="White"
+                   FontSize="30"
+                   Height="45"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"/>
+        </Border>
+
+        <!-- Bộ lọc -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <Label Content="Từ ngày:" VerticalAlignment="Center"/>
+            <DatePicker x:Name="dpFrom" Width="150" Margin="5,0"/>
+            <Label Content="Đến ngày:" VerticalAlignment="Center"/>
+            <DatePicker x:Name="dpTo" Width="150" Margin="5,0"/>
+            <Button x:Name="btnSearch" Content="Tìm hóa đơn"
+                Width="120" Margin="10,0"
+                Background="SteelBlue" Foreground="White"
+                Click="btnSearch_Click"/>
+            <Button x:Name="btnAll" Content="Tìm tất cả"
+                Width="120" Margin="5,0"
+                Background="DarkOrange" Foreground="White"
+                Click="btnAll_Click"/>
+        </StackPanel>
+
+        <!-- Thống kê -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Tổng doanh thu: " FontWeight="Bold"/>
+            <TextBlock x:Name="txtTotalRevenue" Margin="5,0"/>
+            <TextBlock Text=" | Số hóa đơn: " FontWeight="Bold" Margin="20,0,0,0"/>
+            <TextBlock x:Name="txtInvoiceCount" Margin="5,0"/>
+        </StackPanel>
+
+        <!-- Bảng dữ liệu -->
+        <DataGrid Grid.Row="3"
+          x:Name="dgInvoices"
+          Margin="10"
+          MaxHeight="400"
+          IsReadOnly="True"
+          CanUserAddRows="False"
+          AutoGenerateColumns="False"
+          CanUserResizeColumns="False"
+          HeadersVisibility="Column"
+          GridLinesVisibility="All"
+          ScrollViewer.VerticalScrollBarVisibility="Auto"
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+          MouseDoubleClick="dgInvoices_MouseDoubleClick">
+            <!-- dàn cột vừa khung, tránh cuộn ngang -->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding MaDonHang}"/>
+                <DataGridTextColumn Header="Ngày đặt" Binding="{Binding NgayDat}"/>
+                <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}"/>
+                <DataGridTextColumn Header="Khuyến mãi" Binding="{Binding TenChuongTrinh}"/>
+                <DataGridTextColumn Header="Tổng các món" Binding="{Binding TongCacMon}"/>
+                <DataGridTextColumn Header="Thanh toán"   Binding="{Binding ThanhToanCuoi}"/>
+                <DataGridTextColumn Header="Giá trị KM"   Binding="{Binding GiaTriKhuyenMai}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
+
 </UserControl>
