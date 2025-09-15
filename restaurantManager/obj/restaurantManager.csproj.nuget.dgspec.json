@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "D:\\Sinh Vien\\Làm việc nhóm\\QuanLyNhaHang\\restaurantManager\\restaurantManager.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "D:\\Sinh Vien\\Làm việc nhóm\\QuanLyNhaHang\\restaurantManager\\restaurantManager.csproj",
         "packagesPath": "C:\\Users\\LENONO\\.nuget\\packages\\",
         "outputPath": "D:\\Sinh Vien\\Làm việc nhóm\\QuanLyNhaHang\\restaurantManager\\obj\\",
+=======
+    "D:\\New folder (5)\\restaurantManager\\restaurantManager.csproj": {}
+  },
+  "projects": {
+    "D:\\New folder (5)\\restaurantManager\\restaurantManager.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\New folder (5)\\restaurantManager\\restaurantManager.csproj",
+        "projectName": "restaurantManager",
+        "projectPath": "D:\\New folder (5)\\restaurantManager\\restaurantManager.csproj",
+        "packagesPath": "C:\\Users\\Cuong Le\\.nuget\\packages\\",
+        "outputPath": "D:\\New folder (5)\\restaurantManager\\obj\\",
+>>>>>>> main
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

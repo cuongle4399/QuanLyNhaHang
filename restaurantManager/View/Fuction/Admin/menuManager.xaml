@@ -4,9 +4,151 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:restaurantManager.View.Fuction.Admin"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock  TextAlignment="Center" FontSize="30" FontWeight="Bold" Text="Quản lý thực đơn" Background="DeepSkyBlue" Height="45" VerticalAlignment="Top" ></TextBlock>
+
+    <Grid Background="#2E2E2E" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="Quản lý thực đơn"
+                   TextAlignment="Center"
+                   FontSize="28"
+                   FontWeight="Bold" 
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   Margin="0,0,0,20"
+                   HorizontalAlignment="Left"/>
+
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Nhập thông tin món ăn" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" Foreground="White"/>
+
+            <Grid Grid.Row="1" Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Tên món:" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="txtTenMon" Padding="2" Background="#3A3A3A" Foreground="White" BorderBrush="#555" Grid.Column="1" HorizontalAlignment="Stretch" MinWidth="50"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Mô tả:" VerticalAlignment="Top" Foreground="White"/>
+                <TextBox x:Name="txtMoTa" Padding="2" TextWrapping="Wrap" AcceptsReturn="True"
+                         Background="#3A3A3A" Foreground="White" BorderBrush="#555" Grid.Column="1" HorizontalAlignment="Stretch" MinHeight="40"/>
+            </Grid>
+
+            <Grid Grid.Row="3" Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Giá (đ):" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="txtGia" Padding="2" Background="#3A3A3A" Foreground="White" BorderBrush="#555" Grid.Column="1" HorizontalAlignment="Stretch"/>
+            </Grid>
+
+            <Grid Grid.Row="4" Margin="0,5">
+                <ComboBox x:Name="cbbLoaiMonAn" 
+                        HorizontalAlignment="Stretch"
+                        materialDesign:HintAssist.Hint="Chọn loại món"
+                        ItemsSource="{Binding DanhSachLoaiMonAn}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">            
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Text}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+            </Grid>
+
+            <Grid Grid.Row="5" Margin="0,15,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnThem" Content="Thêm" Margin="5" Background="#009688" Foreground="White" HorizontalAlignment="Stretch" Click="btnThem_Click"/>
+                <Button x:Name="btnSua" Content="Sửa" Margin="5" Background="#FF9800" Foreground="White" HorizontalAlignment="Stretch" Grid.Column="1"/>
+                <Button x:Name="btnXoa" Content="Xóa" Margin="5" Background="#F44336" Foreground="White" HorizontalAlignment="Stretch" Grid.Column="2"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TabControl x:Name="tabControl"
+                        Grid.Column="0" HorizontalAlignment="Stretch"
+                        materialDesign:ColorZoneAssist.Foreground="Gold"
+                        materialDesign:ColorZoneAssist.Mode="Custom">
+
+                <TabItem x:Name="All" Header="Tất cả" PreviewMouseLeftButtonUp="TabItem_PreviewMouseLeftButtonUp"></TabItem>
+                <TabItem x:Name ="dish" Header="Món ăn" PreviewMouseLeftButtonUp="TabItem_PreviewMouseLeftButtonUp"></TabItem>
+                <TabItem x:Name ="beverage" Header="Nước uống" PreviewMouseLeftButtonUp="TabItem_PreviewMouseLeftButtonUp"></TabItem>
+            </TabControl>
+            <ListView  Grid.Row="1"
+           ItemsSource="{Binding DanhSachMonAn}" 
+           x:Name="lvMonAn"
+           SelectedItem="{Binding SelectedMonAn, Mode=TwoWay}" 
+           Background="#2E2E2E"
+           Margin="10,0,0,0"
+           HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1" BorderBrush="White" CornerRadius="5" Padding="5" Margin="0,0,0,5" Background="#3A3A3A" HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding HinhAnhURL}" Margin="5" MaxWidth="120" MaxHeight="120"/>
+
+                                <Grid Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Text="{Binding TenMonAn}" FontWeight="Bold" FontSize="18" Foreground="White" HorizontalAlignment="Stretch"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Gia, StringFormat={}{0:N0} đ}" Foreground="#FFD700" FontSize="16" HorizontalAlignment="Stretch"/>
+                                    <TextBlock Grid.Row="2" Text="{Binding MoTa}" FontStyle="Italic" FontSize="14" TextWrapping="Wrap" Foreground="White" HorizontalAlignment="Stretch" MaxWidth="300"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </Grid>
 </UserControl>

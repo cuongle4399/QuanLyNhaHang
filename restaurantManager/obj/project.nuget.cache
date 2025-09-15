@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "GCknFAlMtww=",
   "success": true,
   "projectFilePath": "D:\\Sinh Vien\\Làm việc nhóm\\QuanLyNhaHang\\restaurantManager\\restaurantManager.csproj",
+=======
+  "dgSpecHash": "XXt6rd7kNlE=",
+  "success": true,
+  "projectFilePath": "D:\\New folder (5)\\restaurantManager\\restaurantManager.csproj",
+>>>>>>> main
   "expectedPackageFiles": [
     "C:\\Users\\LENONO\\.nuget\\packages\\materialdesigncolors\\5.2.1\\materialdesigncolors.5.2.1.nupkg.sha512",
     "C:\\Users\\LENONO\\.nuget\\packages\\materialdesignthemes\\5.2.1\\materialdesignthemes.5.2.1.nupkg.sha512",
