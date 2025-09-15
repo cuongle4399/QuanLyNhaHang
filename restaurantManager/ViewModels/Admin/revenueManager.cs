@@ -76,8 +76,7 @@ namespace restaurantManager.ViewModels.Admin
         INNER JOIN MonAn m ON c.MaMonAn = m.MaMonAn
         WHERE c.MaDonHang = @MaDonHang
         ORDER BY m.TenMonAn";
-            return restaurantManager.Services.DatabaseConnect.ExecuteTable(
-                query, new System.Data.SqlClient.SqlParameter("@MaDonHang", maDonHang));
+            return DatabaseConnect.ExecuteTable(query, new SqlParameter("@MaDonHang", maDonHang));
         }
 
     }
