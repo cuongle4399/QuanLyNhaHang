@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿
 FD:\Sinh Vien\Làm việc nhóm\QuanLyNhaHang\restaurantManager\App.xaml;;
 FD:\Sinh Vien\Làm việc nhóm\QuanLyNhaHang\restaurantManager\View\Admin.xaml;;
@@ -8,4 +9,16 @@ FD:\Sinh Vien\Làm việc nhóm\QuanLyNhaHang\restaurantManager\View\Fuction\Adm
 FD:\Sinh Vien\Làm việc nhóm\QuanLyNhaHang\restaurantManager\View\Fuction\Staff\confirmPayFood.xaml;;
 FD:\Sinh Vien\Làm việc nhóm\QuanLyNhaHang\restaurantManager\View\Fuction\Staff\orderFood.xaml;;
 FD:\Sinh Vien\Làm việc nhóm\QuanLyNhaHang\restaurantManager\View\Staff.xaml;;
+=======
+﻿D:\New folder (5)\restaurantManager\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+FD:\New folder (5)\restaurantManager\App.xaml;;
+FD:\New folder (5)\restaurantManager\View\Admin.xaml;;
+FD:\New folder (5)\restaurantManager\View\Fuction\Admin\menuManager.xaml;;
+FD:\New folder (5)\restaurantManager\View\Fuction\Admin\revenueManager.xaml;;
+FD:\New folder (5)\restaurantManager\View\Fuction\Admin\saleManager.xaml;;
+FD:\New folder (5)\restaurantManager\View\Fuction\Admin\staffManager.xaml;;
+FD:\New folder (5)\restaurantManager\View\Fuction\Staff\confirmPayFood.xaml;;
+FD:\New folder (5)\restaurantManager\View\Fuction\Staff\orderFood.xaml;;
+FD:\New folder (5)\restaurantManager\View\Staff.xaml;;
+>>>>>>> main
 

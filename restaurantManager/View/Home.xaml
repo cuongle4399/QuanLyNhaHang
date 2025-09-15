@@ -7,13 +7,15 @@
         Icon="/Resources/Image/logo/logo.ico"
         ResizeMode="NoResize"
         >
-    <Grid>
-        <materialDesign:Card Padding="20" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"
+    <Grid Background="#2E2E2E">
+        <materialDesign:Card  Background="#2E2E2E" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center"
                              Width="400" Height="400">
-            <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+            <TabControl Width="300" 
+                        materialDesign:ColorZoneAssist.Foreground="White"
+                        materialDesign:ColorZoneAssist.Mode="Custom" >
 
                 <!-- Tab Đăng Nhập -->
-                <TabItem Header="Đăng Nhập">
+                <TabItem Header="Đăng Nhập" Foreground="White" >
                     <StackPanel Margin="10">
                         <TextBlock Text="Đăng Nhập" FontSize="22" FontWeight="Bold" Margin="0,30,0,20" HorizontalAlignment="Center"/>
                         <TextBox x:Name="txtLoginUsername" Height="35" Margin="0,0,0,10" 
@@ -34,7 +36,7 @@
                 </TabItem>
 
                 <!-- Tab Đăng Ký -->
-                <TabItem Header="Đăng Ký">
+                <TabItem Header="Đăng Ký" Foreground="White">
                     <StackPanel Margin="10">
                         <TextBlock Text="Đăng Ký" FontSize="22" FontWeight="Bold" Margin="0,30,0,20" HorizontalAlignment="Center"/>
                         <TextBox x:Name="txtRegisterUsername" Height="35" Margin="0,0,0,10" 
