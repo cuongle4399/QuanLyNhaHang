@@ -58,8 +58,7 @@
               "RelativeToolTip": "restaurantManager\\View\\Fuction\\Admin\\InvoiceDetailWindow.xaml.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T14:40:28.789Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T14:40:28.789Z"
             },
             {
               "$type": "Document",
@@ -70,8 +69,7 @@
               "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Admin\\InvoiceDetailWindow.xaml",
               "RelativeToolTip": "restaurantManager\\View\\Fuction\\Admin\\InvoiceDetailWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-12T14:39:56.969Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T14:39:56.969Z"
             },
             {
               "$type": "Document",
@@ -82,8 +80,7 @@
               "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Admin\\revenueManager.xaml",
               "RelativeToolTip": "restaurantManager\\View\\Fuction\\Admin\\revenueManager.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-12T13:13:21.907Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T13:13:21.907Z"
             },
             {
               "$type": "Document",
@@ -95,8 +92,7 @@
               "RelativeToolTip": "restaurantManager\\View\\Fuction\\Admin\\revenueManager.xaml.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAApwCMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T13:34:52.697Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T13:34:52.697Z"
             },
             {
               "$type": "Document",
@@ -104,9 +100,9 @@
               "Title": "revenueManager.cs",
               "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Admin\\revenueManager.cs",
               "RelativeDocumentMoniker": "restaurantManager\\ViewModels\\Admin\\revenueManager.cs",
-              "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Admin\\revenueManager.cs",
-              "RelativeToolTip": "restaurantManager\\ViewModels\\Admin\\revenueManager.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAewDoAAAAaAAAAAAAAAA==",
+              "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Admin\\revenueManager.cs*",
+              "RelativeToolTip": "restaurantManager\\ViewModels\\Admin\\revenueManager.cs*",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAewDEAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-12T13:15:33.259Z",
               "EditorCaption": ""
