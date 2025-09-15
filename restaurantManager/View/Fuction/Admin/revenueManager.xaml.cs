@@ -29,23 +29,7 @@ namespace restaurantManager.View.Fuction.Admin
 
         private void btnSearch_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            DateTime fromDate = dpFrom.SelectedDate ?? DateTime.Today;
-            DateTime toDate = dpTo.SelectedDate ?? DateTime.Today;
 
-            var table = viewModel.GetInvoices(fromDate, toDate);
-            dgInvoices.ItemsSource = table.DefaultView;
-
-            var summary = viewModel.GetRevenueSummary(fromDate, toDate);
-            if (summary != null)
-            {
-                txtTotalRevenue.Text = string.Format("{0:N0} VNĐ", summary["TongDoanhThu"]);
-                txtInvoiceCount.Text = summary["SoHoaDon"].ToString();
-            }
-            else
-            {
-                txtTotalRevenue.Text = "0 VNĐ";
-                txtInvoiceCount.Text = "0";
-            }
         }
 
         private void btnAll_Click(object sender, System.Windows.RoutedEventArgs e)

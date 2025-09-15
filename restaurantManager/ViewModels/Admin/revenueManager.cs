@@ -11,31 +11,10 @@ namespace restaurantManager.ViewModels.Admin
 {
     internal class revenueManager
     {
-        public DataTable GetInvoices(DateTime from, DateTime to)
-        {
-            string query = @"
-        SELECT 
-            d.MaDonHang,
-            d.NgayDat,
-            SUM(ISNULL(c.SoLuong,0) * ISNULL(c.GiaTaiThoiDiem,0)) AS TongCacMon,
-            CASE 
-                WHEN SUM(ISNULL(c.SoLuong,0) * ISNULL(c.GiaTaiThoiDiem,0)) - ISNULL(d.GiaTriKhuyenMai,0) < 0
-                     THEN 0
-                ELSE SUM(ISNULL(c.SoLuong,0) * ISNULL(c.GiaTaiThoiDiem,0)) - ISNULL(d.GiaTriKhuyenMai,0)
-            END AS ThanhToanCuoi,
-            d.TrangThai,
-            k.TenChuongTrinh,
-            ISNULL(d.GiaTriKhuyenMai,0) AS GiaTriKhuyenMai
-        FROM DonHang d
-        LEFT JOIN ChiTietDonHang c ON c.MaDonHang = d.MaDonHang
-        LEFT JOIN KhuyenMai k      ON d.MaKhuyenMai = k.MaKhuyenMai
-        WHERE CONVERT(date, d.NgayDat) BETWEEN @from AND @to
-        GROUP BY d.MaDonHang, d.NgayDat, d.TrangThai, k.TenChuongTrinh, d.GiaTriKhuyenMai
-        ORDER BY d.NgayDat DESC";
-            return DatabaseConnect.ExecuteTable(query,
-                new SqlParameter("@from", from),
-                new SqlParameter("@to", to));
-        }
+        //public DataTable GetInvoices(DateTime from, DateTime to)
+        //{
+
+        //}
 
         public DataTable GetAllInvoices()
         {
@@ -60,29 +39,9 @@ namespace restaurantManager.ViewModels.Admin
             return DatabaseConnect.ExecuteTable(query);
         }
 
-        public DataRow GetRevenueSummary(DateTime from, DateTime to)
-        {
-            string query = @"
-        SELECT 
-            ISNULL(SUM(x.ThanhToanCuoi),0) AS TongDoanhThu,
-            COUNT(*) AS SoHoaDon
-        FROM (
-            SELECT d.MaDonHang,
-                   CASE 
-                     WHEN SUM(ISNULL(c.SoLuong,0) * ISNULL(c.GiaTaiThoiDiem,0)) - ISNULL(d.GiaTriKhuyenMai,0) < 0
-                       THEN 0
-                     ELSE SUM(ISNULL(c.SoLuong,0) * ISNULL(c.GiaTaiThoiDiem,0)) - ISNULL(d.GiaTriKhuyenMai,0)
-                   END AS ThanhToanCuoi
-            FROM DonHang d
-            LEFT JOIN ChiTietDonHang c ON c.MaDonHang = d.MaDonHang
-            WHERE CONVERT(date, d.NgayDat) BETWEEN @from AND @to
-            GROUP BY d.MaDonHang, d.GiaTriKhuyenMai
-        ) x";
-            var dt = DatabaseConnect.ExecuteTable(query,
-                new SqlParameter("@from", from),
-                new SqlParameter("@to", to));
-            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
-        }
+        //public DataRow GetRevenueSummary(DateTime from, DateTime to)
+        //{
+        //}
 
         public DataRow GetRevenueSummaryAll()
         {
