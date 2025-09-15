@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "GCknFAlMtww=",
   "success": true,
   "projectFilePath": "D:\\Sinh Vien\\Làm việc nhóm\\QuanLyNhaHang\\restaurantManager\\restaurantManager.csproj",
-=======
-  "dgSpecHash": "XXt6rd7kNlE=",
-  "success": true,
-  "projectFilePath": "D:\\New folder (5)\\restaurantManager\\restaurantManager.csproj",
->>>>>>> main
   "expectedPackageFiles": [
     "C:\\Users\\LENONO\\.nuget\\packages\\materialdesigncolors\\5.2.1\\materialdesigncolors.5.2.1.nupkg.sha512",
     "C:\\Users\\LENONO\\.nuget\\packages\\materialdesignthemes\\5.2.1\\materialdesignthemes.5.2.1.nupkg.sha512",
@@ -19,5 +13,15 @@
     "C:\\Users\\LENONO\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\LENONO\\.nuget\\packages\\system.data.sqlclient\\4.9.0\\system.data.sqlclient.4.9.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "message": "Problem reading the cache file D:\\Sinh Vien\\Làm việc nhóm\\QuanLyNhaHang\\restaurantManager\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
+      "projectPath": "D:\\Sinh Vien\\Làm việc nhóm\\QuanLyNhaHang\\restaurantManager\\restaurantManager.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\Sinh Vien\\Làm việc nhóm\\QuanLyNhaHang\\restaurantManager\\restaurantManager.csproj",
+      "targetGraphs": []
+    }
+  ]
 }
