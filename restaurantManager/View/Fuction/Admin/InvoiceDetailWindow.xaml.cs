@@ -32,7 +32,6 @@ namespace restaurantManager.View.Fuction.Admin
                 $"Ngày: {invoice["NgayDat"]}\n" +
                 $"Trạng thái: {invoice["TrangThai"]}\n" +
                 $"Khuyến mãi: {tenKm} ({giamKm:N0})";
-
             dgDetails.ItemsSource = details.DefaultView;
 
             // tổng thanh toán
@@ -41,7 +40,6 @@ namespace restaurantManager.View.Fuction.Admin
                 tongCacMon += Convert.ToDecimal(r["ThanhTien"]);
 
             decimal thanhToan = Math.Max(tongCacMon - giamKm, 0);
-
             txtSubtotal.Text = $"Tổng các món: {tongCacMon:N0} VNĐ";
             txtDiscountOrd.Text = $"Giảm khuyến mãi: {giamKm:N0} VNĐ";
             txtTotal.Text = $"TỔNG THANH TOÁN: {thanhToan:N0} VNĐ";
