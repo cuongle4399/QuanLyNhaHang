@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\cuong le\\desktop\\c# wpf\\restaurantmanager\\database\\quanlybanhang.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\database\\quanlybanhang.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\cuong le\\desktop\\c# wpf\\restaurantmanager\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -29,6 +33,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\cuong le\\desktop\\c# wpf\\restaurantmanager\\models\\loaimonan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\models\\loaimonan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\cuong le\\desktop\\c# wpf\\restaurantmanager\\database\\quanlybanhang.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\database\\quanlybanhang.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -59,6 +67,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "QuanLyBanHang.sql ",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Database\\QuanLyBanHang.sql",
+              "RelativeDocumentMoniker": "restaurantManager\\Database\\QuanLyBanHang.sql",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Database\\QuanLyBanHang.sql",
+              "RelativeToolTip": "restaurantManager\\Database\\QuanLyBanHang.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-09-16T08:09:58.025Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\App.xaml",
               "RelativeDocumentMoniker": "restaurantManager\\App.xaml",
@@ -70,7 +90,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "menuManager.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\ViewModels\\Admin\\menuManager.cs",
               "RelativeDocumentMoniker": "restaurantManager\\ViewModels\\Admin\\menuManager.cs",
@@ -82,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Admin.xaml",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\View\\Admin.xaml",
               "RelativeDocumentMoniker": "restaurantManager\\View\\Admin.xaml",
@@ -93,7 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "SessionUser.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Models\\SessionUser.cs",
               "RelativeDocumentMoniker": "restaurantManager\\Models\\SessionUser.cs",
@@ -105,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "MonAn.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Models\\MonAn.cs",
               "RelativeDocumentMoniker": "restaurantManager\\Models\\MonAn.cs",
@@ -117,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "LoaiMonAn.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Models\\LoaiMonAn.cs",
               "RelativeDocumentMoniker": "restaurantManager\\Models\\LoaiMonAn.cs",
@@ -129,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "menuManager.xaml",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\View\\Fuction\\Admin\\menuManager.xaml",
               "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Admin\\menuManager.xaml",
