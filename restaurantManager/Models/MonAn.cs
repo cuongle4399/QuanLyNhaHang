@@ -11,13 +11,13 @@ namespace restaurantManager.Models
     {
         public int MaMonAn { get; set; }
         public string TenMonAn { get; set; }
-        public float Gia { get; set; }
+        public decimal Gia { get; set; }
         public string MoTa { get; set; }
         public string HinhAnhURL { get; set; }
         public int Loai { get; set; }
 
 
-        public MonAn(int maMonAn, string tenMonAn, float gia, string moTa, string hinhAnhURL, int loai)
+        public MonAn(int maMonAn, string tenMonAn, decimal gia, string moTa, string hinhAnhURL, int loai)
         {
             MaMonAn = maMonAn;
             TenMonAn = tenMonAn;
