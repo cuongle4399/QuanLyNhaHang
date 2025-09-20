@@ -53,10 +53,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\cuong le\\desktop\\c# wpf\\restaurantmanager\\models\\sessionuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\models\\sessionuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\cuong le\\desktop\\c# wpf\\restaurantmanager\\database\\quanlybanhang.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\database\\quanlybanhang.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -117,8 +113,7 @@
               "RelativeToolTip": "restaurantManager\\ViewModels\\Admin\\menuManager.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAvwDYAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-15T04:29:31.649Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-15T04:29:31.649Z"
             },
             {
               "$type": "Document",
@@ -128,7 +123,7 @@
               "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Admin\\menuManager.xaml.cs",
               "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\View\\Fuction\\Admin\\menuManager.xaml.cs",
               "RelativeToolTip": "restaurantManager\\View\\Fuction\\Admin\\menuManager.xaml.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAswEwAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAswEwAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-20T01:37:14.1Z",
               "EditorCaption": ""
@@ -142,20 +137,18 @@
               "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\View\\Fuction\\Admin\\saleManager.xaml",
               "RelativeToolTip": "restaurantManager\\View\\Fuction\\Admin\\saleManager.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-16T09:10:47.62Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-16T09:10:47.62Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "QuanLyBanHang.sql ",
+              "Title": "QuanLyBanHang.sql",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Database\\QuanLyBanHang.sql",
               "RelativeDocumentMoniker": "restaurantManager\\Database\\QuanLyBanHang.sql",
               "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Database\\QuanLyBanHang.sql",
               "RelativeToolTip": "restaurantManager\\Database\\QuanLyBanHang.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-09-16T08:09:58.025Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-16T08:09:58.025Z"
             },
             {
               "$type": "Document",
@@ -201,8 +194,7 @@
               "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\App.xaml",
               "RelativeToolTip": "restaurantManager\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-15T05:46:15.02Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-15T05:46:15.02Z"
             },
             {
               "$type": "Document",
