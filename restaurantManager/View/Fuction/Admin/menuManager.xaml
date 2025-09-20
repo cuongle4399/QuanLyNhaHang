@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:restaurantManager.View.Fuction.Admin"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="900">
 
     <Grid Background="#2E2E2E" Margin="10">
         <Grid.RowDefinitions>
@@ -30,6 +30,7 @@
 
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -69,6 +70,27 @@
             </Grid>
 
             <Grid Grid.Row="4" Margin="0,5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column= "0" Click="Button_Click" 
+                        Content="Chọn ảnh món ăn" 
+                        Width="150" Height="30" 
+                        HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+                    <Image Grid.Column="1" x:Name="ImageFoodDiaLog"
+                       Margin="5"
+                       Height="100" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Row="5" Margin="0,5">
                 <ComboBox x:Name="cbbLoaiMonAn" 
                         HorizontalAlignment="Stretch"
                         materialDesign:HintAssist.Hint="Chọn loại món"
@@ -83,15 +105,15 @@
 
             </Grid>
 
-            <Grid Grid.Row="5" Margin="0,15,0,0">
+            <Grid Grid.Row="6" Margin="0,15,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="btnThem" Content="Thêm" Margin="5" Background="#009688" Foreground="White" HorizontalAlignment="Stretch" Click="btnThem_Click"/>
-                <Button x:Name="btnSua" Content="Sửa" Margin="5" Background="#FF9800" Foreground="White" HorizontalAlignment="Stretch" Grid.Column="1"/>
-                <Button x:Name="btnXoa" Content="Xóa" Margin="5" Background="#F44336" Foreground="White" HorizontalAlignment="Stretch" Grid.Column="2"/>
+                <Button x:Name="btnSua" Content="Sửa" Margin="5" Background="#FF9800" Foreground="White" HorizontalAlignment="Stretch" Grid.Column="1" Click="btnSua_Click"/>
+                <Button x:Name="btnXoa" Content="Xóa" Margin="5" Background="#F44336" Foreground="White" HorizontalAlignment="Stretch" Grid.Column="2" Click="btnXoa_Click"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
@@ -114,6 +136,7 @@
            SelectedItem="{Binding SelectedMonAn, Mode=TwoWay}" 
            Background="#2E2E2E"
            Margin="10,0,0,0"
+           SelectionChanged="lvMonAn_SelectionChanged"
            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                 <ListView.ItemContainerStyle>
