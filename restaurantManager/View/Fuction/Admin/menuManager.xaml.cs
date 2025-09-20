@@ -30,18 +30,7 @@ namespace restaurantManager.View.Fuction.Admin
         {
             if (sender is TabItem tabItem)
             {
-                switch (tabItem.Name)
-                {
-                    case "All":
-                        ViewModels.Admin.menuManager.LoadDanhSachMonAn("SELECT * FROM MonAn");
-                        break;
-                    case "dish":
-                        ViewModels.Admin.menuManager.LoadDanhSachMonAn("SELECT * FROM MonAn WHERE Loai = @loai",new SqlParameter ("@loai","0"));
-                        break;
-                    case "beverage":
-                        ViewModels.Admin.menuManager.LoadDanhSachMonAn("SELECT * FROM MonAn WHERE Loai = @loai", new SqlParameter("@loai", "1"));
-                        break;
-                }
+                ViewModels.Admin.menuManager.ReloadDanhSachTheoTab(tabItem.Name);
             }
         }
 
@@ -49,7 +38,7 @@ namespace restaurantManager.View.Fuction.Admin
         {
             string pathImage = ViewModels.Admin.menuManager.filePathImage;
             if (string.IsNullOrEmpty(txtTenMon.Text) || string.IsNullOrEmpty(txtGia.Text) || string.IsNullOrEmpty(txtMoTa.Text) ||
-                ImageFoodDiaLog.Source == null || string.IsNullOrEmpty(pathImage)) 
+                ImageFoodDiaLog.Source == null || string.IsNullOrEmpty(pathImage) || cbbLoaiMonAn.SelectedIndex < 0) 
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin");
                 return;
@@ -76,6 +65,10 @@ namespace restaurantManager.View.Fuction.Admin
                 ViewModels.Admin.menuManager.filePathImage = null;
                 ImageFoodDiaLog.Source = null;
                 MessageBox.Show("Đã thêm món vào thực đơn");
+                if (tabControl.SelectedItem is TabItem tabItem)
+                {
+                    ViewModels.Admin.menuManager.ReloadDanhSachTheoTab(tabItem.Name);
+                }
             }
             
         }
@@ -143,7 +136,10 @@ namespace restaurantManager.View.Fuction.Admin
             {
                 MessageBox.Show($"Đã cập nhập món ăn thành công");
             }
-            ViewModels.Admin.menuManager.LoadDanhSachMonAn("SELECT * FROM MonAn");
+            if (tabControl.SelectedItem is TabItem tabItem)
+            {
+                ViewModels.Admin.menuManager.ReloadDanhSachTheoTab(tabItem.Name);
+            }
             ViewModels.Admin.menuManager.filePathImage = null;
         }
 
@@ -158,7 +154,10 @@ namespace restaurantManager.View.Fuction.Admin
             {
                 MessageBox.Show($"Đã xóa thành công {this.MonAnSelection.TenMonAn} ra khỏi menu món ăn");
             }
-            ViewModels.Admin.menuManager.LoadDanhSachMonAn("SELECT * FROM MonAn");
+            if (tabControl.SelectedItem is TabItem tabItem)
+            {
+                ViewModels.Admin.menuManager.ReloadDanhSachTheoTab(tabItem.Name);
+            }
             txtTenMon.Text = txtGia.Text = txtMoTa.Text = "";
             ImageFoodDiaLog.Source = null;
         }
