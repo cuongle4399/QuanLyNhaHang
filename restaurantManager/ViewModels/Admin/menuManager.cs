@@ -1,14 +1,17 @@
-﻿using restaurantManager.Models;
+﻿using Microsoft.Win32;
+using restaurantManager.Models;
 using restaurantManager.Services;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Windows;
 
 namespace restaurantManager.ViewModels.Admin
 {
     public class menuManager
     {
+        public static string filePathImage = null;
         public static ObservableCollection<MonAn> danhSachMonAn { get; set; } = new ObservableCollection<MonAn>();
         public static ObservableCollection<LoaiMonAn> danhSachLoaiMonAn { get; set; }
              = new ObservableCollection<LoaiMonAn>
@@ -32,8 +35,8 @@ namespace restaurantManager.ViewModels.Admin
                 string hinhAnhURL = row["HinhAnhURL"]?.ToString() ?? "";
                 string moTa = row["MoTa"]?.ToString() ?? "";
 
-                float gia = 0f;
-                float.TryParse(row["Gia"]?.ToString(), out gia);
+                decimal gia = 0;
+                decimal.TryParse(row["Gia"]?.ToString(), out gia);
 
                 int loaiMonAn = 0;
                 int.TryParse(row["Loai"]?.ToString(), out loaiMonAn);
@@ -47,6 +50,16 @@ namespace restaurantManager.ViewModels.Admin
                 MonAn monAn = new MonAn(maMonAn, tenMonAn, gia, moTa, fullHinhAnhURL, loaiMonAn);
 
                 danhSachMonAn.Add(monAn);
+            }
+        }
+        public static void OpenFileImageFood()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg|All files (*.*)|*.*";
+            openFileDialog.Title = "Chọn ảnh món ăn";
+            if(openFileDialog.ShowDialog() == true)
+            {
+                filePathImage = openFileDialog.FileName;
             }
         }
     }
