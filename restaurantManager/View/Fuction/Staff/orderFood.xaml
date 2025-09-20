@@ -373,10 +373,17 @@
                                                     <TextBlock Text="{Binding TenMonAn}" FontSize="14" Width="100" FontWeight="Bold" VerticalAlignment="Center" TextWrapping="Wrap"/>
 
                                                     <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
-                                                        <Button Content="-" Style="{StaticResource CircleButtonStyle}"/>
+                                                        <Button Content="-" 
+                                                                Style="{StaticResource CircleButtonStyle}"
+                                                                Command="{Binding DataContext.GiamSoLuongCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                CommandParameter="{Binding}"/>
+                                                        
                                                         <TextBlock Text="{Binding SoLuong}" Width="28" TextAlignment="Center" 
                                                               VerticalAlignment="Center" FontSize="14" FontWeight="Bold"/>
-                                                        <Button Content="+" Style="{StaticResource CircleButtonStyle}"/>
+                                                        <Button Content="+" 
+                                                                Style="{StaticResource CircleButtonStyle}"
+                                                                Command="{Binding DataContext.TangSoLuongCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                CommandParameter="{Binding}"/>
                                                     </StackPanel>
                                                 </StackPanel>
 
@@ -404,12 +411,14 @@
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Column="0" Text="TỔNG CỘNG" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
-                                    <TextBlock Grid.Column="1" x:Name="TotalText" Text="0 đ" Foreground="#3498DB" 
+                                    <TextBlock Grid.Column="1" x:Name="TotalText" Text="{Binding TongTienGioHang, StringFormat={}{0:N0} đ}" Foreground="#3498DB" 
                                           FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
                                 </Grid>
                             </Border>
 
-                            <Button Content="ĐẶT HÀNG NGAY" Style="{StaticResource PrimaryButtonStyle}"/>
+                            <Button Content="ĐẶT HÀNG NGAY" 
+                                    Style="{StaticResource PrimaryButtonStyle}"
+                                    Command="{Binding DataContext.XacNhanDatBanCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                             <Button Content="HỦY ĐƠN" Background="#95A5A6" Foreground="White" 
                                 Style="{StaticResource PrimaryButtonStyle}"
                                 Command="{Binding HuyDonHangCommand}"/>

@@ -31,6 +31,14 @@ namespace restaurantManager.View.Fuction.Staff
 
             this.DataContext = vm;
 
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(vm.ThongBao) && !string.IsNullOrEmpty(vm.ThongBao))
+                {
+                    MessageBox.Show(vm.ThongBao);
+                }
+            };
+
         }
 
 

@@ -30,8 +30,18 @@ namespace restaurantManager.ViewModels.Staff
 
         public ICommand ThemMonCommand { get; }
 
+        public ICommand TangSoLuongCommand { get; }
+
+        public ICommand GiamSoLuongCommand{ get; }
+
+        public ICommand XacNhanDatBanCommand { get; }
+
+        private readonly OrderService _orderService;
+
         public orderFood()
         {
+            _orderService = new OrderService();
+
             LoaiDangChon = -1;
             ChonTatCaCommand = new RelayCommand(() => LoaiDangChon = -1);
             ChonThucAnCommand = new RelayCommand(() => LoaiDangChon = 0);
@@ -83,8 +93,35 @@ namespace restaurantManager.ViewModels.Staff
                 OnPropertyChanged(nameof(TongTienGioHang));
             });
 
-            LayDanhSachBanAnTuDb();
-            LayDanhSachMonAnTuBd();
+            TangSoLuongCommand = new RelayCommand<MonAn>(mon =>
+            {
+                if (mon == null) return;
+                mon.SoLuong++;
+                OnPropertyChanged(nameof(TongTienGioHang)); // cập nhật tổng tiền
+            });
+
+            GiamSoLuongCommand = new RelayCommand<MonAn>(mon =>
+            {
+                if (mon == null) return;
+
+                if (mon.SoLuong > 1)
+                {
+                    mon.SoLuong--;
+                }
+                else
+                {
+                    // Nếu số lượng = 1 thì giảm nữa sẽ xóa khỏi giỏ
+                    GioHang.Remove(mon);
+                }
+
+                OnPropertyChanged(nameof(TongTienGioHang));
+            });
+
+            XacNhanDatBanCommand = new RelayCommand(() => XacNhanDatBan("NV001"));
+
+
+            DanhSachBanAn =  _orderService.LayDanhSachBanAnTuDb();
+            DanhSachMonAn = _orderService.LayDanhSachMonAnTuBd();
             LocDanhSachTheoLoai();
         }
 
@@ -186,62 +223,93 @@ namespace restaurantManager.ViewModels.Staff
         }
 
 
-        // Load danh sách bàn ăn từ database
-        private void LayDanhSachBanAnTuDb()
+        private string _thongBao;
+        public string ThongBao
         {
-            string sql = "SELECT MaBan, SoGhe, TrangThai FROM BanAn";
-
-            DataTable dt = DatabaseConnect.ExecuteTable(sql);
-
-            foreach (DataRow dr in dt.Rows) {
-                string maBan = dr["MaBan"].ToString().Trim();
-                int soGhe = Convert.ToInt32(dr["SoGhe"]);
-                string trangThai = dr["TrangThai"].ToString().Trim();
-
-                DanhSachBanAn.Add(new BanAn
-                {
-                    MaBan = maBan,
-                    SoGhe = soGhe,
-                    TrangThai = trangThai
-                });
-            }
-        }
-
-        // Load danh sách món ăn từ database
-        private void LayDanhSachMonAnTuBd()
-        {
-            string sql = @"SELECT 
-                                MaMonAn, 
-                                TenMonAn, 
-                                Gia, 
-                                MoTa,
-                                HinhAnhURL, 
-                                Loai
-                            FROM MonAn";
-
-            DataTable dt = DatabaseConnect.ExecuteTable(sql);
-
-            foreach (DataRow dr in dt.Rows)
+            get => _thongBao;
+            set
             {
-                int maMonAn = Convert.ToInt32(dr["MaMonAn"]);
-                string tenMonAn = dr["TenMonAn"].ToString().Trim();
-                float gia = float.Parse(dr["Gia"].ToString().Trim());
-                string moTa = dr["MoTa"].ToString().Trim();
-                string hinhAnhURL = dr["HinhAnhURL"].ToString().Trim(); ;
-                if (hinhAnhURL[0] != '/') hinhAnhURL = '/' + hinhAnhURL;
-                int loai = Convert.ToInt32(dr["Loai"]);
-
-                DanhSachMonAn.Add(new MonAn
-                {
-                    MaMonAn = maMonAn,
-                    TenMonAn = tenMonAn,
-                    Gia = gia,
-                    MoTa = moTa,
-                    HinhAnhURL = hinhAnhURL,
-                    Loai = loai
-                });
+                _thongBao = value;
+                OnPropertyChanged();
             }
         }
+
+
+        public void XacNhanDatBan(string maNV)
+        {
+            var selectedBan = DanhSachBanAn.FirstOrDefault(b => b.IsSelected);
+
+            if (selectedBan == null || GioHang.Count == 0)
+            {
+                // Không gọi MessageBox ở đây
+                ThongBao = "Chọn bàn và món trước khi xác nhận!";
+                return;
+            }
+
+            if (selectedBan.TrangThai == "Đã đặt")
+            {
+                ThongBao = $"Bàn {selectedBan.MaBan} đã có khách, vui lòng chọn bàn khác!";
+                return;
+            }
+
+            // Gọi service để update DB
+            _orderService.CapNhatTrangThaiBan(selectedBan.MaBan, "Đã đặt");
+
+            var dh = new DonHang
+            {
+                NgayDat = DateTime.Now,
+                MaBan = selectedBan.MaBan,
+                MaNhanVien = maNV,
+                TrangThai = "DangXuLy",
+                TongTien = 0
+            };
+
+            int maDH = _orderService.ChenDonHang(dh);
+
+            MessageBox.Show("Mã đơn hàng: " + maDH);
+
+
+            foreach (var mon in GioHang)
+            {
+                int maKM = _orderService.LayMaKhuyenMaiCuaMonAn(mon.MaMonAn);
+
+                KhuyenMai khuyenMai = _orderService.LayKhuyenMaiTheoMaKhuyenMai(maKM);
+
+                decimal soTienGiam = 0;
+
+                if (khuyenMai.LoaiGiamGia == "PhanTram") // Giảm theo phần trăm
+                {
+                    soTienGiam = (Convert.ToDecimal(mon.Gia) * mon.SoLuong) * (khuyenMai.GiaTriGiam / 100);
+                }
+                else if (khuyenMai.LoaiGiamGia == "TienCoDinh")
+                {
+                    soTienGiam = khuyenMai.GiaTriGiam;
+                }
+
+                var ct = new ChiTietDonHang
+                {
+                    MaDonHang = maDH,
+                    MaMonAn = mon.MaMonAn,
+                    SoLuong = mon.SoLuong,
+                    MaKhuyenMai = maKM,
+                    TienGoc = Convert.ToDecimal(mon.Gia) * mon.SoLuong,
+                    SoTienGiam = khuyenMai.GiaTriGiam,
+                    ThanhToanCuoi = (Convert.ToDecimal(mon.Gia) * mon.SoLuong) - soTienGiam
+                };
+
+                if (!_orderService.ChenChiTietDonHang(ct))
+                {
+                    ThongBao = "Đặt hàng thất bại.";
+                    return;
+                }
+            }
+
+            selectedBan.TrangThai = "Đã đặt";
+            GioHang.Clear();
+
+            ThongBao = "Xác nhận đặt bàn thành công!";
+        }
+
 
         private void LocDanhSachTheoLoai()
         {
