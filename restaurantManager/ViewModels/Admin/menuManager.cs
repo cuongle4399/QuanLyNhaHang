@@ -6,6 +6,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace restaurantManager.ViewModels.Admin
 {
@@ -60,6 +62,27 @@ namespace restaurantManager.ViewModels.Admin
             if(openFileDialog.ShowDialog() == true)
             {
                 filePathImage = openFileDialog.FileName;
+            }
+        }
+        public static void ReloadDanhSachTheoTab(string tabName)
+        {
+            switch (tabName)
+            {
+                case "All":
+                    LoadDanhSachMonAn("SELECT * FROM MonAn");
+                    break;
+
+                case "dish":
+                    LoadDanhSachMonAn(
+                        "SELECT * FROM MonAn WHERE Loai = @loai",
+                        new SqlParameter("@loai", "0"));
+                    break;
+
+                case "beverage":
+                    LoadDanhSachMonAn(
+                        "SELECT * FROM MonAn WHERE Loai = @loai",
+                        new SqlParameter("@loai", "1"));
+                    break;
             }
         }
     }
