@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+
         <!-- Material Design Brushes -->
         <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#3498DB"/>
         <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="White"/>
@@ -169,12 +170,19 @@
                     <ColumnDefinition Width="*"/>
 
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" x:Name="TxtKeyFind"
-                     Text="Tìm kiếm món ăn..."
-                     Style="{StaticResource RoundedTextBoxStyle}"
-                     Margin="0,0,10,0"/>
 
-                <Button Grid.Column="1" Style="{StaticResource PrimaryButtonStyle}" Height="Auto" Background="#3498DB">Tìm kiếm</Button>
+                <TextBox Grid.Column="0"
+                         Text="{Binding TuKhoaTimKiem, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource RoundedTextBoxStyle}"
+                         Margin="0,0,10,0"/>
+                
+                <!-- Nếu muốn placeholder WPF cần custom -->
+                <Button Grid.Column="1"
+                        Content="Tìm kiếm"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Height="Auto"
+                        Background="#3498DB"
+                        Command="{Binding TimKiemCommand}"/>
 
             </Grid>
         </Grid>

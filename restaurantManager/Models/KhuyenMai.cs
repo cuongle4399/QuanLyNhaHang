@@ -8,7 +8,7 @@ namespace restaurantManager.Models
 {
     public class KhuyenMai
     {
-        public int MaKhuyenMai { get; set; }
+        public int? MaKhuyenMai { get; set; }
         public string TenChuongTrinh { get; set; }
         public string MaCode { get; set; }
         public string LoaiGiamGia { get; set; }

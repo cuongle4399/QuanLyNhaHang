@@ -38,9 +38,6 @@ namespace restaurantManager.View.Fuction.Staff
                     MessageBox.Show(vm.ThongBao);
                 }
             };
-
         }
-
-
     }
 }
