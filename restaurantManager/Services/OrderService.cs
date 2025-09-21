@@ -39,7 +39,7 @@ namespace restaurantManager.Services
             return maKhuyenMai;
         }
 
-        public  KhuyenMai LayKhuyenMaiTheoMaKhuyenMai(int maKM)
+        public  KhuyenMai LayKhuyenMaiTheoMaKhuyenMai(int? maKM)
         {
             KhuyenMai result = null;
 

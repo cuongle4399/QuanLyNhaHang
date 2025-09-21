@@ -8,7 +8,7 @@ namespace restaurantManager.Models
         private int _maDonHang;
         private int _maMonAn;
         private int _soLuong;
-        private int _maKhuyenMai;
+        private int? _maKhuyenMai;
         private decimal _tienGoc;
         private decimal _soTienGiam;
         private decimal _thanhToanCuoi;
@@ -52,7 +52,7 @@ namespace restaurantManager.Models
             }
         }
 
-        public int MaKhuyenMai
+        public int? MaKhuyenMai
         {
             get => _maKhuyenMai;
             set

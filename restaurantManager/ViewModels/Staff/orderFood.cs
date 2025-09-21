@@ -15,6 +15,8 @@ using System.Windows;
 using System.Windows.Input;
 
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using restaurantManager.Messages;
 
 namespace restaurantManager.ViewModels.Staff
 {
@@ -32,9 +34,10 @@ namespace restaurantManager.ViewModels.Staff
 
         public ICommand TangSoLuongCommand { get; }
 
-        public ICommand GiamSoLuongCommand{ get; }
+        public ICommand GiamSoLuongCommand { get; }
 
         public ICommand XacNhanDatBanCommand { get; }
+        public ICommand TimKiemCommand { get; }
 
         private readonly OrderService _orderService;
 
@@ -42,12 +45,23 @@ namespace restaurantManager.ViewModels.Staff
         {
             _orderService = new OrderService();
 
+            // ✅ Đăng ký lắng nghe cập nhật từ confirmPayFood
+            Messenger.Default.Register<BanAnUpdatedMessage>(this, msg =>
+            {
+                var ban = DanhSachBanAn.FirstOrDefault(b => b.MaBan == msg.MaBan);
+                if (ban != null)
+                {
+                    ban.TrangThai = msg.TrangThai;
+                    OnPropertyChanged(nameof(DanhSachBanAn));
+                }
+            });
+
             LoaiDangChon = -1;
             ChonTatCaCommand = new RelayCommand(() => LoaiDangChon = -1);
             ChonThucAnCommand = new RelayCommand(() => LoaiDangChon = 0);
             ChonThucUongCommand = new RelayCommand(() => LoaiDangChon = 1);
 
-            HuyDonHangCommand = new RelayCommand(() => GioHang.Clear());
+            HuyDonHangCommand = new RelayCommand(() => { GioHang.Clear(); OnPropertyChanged(nameof(TongTienGioHang)); });
 
             ChonBanCommand = new RelayCommand<BanAn>(ban =>
             {
@@ -117,14 +131,59 @@ namespace restaurantManager.ViewModels.Staff
                 OnPropertyChanged(nameof(TongTienGioHang));
             });
 
-            XacNhanDatBanCommand = new RelayCommand(() => XacNhanDatBan("NV001"));
+            TimKiemCommand = new RelayCommand(() =>
+            {
+                if (string.IsNullOrWhiteSpace(TuKhoaTimKiem))
+                {
+                    // Nếu rỗng thì hiển thị tất cả
+                    DanhSachHienThi = DanhSachMonAn;
+                }
+                else
+                {
+                    // Lọc danh sách theo từ khóa
+                    DanhSachHienThi = new ObservableCollection<MonAn>(
+                        DanhSachMonAn.Where(m =>
+                            m.TenMonAn.Contains(TuKhoaTimKiem, StringComparison.OrdinalIgnoreCase) ||
+                            m.MoTa.Contains(TuKhoaTimKiem, StringComparison.OrdinalIgnoreCase))
+                    );
+                }
+            });
+
+            XacNhanDatBanCommand = new RelayCommand(() => XacNhanDatBan(SessionUser.UserName));
 
 
-            DanhSachBanAn =  _orderService.LayDanhSachBanAnTuDb();
+            DanhSachBanAn = _orderService.LayDanhSachBanAnTuDb();
             DanhSachMonAn = _orderService.LayDanhSachMonAnTuBd();
+
+            DanhSachMonAnCoKM = _orderService.LayDanhSachMonAnKM();
+
             LocDanhSachTheoLoai();
         }
 
+        private string _tuKhoaTimKiem;
+        public string TuKhoaTimKiem
+        {
+            get => _tuKhoaTimKiem;
+            set
+            {
+                if (_tuKhoaTimKiem != value)
+                {
+                    _tuKhoaTimKiem = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public ObservableCollection<int> _danhSachMonAnCoKM;
+        public ObservableCollection<int> DanhSachMonAnCoKM
+        {
+            get => _danhSachMonAnCoKM;
+            set
+            {
+                _danhSachMonAnCoKM = value;
+                OnPropertyChanged();
+            }
+        }
         public float TongTienGioHang
         {
             get => GioHang.Sum(m => m.Gia * m.SoLuong);
@@ -188,7 +247,8 @@ namespace restaurantManager.ViewModels.Staff
         public ObservableCollection<MonAn> DanhSachHienThi
         {
             get => _danhSachHienThi;
-            set {
+            set
+            {
                 _danhSachHienThi = value;
                 OnPropertyChanged();
             }
@@ -266,48 +326,55 @@ namespace restaurantManager.ViewModels.Staff
 
             int maDH = _orderService.ChenDonHang(dh);
 
-            MessageBox.Show("Mã đơn hàng: " + maDH);
-
 
             foreach (var mon in GioHang)
             {
-                int maKM = _orderService.LayMaKhuyenMaiCuaMonAn(mon.MaMonAn);
-
-                KhuyenMai khuyenMai = _orderService.LayKhuyenMaiTheoMaKhuyenMai(maKM);
 
                 decimal soTienGiam = 0;
+                int? maKM = null;
+                KhuyenMai khuyenMai;
 
-                if (khuyenMai.LoaiGiamGia == "PhanTram") // Giảm theo phần trăm
+                if (DanhSachMonAnCoKM.Contains(mon.MaMonAn)) // Có khuyến mãi
                 {
-                    soTienGiam = (Convert.ToDecimal(mon.Gia) * mon.SoLuong) * (khuyenMai.GiaTriGiam / 100);
-                }
-                else if (khuyenMai.LoaiGiamGia == "TienCoDinh")
-                {
-                    soTienGiam = khuyenMai.GiaTriGiam;
+                    maKM = _orderService.LayMaKhuyenMaiCuaMonAn(mon.MaMonAn);
+
+                    khuyenMai = _orderService.LayKhuyenMaiTheoMaKhuyenMai(maKM);
+
+                    if (khuyenMai.LoaiGiamGia == "PhanTram") // Giảm theo phần trăm
+                    {
+                        soTienGiam = (Convert.ToDecimal(mon.Gia) * mon.SoLuong) * (khuyenMai.GiaTriGiam / 100);
+                    }
+                    else if (khuyenMai.LoaiGiamGia == "TienCoDinh")
+                    {
+                        soTienGiam = khuyenMai.GiaTriGiam;
+                    }
                 }
 
-                var ct = new ChiTietDonHang
+                bool ok = _orderService.ChenChiTietDonHang(new ChiTietDonHang
                 {
                     MaDonHang = maDH,
                     MaMonAn = mon.MaMonAn,
                     SoLuong = mon.SoLuong,
                     MaKhuyenMai = maKM,
                     TienGoc = Convert.ToDecimal(mon.Gia) * mon.SoLuong,
-                    SoTienGiam = khuyenMai.GiaTriGiam,
+                    SoTienGiam = soTienGiam,
                     ThanhToanCuoi = (Convert.ToDecimal(mon.Gia) * mon.SoLuong) - soTienGiam
-                };
+                });
 
-                if (!_orderService.ChenChiTietDonHang(ct))
+                if (!ok)
                 {
-                    ThongBao = "Đặt hàng thất bại.";
+                    MessageBox.Show("Đặt hàng thất bại.");
                     return;
                 }
             }
 
             selectedBan.TrangThai = "Đã đặt";
             GioHang.Clear();
-
+            OnPropertyChanged(nameof(TongTienGioHang));
             ThongBao = "Xác nhận đặt bàn thành công!";
+
+            // Gửi message để confirmPayFood cập nhật
+            Messenger.Default.Send(new BanAnUpdatedMessage(selectedBan.MaBan, "Đã đặt"));
         }
 
 
@@ -316,7 +383,8 @@ namespace restaurantManager.ViewModels.Staff
             if (LoaiDangChon == -1)
             {
                 DanhSachHienThi = DanhSachMonAn;
-            } else
+            }
+            else
             {
                 DanhSachHienThi = new ObservableCollection<MonAn>(
                     // Khi món ăn thuộc loại đang chọn thì thêm vào danh sách hiển thị
