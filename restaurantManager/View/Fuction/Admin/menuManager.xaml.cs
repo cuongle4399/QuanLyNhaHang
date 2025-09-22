@@ -75,9 +75,11 @@ namespace restaurantManager.View.Fuction.Admin
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ViewModels.Admin.menuManager.OpenFileImageFood();
-            BitmapImage bitmapImage = new BitmapImage(new System.Uri(ViewModels.Admin.menuManager.filePathImage));
-            ImageFoodDiaLog.Source = bitmapImage;
+            if (ViewModels.Admin.menuManager.OpenFileImageFood())
+            {
+                BitmapImage bitmapImage = new BitmapImage(new System.Uri(ViewModels.Admin.menuManager.filePathImage));
+                ImageFoodDiaLog.Source = bitmapImage;
+            }
         }
 
         private void lvMonAn_SelectionChanged(object sender, SelectionChangedEventArgs e)
