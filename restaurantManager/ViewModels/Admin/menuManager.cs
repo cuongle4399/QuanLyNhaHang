@@ -1,14 +1,19 @@
-﻿using restaurantManager.Models;
+﻿using Microsoft.Win32;
+using restaurantManager.Models;
 using restaurantManager.Services;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Windows;
+using System.Windows.Controls;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace restaurantManager.ViewModels.Admin
 {
     public class menuManager
     {
+        public static string filePathImage = null;
         public static ObservableCollection<MonAn> danhSachMonAn { get; set; } = new ObservableCollection<MonAn>();
         public static ObservableCollection<LoaiMonAn> danhSachLoaiMonAn { get; set; }
              = new ObservableCollection<LoaiMonAn>
@@ -32,8 +37,8 @@ namespace restaurantManager.ViewModels.Admin
                 string hinhAnhURL = row["HinhAnhURL"]?.ToString() ?? "";
                 string moTa = row["MoTa"]?.ToString() ?? "";
 
-                float gia = 0f;
-                float.TryParse(row["Gia"]?.ToString(), out gia);
+                decimal gia = 0;
+                decimal.TryParse(row["Gia"]?.ToString(), out gia);
 
                 int loaiMonAn = 0;
                 int.TryParse(row["Loai"]?.ToString(), out loaiMonAn);
@@ -47,6 +52,46 @@ namespace restaurantManager.ViewModels.Admin
                 MonAn monAn = new MonAn(maMonAn, tenMonAn, gia, moTa, fullHinhAnhURL, loaiMonAn);
 
                 danhSachMonAn.Add(monAn);
+            }
+        }
+        public static bool OpenFileImageFood()
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image files (*.png;*.jpg)|*.png;*.jpg|All files (*.*)|*.*",
+                Title = "Chọn ảnh món ăn"
+            };
+
+            bool? result = openFileDialog.ShowDialog();
+
+            if (result == true && !string.IsNullOrEmpty(openFileDialog.FileName))
+            {
+                filePathImage = openFileDialog.FileName;
+                return true;
+            }
+
+            return false;
+        }
+
+        public static void ReloadDanhSachTheoTab(string tabName)
+        {
+            switch (tabName)
+            {
+                case "All":
+                    LoadDanhSachMonAn("SELECT * FROM MonAn");
+                    break;
+
+                case "dish":
+                    LoadDanhSachMonAn(
+                        "SELECT * FROM MonAn WHERE Loai = @loai",
+                        new SqlParameter("@loai", "0"));
+                    break;
+
+                case "beverage":
+                    LoadDanhSachMonAn(
+                        "SELECT * FROM MonAn WHERE Loai = @loai",
+                        new SqlParameter("@loai", "1"));
+                    break;
             }
         }
     }
