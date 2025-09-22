@@ -1,8 +1,8 @@
 ﻿-- Tạo cơ sở dữ liệu nếu chưa tồn tại
-CREATE DATABASE QuanLyNhaHang;
+CREATE DATABASE QuanLyNhaHang1111;
 GO
 
-USE QuanLyNhaHang;
+USE QuanLyNhaHang1111;
 GO
 
 -- 1. Bảng NguoiDung (Users)
@@ -81,16 +81,12 @@ CREATE TABLE BanAn (
 CREATE TABLE DonHang (
     MaDonHang INT IDENTITY(1,1) PRIMARY KEY,
     NgayDat DATETIME NOT NULL DEFAULT GETDATE(),
-    TongTienGoc DECIMAL(10, 2) NOT NULL CHECK (TongTienGoc >= 0),
-    ThanhToanCuoi DECIMAL(10, 2) NOT NULL CHECK (ThanhToanCuoi >= 0),
+    TongTien DECIMAL(10, 2) NOT NULL CHECK (TongTien >= 0),
     MaNhanVien NVARCHAR(50) NOT NULL,
     TrangThai NVARCHAR(50) NOT NULL CHECK (TrangThai IN ('DangXuLy', 'DaHoanThanh')) DEFAULT 'DangXuLy',
     HinhThucThanhToan NVARCHAR(50) CHECK (HinhThucThanhToan IN ('TienMat', 'ChuyenKhoan')) DEFAULT 'TienMat',
-    MaKhuyenMai INT, -- Liên kết khuyến mãi nếu áp dụng cho toàn đơn hàng (tùy chọn)
 	MaBan NVARCHAR(10),
-	GiaTriKhuyenMai DECIMAL(10,2) NULL, -- % hoặc số tiền đã áp dụng
     FOREIGN KEY (MaNhanVien) REFERENCES NhanVien(MaNhanVien),
-    FOREIGN KEY (MaKhuyenMai) REFERENCES KhuyenMai(MaKhuyenMai),
 	FOREIGN KEY (MaBan) REFERENCES BanAn(MaBan)
 );
 
@@ -100,10 +96,13 @@ CREATE TABLE ChiTietDonHang (
     MaDonHang INT NOT NULL,
     MaMonAn INT NOT NULL,
     SoLuong INT NOT NULL CHECK (SoLuong > 0),
-    GiaTaiThoiDiem DECIMAL(10, 2) NOT NULL CHECK (GiaTaiThoiDiem >= 0),
+	MaKhuyenMai INT, -- Liên kết khuyến mãi nếu áp dụng cho toàn đơn hàng (tùy chọn)
+	TienGoc DECIMAL(10, 2) NOT NULL CHECK (TienGoc >= 0),
 	SoTienGiam DECIMAL(10, 2) NOT NULL CHECK (SoTienGiam >= 0) DEFAULT 0,
+	ThanhToanCuoi DECIMAL(10, 2) NOT NULL CHECK (ThanhToanCuoi >= 0),
     FOREIGN KEY (MaDonHang) REFERENCES DonHang(MaDonHang) ON DELETE CASCADE,
     FOREIGN KEY (MaMonAn) REFERENCES MonAn(MaMonAn),
+	FOREIGN KEY (MaKhuyenMai) REFERENCES KhuyenMai(MaKhuyenMai),
 	PRIMARY KEY (MaDonHang, MaMonAn)
 );
 
@@ -194,77 +193,10 @@ INSERT INTO BanAn (MaBan, SoGhe, TrangThai) VALUES
 ('B03', 6, N'Trống'),
 ('B04', 6, N'Trống'),
 ('B05', 8, N'Đã đặt'),
-('B06', 2, N'Trống');
-
-
--- Bảng DonHang
-INSERT INTO DonHang (NgayDat, TongTienGoc, ThanhToanCuoi, MaNhanVien, TrangThai, HinhThucThanhToan, MaKhuyenMai, MaBan, GiaTriKhuyenMai) VALUES
-('2025-09-07 10:00:00', 100000, 90000, 'NV002', 'DaHoanThanh', 'TienMat', 1, 'B01', 10000),
-('2025-09-07 10:30:00', 150000, 120000, 'NV003', 'DangXuLy', 'ChuyenKhoan', 2, 'B02', 30000),
-('2025-09-07 11:00:00', 200000, 150000, 'NV004', 'DaHoanThanh', 'TienMat', 3, 'B03', 50000),
-('2025-09-07 11:30:00', 80000, 68000, 'NV005', 'DangXuLy', 'TienMat', 4, 'B04', 12000),
-('2025-09-07 12:00:00', 300000, 280000, 'NV001', 'DaHoanThanh', 'ChuyenKhoan', 5, 'B05', 20000),
-('2025-09-07 12:30:00', 120000, 108000, 'NV002', 'DaHoanThanh', 'TienMat', 1, 'B06', 12000),
-('2025-09-07 13:00:00', 180000, 144000, 'NV003', 'DangXuLy', 'ChuyenKhoan', 2, 'B01', 36000),
-('2025-09-07 13:30:00', 250000, 200000, 'NV004', 'DaHoanThanh', 'TienMat', 3, 'B02', 50000),
-('2025-09-07 14:00:00', 90000, 81000, 'NV005', 'DangXuLy', 'TienMat', 1, 'B03', 9000),
-('2025-09-07 14:30:00', 320000, 300000, 'NV001', 'DaHoanThanh', 'ChuyenKhoan', 5, 'B04', 20000),
-('2025-09-07 15:00:00', 140000, 126000, 'NV002', 'DaHoanThanh', 'TienMat', 1, 'B05', 14000),
-('2025-09-07 15:30:00', 200000, 170000, 'NV003', 'DangXuLy', 'ChuyenKhoan', 4, 'B06', 30000),
-('2025-09-07 16:00:00', 160000, 128000, 'NV004', 'DaHoanThanh', 'TienMat', 2, 'B01', 32000),
-('2025-09-07 16:30:00', 270000, 229500, 'NV005', 'DangXuLy', 'ChuyenKhoan', 4, 'B02', 40500),
-('2025-09-07 17:00:00', 110000, 99000, 'NV001', 'DaHoanThanh', 'TienMat', 1, 'B03', 11000),
-('2025-09-07 17:30:00', 300000, 280000, 'NV002', 'DaHoanThanh', 'ChuyenKhoan', 5, 'B04', 20000),
-('2025-09-07 18:00:00', 130000, 117000, 'NV003', 'DangXuLy', 'TienMat', 1, 'B05', 13000),
-('2025-09-07 18:30:00', 190000, 152000, 'NV004', 'DaHoanThanh', 'ChuyenKhoan', 2, 'B06', 38000),
-('2025-09-07 19:00:00', 220000, 187000, 'NV005', 'DangXuLy', 'TienMat', 4, 'B01', 33000),
-('2025-09-07 19:30:00', 280000, 230000, 'NV001', 'DaHoanThanh', 'TienMat', 3, 'B02', 50000),
-('2025-09-07 20:00:00', 150000, 135000, 'NV002', 'DaHoanThanh', 'ChuyenKhoan', 1, 'B03', 15000),
-('2025-09-07 20:30:00', 170000, 136000, 'NV003', 'DangXuLy', 'TienMat', 2, 'B04', 34000),
-('2025-09-07 21:00:00', 240000, 220000, 'NV004', 'DaHoanThanh', 'ChuyenKhoan', 5, 'B05', 20000),
-('2025-09-07 21:30:00', 100000, 90000, 'NV005', 'DangXuLy', 'TienMat', 1, 'B06', 10000),
-('2025-09-07 22:00:00', 260000, 221000, 'NV001', 'DaHoanThanh', 'ChuyenKhoan', 4, 'B01', 39000),
-('2025-09-08 09:00:00', 180000, 130000, 'NV002', 'DaHoanThanh', 'TienMat', 3, 'B02', 50000),
-('2025-09-08 09:30:00', 140000, 126000, 'NV003', 'DangXuLy', 'ChuyenKhoan', 1, 'B03', 14000),
-('2025-09-08 10:00:00', 200000, 180000, 'NV004', 'DaHoanThanh', 'TienMat', 1, 'B04', 20000),
-('2025-09-08 10:30:00', 160000, 128000, 'NV005', 'DangXuLy', 'ChuyenKhoan', 2, 'B05', 32000),
-('2025-09-08 11:00:00', 230000, 195500, 'NV001', 'DaHoanThanh', 'TienMat', 4, 'B06', 34500);
-
-
--- Bảng ChiTietDonHang
-INSERT INTO ChiTietDonHang (MaDonHang, MaMonAn, SoLuong, GiaTaiThoiDiem, SoTienGiam) VALUES
-(1, 1, 2, 50000, 10000), -- Phở bò, giảm 10%
-(2, 11, 3, 25000, 15000), -- Nước cam, giảm 20%
-(2, 12, 2, 35000, 14000), -- Trà sữa, giảm 20%
-(3, 8, 1, 150000, 50000), -- Lẩu thái, giảm 50000
-(4, 3, 2, 40000, 12000), -- Bún chả, giảm 15%
-(5, 6, 4, 25000, 20000), -- Bánh mì pate, giảm 20000
-(6, 2, 2, 45000, 9000), -- Cơm tấm, giảm 10%
-(6, 11, 1, 25000, 2500), -- Nước cam, giảm 10%
-(7, 12, 3, 35000, 21000), -- Trà sữa, giảm 20%
-(8, 8, 1, 150000, 50000), -- Lẩu thái, giảm 50000
-(8, 13, 2, 20000, 0), -- Cà phê sữa đá, không giảm
-(9, 1, 2, 50000, 9000), -- Phở bò, giảm 10%
-(10, 6, 4, 25000, 20000), -- Bánh mì pate, giảm 20000
-(11, 1, 2, 50000, 10000), -- Phở bò, giảm 10%
-(12, 3, 3, 40000, 18000), -- Bún chả, giảm 15%
-(13, 11, 2, 25000, 10000), -- Nước cam, giảm 20%
-(13, 12, 2, 35000, 14000), -- Trà sữa, giảm 20%
-(14, 2, 3, 45000, 20250), -- Cơm tấm, giảm 15%
-(15, 1, 2, 50000, 10000), -- Phở bò, giảm 10%
-(16, 6, 4, 25000, 20000), -- Bánh mì pate, giảm 20000
-(17, 4, 2, 42000, 8400), -- Mì quảng, giảm 10%
-(18, 12, 3, 35000, 21000), -- Trà sữa, giảm 20%
-(19, 3, 3, 40000, 18000), -- Bún chả, giảm 15%
-(20, 8, 1, 150000, 50000), -- Lẩu thái, giảm 50000
-(21, 1, 2, 50000, 10000), -- Phở bò, giảm 10%
-(22, 11, 3, 25000, 15000), -- Nước cam, giảm 20%
-(23, 6, 4, 25000, 20000), -- Bánh mì pate, giảm 20000
-(24, 2, 2, 45000, 9000), -- Cơm tấm, giảm 10%
-(25, 3, 3, 40000, 18000), -- Bún chả, giảm 15%
-(26, 8, 1, 150000, 50000), -- Lẩu thái, giảm 50000
-(27, 1, 2, 50000, 10000), -- Phở bò, giảm 10%
-(28, 2, 2, 45000, 9000), -- Cơm tấm, giảm 10%
-(29, 12, 2, 35000, 14000), -- Trà sữa, giảm 20%
-(30, 3, 3, 40000, 18000), -- Bún chả, giảm 15%
-(30, 11, 1, 25000, 3750); -- Nước cam, giảm 15%
+('B06', 2, N'Trống'),
+('B07', 4, N'Trống'),
+('B08', 4, N'Trống'),
+('B09', 6, N'Trống'),
+('B10', 6, N'Trống'),
+('B11', 8, N'Trống'),
+('B12', 2, N'Trống')
