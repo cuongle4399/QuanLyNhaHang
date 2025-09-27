@@ -3,31 +3,131 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:restaurantManager.View.Fuction.Admin"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="900">
+
     <Grid Background="#2E2E2E">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-        Text="Quản lý nhân viên"
-        TextAlignment="Center"
-        FontSize="28"
-        FontWeight="Bold" 
-        VerticalAlignment="Center"
-        Foreground="White"
-        Margin="0,0,0,20"
-        HorizontalAlignment="Left"/>
+        <!-- Tiêu đề -->
+        <TextBlock Grid.Row="0"
+                   Text="QUẢN LÝ NHÂN VIÊN"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   Foreground="#FFD700"
+                   Margin="0,0,0,15"
+                   HorizontalAlignment="Center"/>
 
-        <Grid Grid.Row="1">
-            <!--Main-Conten-->
-        </Grid>
+        <!-- DataGrid nằm trên -->
+        <DataGrid Grid.Row="1" x:Name="DgNhanVien"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  AlternatingRowBackground="#F5F5F5"
+                  RowBackground="White"
+                  GridLinesVisibility="Horizontal"
+                  BorderBrush="Gray" BorderThickness="1"
+                  Margin="0,0,0,15"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding DgNhanVien}"
+                  SelectionChanged="DgNhanVien_SelectionChanged">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#444"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Padding" Value="8"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Họ tên" Binding="{Binding HoTen}" Width="*"/>
+                <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh}" Width="*"/>
+                <DataGridTextColumn Header="SĐT" Binding="{Binding SoDienThoai}" Width="*"/>
+                <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi}" Width="*"/>
+                <DataGridTextColumn Header="Lương" Binding="{Binding Luong}" Width="*"/>
+                <DataGridTextColumn Header="Chức vụ" Binding="{Binding ChucVu}" Width="*"/>
+                <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Form nhập nằm dưới -->
+        <StackPanel Grid.Row="2" Background="#3C3C3C">
+            <StackPanel.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Width" Value="100"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="Control" BasedOn="{StaticResource {x:Type Control}}">
+                    <Setter Property="Margin" Value="0,5"/>
+                    <Setter Property="Padding" Value="5"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="Gray"/>
+                    <Setter Property="Background" Value="White"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <!-- Chia form thành lưới 2 cột -->
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Cột 1 -->
+                <StackPanel Grid.Column="0" Margin="10,0">
+                    <StackPanel Orientation="Horizontal">
+                    <Label Content="Mã nhân viên:"/>
+                    <TextBox x:Name="txtMaNhanVien" Width="180"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                        <Label Content="Họ tên:"/>
+                        <TextBox x:Name="txtHoTen" Width="180"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Ngày sinh:"/>
+                        <DatePicker x:Name="dpNgaySinh" Width="180"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="SĐT:"/>
+                        <TextBox x:Name="txtSoDienThoai" Width="180"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Cột 2 -->
+                <StackPanel Grid.Column="1" Margin="10,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Địa chỉ:"/>
+                        <TextBox x:Name="txtDiaChi" Width="180"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Lương:"/>
+                        <TextBox x:Name="txtLuong" Width="180"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Chức vụ:"/>
+                        <TextBox x:Name="txtChucVu" Width="180"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Trạng thái:"/>
+                        <ComboBox x:Name="cbTrangThai" Width="180">
+                            <ComboBoxItem Content="Đang làm"/>
+                            <ComboBoxItem Content="Nghỉ việc"/>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Các nút chức năng -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Thêm" Width="70" Margin="5" Background="#28A745" Foreground="White" Click="Them_Click"/>
+                <Button Content="Sửa" Width="70" Margin="5" Background="#FFC107" Foreground="Black" Click="Sua_Click_1"/>
+                <Button Content="Đuổi" Width="70" Margin="5" Background="#DC3545" Foreground="White" Click="Xoa_Click_2"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
