@@ -62,6 +62,8 @@ namespace restaurantManager.ViewModels.Staff
         }
         public void TinhTongDonHang(ObservableCollection<ChiTiet> dsChiTiet)
         {
+            TongTienPhaiThanhToan = 0;
+
             foreach (ChiTiet ct in dsChiTiet)
             {
                 TongTienPhaiThanhToan += ct.ThanhToanCuoi;

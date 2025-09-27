@@ -14,6 +14,9 @@
     <Compile Update="View\Fuction\Admin\staffManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Fuction\Staff\changePassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Fuction\Staff\confirmPayFood.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -26,5 +29,10 @@
     <Compile Update="View\Home.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\Fuction\Staff\changePassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

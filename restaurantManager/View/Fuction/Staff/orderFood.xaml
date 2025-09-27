@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:restaurantManager.View.Fuction.Staff"
+             xmlns:convert="clr-namespace:restaurantManager.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -125,7 +126,8 @@
         </Style>
 
         <!-- NEW: Rounded TextBox style -->
-        <Style x:Key="RoundedTextBoxStyle" TargetType="TextBox">
+        <!-- Rounded TextBox with Placeholder -->
+        <Style x:Key="RoundedTextBoxWithPlaceholderStyle" TargetType="TextBox">
             <Setter Property="Background" Value="#34495E"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -135,13 +137,32 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="16" Padding="{TemplateBinding Padding}">
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="0"/>
-                        </Border>
+                        <Grid>
+                            <!-- Nền bo tròn -->
+                            <Border Background="{TemplateBinding Background}"
+                            CornerRadius="16"
+                            Padding="{TemplateBinding Padding}">
+                                <ScrollViewer x:Name="PART_ContentHost" Margin="0"/>
+                            </Border>
+
+                            <!-- Placeholder -->
+                            <TextBlock Text="Nhập từ khóa tìm kiếm..."
+           Foreground="Gray"
+           Margin="12,0,0,0"
+           IsHitTestVisible="False"
+           VerticalAlignment="Center"
+           Visibility="{Binding Text,
+                        RelativeSource={RelativeSource TemplatedParent},
+                        Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
+
+
+                        </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <convert:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter"/>
     </UserControl.Resources>
 
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -171,11 +192,11 @@
 
                 </Grid.ColumnDefinitions>
 
-                <TextBox Grid.Column="0"
-                         Text="{Binding TuKhoaTimKiem, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource RoundedTextBoxStyle}"
-                         Margin="0,0,10,0"/>
-                
+                <TextBox Text="{Binding TuKhoaTimKiem, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="0,0,10,0"
+                         Style="{StaticResource RoundedTextBoxWithPlaceholderStyle}"/>
+
+
                 <!-- Nếu muốn placeholder WPF cần custom -->
                 <Button Grid.Column="1"
                         Content="Tìm kiếm"
@@ -397,10 +418,10 @@
 
                                                 <!-- Tổng giá -->
                                                 <TextBlock Grid.Column="1" 
-                                               Text="{Binding TongTien, StringFormat={}{0:N0} đ}" 
-                                               Foreground="#3498DB" FontSize="16" FontWeight="Bold"
-                                               VerticalAlignment="Center" Width="100" TextWrapping="Wrap"
-                                                       TextAlignment="Right"/>
+                                                           Text="{Binding TongTien, StringFormat={}{0:N0} đ}" 
+                                                           Foreground="#3498DB" FontSize="16" FontWeight="Bold"
+                                                           VerticalAlignment="Center" Width="100" TextWrapping="Wrap"
+                                                           TextAlignment="Right"/>
 
                                             </Grid>
                                         </Border>

@@ -167,30 +167,12 @@
 
         <!-- Header: Title + Search -->
         <Grid Grid.Row="0" Margin="0,0,0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Column="0" Text="XÁC NHẬN THANH TOÁN"
+            <TextBlock Text="XÁC NHẬN THANH TOÁN"
                    FontSize="20" FontWeight="Bold"
                    Foreground="#3498DB"
                    VerticalAlignment="Center"
                    DockPanel.Dock="Left"
                    Padding="0,0,100,0"/>
-
-            <StackPanel Grid.Column="1" Orientation="Horizontal" DockPanel.Dock="Right" Width="Auto">
-                <TextBox x:Name="TxtSearchTable"
-                     Width="260" Height="32"
-                     Style="{StaticResource RoundedTextBoxStyle}"
-                     Text="Nhập số bàn cần tìm..." />
-
-                <Button x:Name="BtnSearchTable" Content="🔍"
-                    Style="{StaticResource CircleButtonStyle}"
-                    Margin="8,0,0,0"
-                    VerticalAlignment="Center"
-                    DockPanel.Dock="Right"/>
-            </StackPanel>
         </Grid>
 
         <!-- Main content: left = danh sách bàn, right = chi tiết đơn -->
@@ -368,7 +350,6 @@
 
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button x:Name="BtnInHoaDon" Content="IN HÓA ĐƠN" Style="{StaticResource PillButtonStyle}" Width="120" Margin="5"/>
                             <Button x:Name="BtnHuy" Content="HỦY" Style="{StaticResource PillOutlinedButtonStyle}" Width="100" Margin="5" Command="{Binding HuyThanhToanCommand}"/>
                             <Button x:Name="BtnXacNhan" Content="XÁC NHẬN" Style="{StaticResource PrimaryButtonStyle}" Width="140" Margin="5" Command="{Binding XacNhanThanhToanCommand}"/>
                         </StackPanel>

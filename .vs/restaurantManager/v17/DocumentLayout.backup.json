@@ -3,52 +3,71 @@
   "WorkspaceRootPath": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\fuction\\staff\\changepassword.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\staff\\changepassword.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\viewmodels\\staff\\orderfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\viewmodels\\staff\\orderfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\fuction\\staff\\orderfood.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\staff\\orderfood.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\viewmodels\\staff\\confirmpayfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\viewmodels\\staff\\confirmpayfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\fuction\\staff\\confirmpayfood.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\staff\\confirmpayfood.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\fuction\\staff\\orderfood.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\staff\\orderfood.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VO NGUYEN THANH TIN\\AppData\\Local\\Temp\\.vsdbgsrc\\0a84cc53936b314ba955b54f50bf4796d8234943f3fd7b93873381b45d404026\\XamlReader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\converters\\stringnulloremptytovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\converters\\stringnulloremptytovisibilityconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\services\\changepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\services\\changepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\viewmodels\\staff\\changepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\viewmodels\\staff\\changepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\fuction\\staff\\changepassword.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\staff\\changepassword.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\viewmodels\\staff\\confirmpayfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\viewmodels\\staff\\confirmpayfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\services\\comfirmpayfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\services\\comfirmpayfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\models\\donhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\models\\donhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\services\\databaseconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\services\\databaseconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\messages\\bananupdatedmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\messages\\bananupdatedmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\viewmodels\\staff\\orderfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\viewmodels\\staff\\orderfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\models\\sessionuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\models\\sessionuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\fuction\\staff\\confirmpayfood.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\staff\\confirmpayfood.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\staff.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\staff.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\fuction\\staff\\orderfood.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\staff\\orderfood.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|c:\\users\\vo nguyen thanh tin\\onedrive\\desktop\\learns\\du_an_ql_nhahang\\quanlynhahang\\restaurantmanager\\view\\staff.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\staff.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,8 +77,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 9,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "changePassword.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Staff\\changePassword.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\ViewModels\\Staff\\changePassword.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Staff\\changePassword.cs",
+              "RelativeToolTip": "restaurantManager\\ViewModels\\Staff\\changePassword.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAQwE8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T01:09:33.506Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ChangePassword.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Services\\ChangePassword.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\Services\\ChangePassword.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Services\\ChangePassword.cs",
+              "RelativeToolTip": "restaurantManager\\Services\\ChangePassword.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T02:10:32.448Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -82,155 +129,191 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "StringNullOrEmptyToVisibilityConverter.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Converters\\StringNullOrEmptyToVisibilityConverter.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\Converters\\StringNullOrEmptyToVisibilityConverter.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Converters\\StringNullOrEmptyToVisibilityConverter.cs",
+              "RelativeToolTip": "restaurantManager\\Converters\\StringNullOrEmptyToVisibilityConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T10:55:55.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\App.xaml",
               "RelativeDocumentMoniker": "restaurantManager\\App.xaml",
               "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\App.xaml",
               "RelativeToolTip": "restaurantManager\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-21T03:23:10.852Z",
+              "WhenOpened": "2025-09-27T10:52:35.616Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "orderFood.cs",
-              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Staff\\orderFood.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\ViewModels\\Staff\\orderFood.cs",
-              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Staff\\orderFood.cs",
-              "RelativeToolTip": "restaurantManager\\ViewModels\\Staff\\orderFood.cs",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAcwJoAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T10:30:11.459Z",
+              "DocumentIndex": 0,
+              "Title": "changePassword.xaml",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\changePassword.xaml",
+              "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Staff\\changePassword.xaml",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\changePassword.xaml*",
+              "RelativeToolTip": "restaurantManager\\View\\Fuction\\Staff\\changePassword.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-09-27T00:58:54.09Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DonHang.cs",
-              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Models\\DonHang.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\Models\\DonHang.cs",
-              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Models\\DonHang.cs",
-              "RelativeToolTip": "restaurantManager\\Models\\DonHang.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T13:06:33.201Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BanAnUpdatedMessage.cs",
-              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Messages\\BanAnUpdatedMessage.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\Messages\\BanAnUpdatedMessage.cs",
-              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Messages\\BanAnUpdatedMessage.cs",
-              "RelativeToolTip": "restaurantManager\\Messages\\BanAnUpdatedMessage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-21T03:20:48.699Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "confirmPayFood.xaml",
               "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\confirmPayFood.xaml",
               "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Staff\\confirmPayFood.xaml",
               "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\confirmPayFood.xaml",
               "RelativeToolTip": "restaurantManager\\View\\Fuction\\Staff\\confirmPayFood.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-20T10:25:07.031Z",
+              "WhenOpened": "2025-09-27T06:20:31.818Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "XamlReader.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\AppData\\Local\\Temp\\.vsdbgsrc\\0a84cc53936b314ba955b54f50bf4796d8234943f3fd7b93873381b45d404026\\XamlReader.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\0a84cc53936b314ba955b54f50bf4796d8234943f3fd7b93873381b45d404026\\XamlReader.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\AppData\\Local\\Temp\\.vsdbgsrc\\0a84cc53936b314ba955b54f50bf4796d8234943f3fd7b93873381b45d404026\\XamlReader.cs [Read Only]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\0a84cc53936b314ba955b54f50bf4796d8234943f3fd7b93873381b45d404026\\XamlReader.cs [Read Only]",
+              "ViewState": "AgIAAKIBAAAAAAAAAAAAALUBAAACAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T11:06:54.585Z",
+              "EditorCaption": " [Read Only]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "confirmPayFood.cs",
-              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Staff\\confirmPayFood.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\ViewModels\\Staff\\confirmPayFood.cs",
-              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Staff\\confirmPayFood.cs",
-              "RelativeToolTip": "restaurantManager\\ViewModels\\Staff\\confirmPayFood.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAwEAAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T10:27:47.144Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ComfirmPayFood.cs",
-              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Services\\ComfirmPayFood.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\Services\\ComfirmPayFood.cs",
-              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Services\\ComfirmPayFood.cs",
-              "RelativeToolTip": "restaurantManager\\Services\\ComfirmPayFood.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T10:32:06.02Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "orderFood.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\orderFood.xaml.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Staff\\orderFood.xaml.cs",
-              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\orderFood.xaml.cs",
-              "RelativeToolTip": "restaurantManager\\View\\Fuction\\Staff\\orderFood.xaml.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAABkAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T10:36:15.92Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SessionUser.cs",
-              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Models\\SessionUser.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\Models\\SessionUser.cs",
-              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Models\\SessionUser.cs",
-              "RelativeToolTip": "restaurantManager\\Models\\SessionUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-21T03:20:55.943Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "confirmPayFood.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\confirmPayFood.xaml.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Staff\\confirmPayFood.xaml.cs",
-              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\confirmPayFood.xaml.cs",
-              "RelativeToolTip": "restaurantManager\\View\\Fuction\\Staff\\confirmPayFood.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB0AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T10:39:08.018Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "OrderService.cs",
-              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Services\\OrderService.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\Services\\OrderService.cs",
-              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Services\\OrderService.cs",
-              "RelativeToolTip": "restaurantManager\\Services\\OrderService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T10:32:29.33Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "orderFood.xaml",
               "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\orderFood.xaml",
               "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Staff\\orderFood.xaml",
               "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\orderFood.xaml",
               "RelativeToolTip": "restaurantManager\\View\\Fuction\\Staff\\orderFood.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-20T10:41:37.733Z",
+              "WhenOpened": "2025-09-27T00:49:23.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "changePassword.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\changePassword.xaml.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Staff\\changePassword.xaml.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Staff\\changePassword.xaml.cs",
+              "RelativeToolTip": "restaurantManager\\View\\Fuction\\Staff\\changePassword.xaml.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAswHcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T01:31:48.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "confirmPayFood.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Staff\\confirmPayFood.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\ViewModels\\Staff\\confirmPayFood.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Staff\\confirmPayFood.cs",
+              "RelativeToolTip": "restaurantManager\\ViewModels\\Staff\\confirmPayFood.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwEAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T01:44:42.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DatabaseConnect.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Services\\DatabaseConnect.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\Services\\DatabaseConnect.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Services\\DatabaseConnect.cs",
+              "RelativeToolTip": "restaurantManager\\Services\\DatabaseConnect.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T01:13:29.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ComfirmPayFood.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Services\\ComfirmPayFood.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\Services\\ComfirmPayFood.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\Services\\ComfirmPayFood.cs",
+              "RelativeToolTip": "restaurantManager\\Services\\ComfirmPayFood.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T01:42:45.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "orderFood.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Staff\\orderFood.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\ViewModels\\Staff\\orderFood.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Staff\\orderFood.cs",
+              "RelativeToolTip": "restaurantManager\\ViewModels\\Staff\\orderFood.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T01:40:45.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Home.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Home.xaml.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\View\\Home.xaml.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Home.xaml.cs",
+              "RelativeToolTip": "restaurantManager\\View\\Home.xaml.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBkAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T01:23:24.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Staff.xaml",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Staff.xaml",
+              "RelativeDocumentMoniker": "restaurantManager\\View\\Staff.xaml",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Staff.xaml",
+              "RelativeToolTip": "restaurantManager\\View\\Staff.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-09-27T00:49:05.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Home.xaml",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Home.xaml",
+              "RelativeDocumentMoniker": "restaurantManager\\View\\Home.xaml",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Home.xaml",
+              "RelativeToolTip": "restaurantManager\\View\\Home.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-09-27T00:19:37.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Staff.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Staff.xaml.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\View\\Staff.xaml.cs",
+              "ToolTip": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\View\\Staff.xaml.cs",
+              "RelativeToolTip": "restaurantManager\\View\\Staff.xaml.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T00:19:15.444Z",
               "EditorCaption": ""
             }
           ]
