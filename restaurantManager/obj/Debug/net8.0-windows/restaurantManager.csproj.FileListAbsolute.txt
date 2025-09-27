@@ -302,3 +302,5 @@ C:\Users\VO NGUYEN THANH TIN\OneDrive\Desktop\LEARNS\DU_AN_QL_NHAHANG\QuanLyNhaH
 C:\Users\VO NGUYEN THANH TIN\OneDrive\Desktop\LEARNS\DU_AN_QL_NHAHANG\QuanLyNhaHang\restaurantManager\bin\Debug\net8.0-windows\runtimes\win7-arm\native\libuv.dll
 C:\Users\VO NGUYEN THANH TIN\OneDrive\Desktop\LEARNS\DU_AN_QL_NHAHANG\QuanLyNhaHang\restaurantManager\bin\Debug\net8.0-windows\runtimes\win7-x64\native\libuv.dll
 C:\Users\VO NGUYEN THANH TIN\OneDrive\Desktop\LEARNS\DU_AN_QL_NHAHANG\QuanLyNhaHang\restaurantManager\bin\Debug\net8.0-windows\runtimes\win7-x86\native\libuv.dll
+C:\Users\VO NGUYEN THANH TIN\OneDrive\Desktop\LEARNS\DU_AN_QL_NHAHANG\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Staff\changePassword.g.cs
+C:\Users\VO NGUYEN THANH TIN\OneDrive\Desktop\LEARNS\DU_AN_QL_NHAHANG\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Staff\changePassword.baml

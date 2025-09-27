@@ -14,8 +14,8 @@ using restaurantManager.Services;
 using System.Windows;
 using System.Windows.Input;
 
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Command;
 using restaurantManager.Messages;
 
 namespace restaurantManager.ViewModels.Staff
