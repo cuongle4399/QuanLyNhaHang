@@ -110,16 +110,17 @@ namespace restaurantManager.Services
             }
         }
 
-        public bool CapNhatTrangThaiDonHang(DonHang donHang, string trangThai, decimal TongTienPhaiThanhToan)
+        public bool CapNhatTrangThaiDonHang(DonHang donHang, string trangThai, decimal TongTienPhaiThanhToan, string phuongThuc)
         {
             // Update DonHang set TrangThai = trangThai where MaDonHang = maDonHang
 
-            string sql = @"UPDATE DonHang SET TrangThai=@tt, TongTien=@ttien WHERE MaDonHang=@mdh";
+            string sql = @"UPDATE DonHang SET TrangThai=@tt, TongTien=@ttien, HinhThucThanhToan=@httt WHERE MaDonHang=@mdh";
 
             return DatabaseConnect.ExecuteNonQuery(sql,
                                                         new SqlParameter("@tt", trangThai),
-                                                        new SqlParameter("ttien", TongTienPhaiThanhToan),
-                                                        new SqlParameter("mdh", donHang.MaDonHang));
+                                                        new SqlParameter("@ttien", TongTienPhaiThanhToan),
+                                                        new SqlParameter("@mdh", donHang.MaDonHang),
+                                                        new SqlParameter("@httt", phuongThuc));
         }
 
         public bool CapNhatTrangThaiBan(string maBan, string trangThai)

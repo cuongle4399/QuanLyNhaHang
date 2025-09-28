@@ -15,8 +15,6 @@ namespace restaurantManager.View.Fuction.Staff
         {
             InitializeComponent();
 
-            // Nếu bạn muốn DataContext do View tự tạo khi chưa có (tiện cho test),
-            // giữ dòng dưới. Nếu bạn quản lý DataContext từ ngoài (IoC), có thể bỏ.
             if (this.DataContext == null)
                 this.DataContext = new ChangePasswordViewModel();
 

@@ -74,7 +74,7 @@ namespace restaurantManager.ViewModels.Staff
             if (!correctOld)
             {
 
-                MessageBox.Show("Mật khẩu hiện tại không đúng. | " + OldPassword + " - " + Services.ChangePassword.LayMatKhauHienTai(), "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Mật khẩu hiện tại không đúng.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
