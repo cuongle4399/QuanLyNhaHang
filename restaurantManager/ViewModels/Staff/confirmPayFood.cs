@@ -92,6 +92,24 @@ namespace restaurantManager.ViewModels.Staff
             }
         }
 
+        private string _hinhThucThanhToan;
+        public string HinhThucThanhToan
+        {
+            get => _hinhThucThanhToan;
+            set
+            {
+                if (value == "💵 Tiền mặt")
+                    _hinhThucThanhToan = "TienMat";
+                else if (value == "🏦 Chuyển khoản")
+                    _hinhThucThanhToan = "ChuyenKhoan";
+                else
+                    _hinhThucThanhToan = value; // fallback
+
+                OnPropertyChanged();
+            }
+        }
+
+
         public ICommand ChonBanCommand { get; }
 
         public ICommand HuyThanhToanCommand { get; }
@@ -158,9 +176,14 @@ namespace restaurantManager.ViewModels.Staff
                 }
 
                 // Cập nhật trạng thái đơn hàng
-                bool ok1 = _confirmPayFood.CapNhatTrangThaiDonHang(DonHangCuaBan, "DaHoanThanh", TongTienPhaiThanhToan);
+                bool ok1 = _confirmPayFood.CapNhatTrangThaiDonHang(DonHangCuaBan, "DaHoanThanh", TongTienPhaiThanhToan, HinhThucThanhToan);
                 // Cập nhật trạng thái bàn
-                bool ok2 = _confirmPayFood.CapNhatTrangThaiBan(BanDangChon.MaBan, "Trống");
+                bool ok2 = false;
+
+                if (ok1) 
+                {
+                    ok2 = _confirmPayFood.CapNhatTrangThaiBan(BanDangChon.MaBan, "Trống");
+                }
 
                 if (ok1 && ok2)
                 {
