@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,56 +15,47 @@ using System.Windows.Shapes;
 
 namespace restaurantManager.View.Fuction.Admin
 {
+    /// <summary>
+    /// Interaction logic for revenueManager.xaml
+    /// </summary>
     public partial class revenueManager : UserControl
     {
-        private ViewModels.Admin.revenueManager viewModel = new ViewModels.Admin.revenueManager();
+        private ViewModels.Admin.revenueManager vm;
 
         public revenueManager()
         {
             InitializeComponent();
-            dpFrom.SelectedDate = DateTime.Today;
-            dpTo.SelectedDate = DateTime.Today;
-        }
-
-        private void btnSearch_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
+            vm = new ViewModels.Admin.revenueManager();
+            this.DataContext = vm;
 
         }
 
-        private void btnAll_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            var table = viewModel.GetAllInvoices();
-            dgInvoices.ItemsSource = table.DefaultView;
+            var fromDate = dpFrom.SelectedDate ?? DateTime.Today;
+            var toDate = dpTo.SelectedDate ?? DateTime.Today;
 
-            var summary = viewModel.GetRevenueSummaryAll();
-            if (summary != null)
+            if (fromDate > toDate)
             {
-                txtTotalRevenue.Text = string.Format("{0:N0} VNĐ", summary["TongDoanhThu"]);
-                txtInvoiceCount.Text = summary["SoHoaDon"].ToString();
+                MessageBox.Show("khoảng ngày không hợp lệ",
+                                "sai khoảng", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
-            else
-            {
-                txtTotalRevenue.Text = "0 VNĐ";
-                txtInvoiceCount.Text = "0";
-            }
+            vm.Search(fromDate, toDate);
+            Refresh();
         }
 
-        private void dgInvoices_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void btnAll_Click(object sender, RoutedEventArgs e)
         {
-            if (dgInvoices.SelectedItem == null) return;
+            vm.LoadAll();
+            Refresh();
+        }
 
-            var rowView = dgInvoices.SelectedItem as DataRowView;
-            if (rowView == null) return;
-
-            int maDonHang = Convert.ToInt32(rowView["MaDonHang"]);
-
-            // lấy chi tiết món ăn của đơn  hàng
-            var details = viewModel.GetInvoiceDetails(maDonHang);
-
-            // mở cửa sổ hiển thị hóa đơn
-            var wnd = new InvoiceDetailWindow(rowView.Row, details);
-            wnd.Owner = Window.GetWindow(this);
-            wnd.ShowDialog();
+        private void Refresh()
+        {
+            dgInvoices.ItemsSource = vm.Invoices;
+            txtTotalRevenue.Text = vm.TotalRevenueText;
+            txtInvoiceCount.Text = vm.InvoiceCountText;
         }
     }
 }
