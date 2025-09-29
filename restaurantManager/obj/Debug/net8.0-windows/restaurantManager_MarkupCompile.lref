@@ -1,9 +1,10 @@
-﻿C:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\App.xaml;;
 FC:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\View\Admin.xaml;;
 FC:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\View\Fuction\Admin\menuManager.xaml;;
 FC:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\View\Fuction\Admin\revenueManager.xaml;;
 FC:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\View\Fuction\Admin\saleManager.xaml;;
+FC:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\View\Fuction\Staff\changePassword.xaml;;
 FC:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\View\Fuction\Staff\confirmPayFood.xaml;;
 FC:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\View\Fuction\Staff\orderFood.xaml;;
 FC:\Users\Cuong Le\Desktop\C# wpf\restaurantManager\View\Staff.xaml;;
