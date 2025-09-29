@@ -3,44 +3,28 @@
   "WorkspaceRootPath": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\view\\fuction\\admin\\invoicedetailwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\admin\\invoicedetailwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\view\\fuction\\admin\\invoicedetailwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\admin\\invoicedetailwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\view\\fuction\\admin\\revenuemanager.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\admin\\revenuemanager.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\view\\fuction\\admin\\menumanager.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\admin\\menumanager.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\view\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\viewmodels\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\viewmodels\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\viewmodels\\admin\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\viewmodels\\admin\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\view\\fuction\\admin\\revenuemanager.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\admin\\revenuemanager.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\viewmodels\\admin\\revenuemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\viewmodels\\admin\\revenuemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\view\\fuction\\admin\\revenuemanager.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\view\\fuction\\admin\\revenuemanager.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\models\\revenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\models\\revenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|d:\\sinh vien\\l\u00E0m vi\u1EC7c nh\u00F3m\\quanlynhahang\\restaurantmanager\\services\\databaseconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B39DDB-433E-4130-857E-AA81671B25B7}|restaurantManager\\restaurantManager.csproj|solutionrelative:restaurantmanager\\services\\databaseconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,33 +34,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 9,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Home.xaml",
-              "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Home.xaml",
-              "RelativeDocumentMoniker": "restaurantManager\\View\\Home.xaml",
-              "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Home.xaml",
-              "RelativeToolTip": "restaurantManager\\View\\Home.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-15T15:57:22.622Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Home.cs",
-              "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Home.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\ViewModels\\Home.cs",
-              "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Home.cs",
-              "RelativeToolTip": "restaurantManager\\ViewModels\\Home.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-15T15:57:16.292Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -94,65 +53,45 @@
               "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "menuManager.cs",
-              "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Admin\\menuManager.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\ViewModels\\Admin\\menuManager.cs",
-              "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Admin\\menuManager.cs",
-              "RelativeToolTip": "restaurantManager\\ViewModels\\Admin\\menuManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-15T15:56:01.025Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "menuManager.xaml",
-              "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Admin\\menuManager.xaml",
-              "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Admin\\menuManager.xaml",
-              "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Admin\\menuManager.xaml",
-              "RelativeToolTip": "restaurantManager\\View\\Fuction\\Admin\\menuManager.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-15T15:55:56.803Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "App.xaml",
               "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\App.xaml",
               "RelativeDocumentMoniker": "restaurantManager\\App.xaml",
               "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\App.xaml",
               "RelativeToolTip": "restaurantManager\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-15T13:31:34.548Z",
+              "WhenOpened": "2025-09-29T18:32:04.132Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "invoiceDetailWindow.xaml.cs",
-              "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Admin\\invoiceDetailWindow.xaml.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Admin\\invoiceDetailWindow.xaml.cs",
-              "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Admin\\invoiceDetailWindow.xaml.cs",
-              "RelativeToolTip": "restaurantManager\\View\\Fuction\\Admin\\invoiceDetailWindow.xaml.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAxwBAAAAABAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Revenue.cs",
+              "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\Models\\Revenue.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\Models\\Revenue.cs",
+              "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\Models\\Revenue.cs",
+              "RelativeToolTip": "restaurantManager\\Models\\Revenue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T14:40:28.789Z",
+              "WhenOpened": "2025-09-29T18:11:37.601Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "invoiceDetailWindow.xaml",
-              "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Admin\\invoiceDetailWindow.xaml",
-              "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Admin\\invoiceDetailWindow.xaml",
-              "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Admin\\invoiceDetailWindow.xaml",
-              "RelativeToolTip": "restaurantManager\\View\\Fuction\\Admin\\invoiceDetailWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-12T14:39:56.969Z",
+              "DocumentIndex": 5,
+              "Title": "DatabaseConnect.cs",
+              "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\Services\\DatabaseConnect.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\Services\\DatabaseConnect.cs",
+              "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\Services\\DatabaseConnect.cs",
+              "RelativeToolTip": "restaurantManager\\Services\\DatabaseConnect.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T17:42:42.551Z",
               "EditorCaption": ""
             },
             {
@@ -169,27 +108,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "revenueManager.xaml.cs",
               "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Admin\\revenueManager.xaml.cs",
               "RelativeDocumentMoniker": "restaurantManager\\View\\Fuction\\Admin\\revenueManager.xaml.cs",
               "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\View\\Fuction\\Admin\\revenueManager.xaml.cs",
               "RelativeToolTip": "restaurantManager\\View\\Fuction\\Admin\\revenueManager.xaml.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAApwB8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T13:34:52.697Z"
+              "WhenOpened": "2025-09-12T13:34:52.697Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 1,
               "Title": "revenueManager.cs",
               "DocumentMoniker": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Admin\\revenueManager.cs",
               "RelativeDocumentMoniker": "restaurantManager\\ViewModels\\Admin\\revenueManager.cs",
               "ToolTip": "D:\\Sinh Vien\\L\u00E0m vi\u1EC7c nh\u00F3m\\QuanLyNhaHang\\restaurantManager\\ViewModels\\Admin\\revenueManager.cs",
               "RelativeToolTip": "restaurantManager\\ViewModels\\Admin\\revenueManager.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAowE4AAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T13:15:33.259Z"
+              "WhenOpened": "2025-09-12T13:15:33.259Z",
+              "EditorCaption": ""
             }
           ]
         },

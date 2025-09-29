@@ -3,78 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:restaurantManager.View.Fuction.Admin"
              mc:Ignorable="d" 
-
-                          d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background="#2E2E2E">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Header -->
-            <RowDefinition Height="Auto"/>
-            <!-- Bộ lọc -->
-            <RowDefinition Height="Auto"/>
-            <!-- Thống kê -->
             <RowDefinition Height="*"/>
-            <!-- Bảng -->
         </Grid.RowDefinitions>
 
-        <!-- Header -->
-        <TextBlock Text="Quản lý thu nhập"
-                   FontSize="28"
-                   FontWeight="Bold"
-                   Foreground="White"
-                   Margin="0,0,0,20"/>
+        <DockPanel Grid.Row="0" Height="50">
+            <TextBlock Text="Quản lý doanh thu" Foreground="White"
+                       FontSize="28" FontWeight="Bold" Margin="10,5"/>
+        </DockPanel>
 
-        <!-- Bộ lọc -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="Từ ngày:" Foreground="White" VerticalAlignment="Center"/>
-            <DatePicker x:Name="dpFrom" Background="Black" Width="150" Margin="5,0"/>
-            <Label Content="Đến ngày:" Foreground="White" VerticalAlignment="Center"/>
-            <DatePicker x:Name="dpTo" Width="150" Margin="5,0"/>
-            <Button x:Name="btnSearch" Content="Tìm hóa đơn"
-                    Width="120" Margin="10,0"
-                    Background="#2E2E2E" Foreground="White"
-                    Click="btnSearch_Click"/>
-            <Button x:Name="btnAll" Content="Tìm tất cả"
-                    Width="120" Margin="5,0"
-                    Background="#2E2E2E" Foreground="White"
-                    Click="btnAll_Click"/>
-        </StackPanel>
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Thống kê -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBlock Text="Tổng doanh thu:" FontWeight="Bold" Foreground="White"/>
-            <TextBlock x:Name="txtTotalRevenue" Margin="5,0" Foreground="White"/>
-            <TextBlock Text=" | Số hóa đơn:" FontWeight="Bold" Margin="20,0,0,0" Foreground="White"/>
-            <TextBlock x:Name="txtInvoiceCount" Margin="5,0" Foreground="White"/>
-        </StackPanel>
+            <WrapPanel Grid.Row="0">
+                <Border Width="180" Height="80" Background="#3B5998" Margin="5" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Doanh thu" Foreground="White"/>
+                        <TextBlock x:Name="txtTotalRevenue" Foreground="LightGreen" FontSize="16"/>
+                    </StackPanel>
+                </Border>
+                <Border Width="180" Height="80" Background="#E67E22" Margin="5" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Khách hàng" Foreground="White"/>
+                        <TextBlock x:Name="txtInvoiceCount" Foreground="Yellow" FontSize="16"/>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
 
-        <!-- Bảng dữ liệu -->
-        <Border Grid.Row="3" Background="#2E2E2E" CornerRadius="8" Padding="10">
-            <DataGrid x:Name="dgInvoices"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserResizeColumns="False"
-                      CanUserReorderColumns="False"
-                      CanUserSortColumns="False"
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10" HorizontalAlignment="Left">
+                <Button Content="Tìm tất cả" Click="btnAll_Click" Width="110" Margin="5"/>
+                <TextBlock Text="Từ:" VerticalAlignment="Center"/>
+                <DatePicker x:Name="dpFrom" Width="130" Margin="5"/>
+                <TextBlock Text="Đến:" VerticalAlignment="Center"/>
+                <DatePicker x:Name="dpTo" Width="130" Margin="5"/>
+                <Button Content="Tìm theo ngày" Click="btnSearch_Click" Width="140" Margin="5"/>
+            </StackPanel>
+
+            <DataGrid Grid.Row="2" x:Name="dgInvoices"
+                      AutoGenerateColumns="True"
                       IsReadOnly="True"
-                      HeadersVisibility="Column"
-                      GridLinesVisibility="All"
-                      RowHeight="35"
-                      MouseDoubleClick="dgInvoices_MouseDoubleClick">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding MaDonHang}" Width="*"/>
-                    <DataGridTextColumn Header="Ngày đặt" Binding="{Binding NgayDat}" Width="*"/>
-                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="*"/>
-                    <DataGridTextColumn Header="Khuyến mãi" Binding="{Binding TenChuongTrinh}" Width="*"/>
-                    <DataGridTextColumn Header="Tổng các món" Binding="{Binding TongCacMon}" Width="*"/>
-                    <DataGridTextColumn Header="Thanh toán" Binding="{Binding ThanhToanCuoi}" Width="*"/>
-                    <DataGridTextColumn Header="Giá trị KM" Binding="{Binding GiaTriKhuyenMai}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Border>
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      AlternatingRowBackground="#646464"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        </Grid>
     </Grid>
-
 </UserControl>
