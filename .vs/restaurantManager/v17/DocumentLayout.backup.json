@@ -95,21 +95,7 @@
               "ViewState": "AgIAACIAAAAAAAAAAAAowDAAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-27T01:09:33.506Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MonAn.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Models\\MonAn.cs",
-              "RelativeDocumentMoniker": "restaurantManager\\Models\\MonAn.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Models\\MonAn.cs",
-              "RelativeToolTip": "restaurantManager\\Models\\MonAn.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T12:09:11.871Z",
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -133,6 +119,18 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MonAn.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Models\\MonAn.cs",
+              "RelativeDocumentMoniker": "restaurantManager\\Models\\MonAn.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Models\\MonAn.cs",
+              "RelativeToolTip": "restaurantManager\\Models\\MonAn.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T12:09:11.871Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Home.xaml",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\View\\Home.xaml",
@@ -140,8 +138,7 @@
               "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\View\\Home.xaml",
               "RelativeToolTip": "restaurantManager\\View\\Home.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-27T00:19:37.717Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-27T00:19:37.717Z"
             },
             {
               "$type": "Document",
@@ -153,8 +150,7 @@
               "RelativeToolTip": "restaurantManager\\ViewModels\\Staff\\orderFood.cs",
               "ViewState": "AgIAAK0AAAAAAAAAAAAlwLoAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T01:40:45.699Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-27T01:40:45.699Z"
             },
             {
               "$type": "Document",
@@ -165,8 +161,7 @@
               "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\View\\Fuction\\Staff\\confirmPayFood.xaml",
               "RelativeToolTip": "restaurantManager\\View\\Fuction\\Staff\\confirmPayFood.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-27T06:20:31.818Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-27T06:20:31.818Z"
             },
             {
               "$type": "Document",
@@ -174,8 +169,8 @@
               "Title": "DatabaseConnect.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Services\\DatabaseConnect.cs",
               "RelativeDocumentMoniker": "restaurantManager\\Services\\DatabaseConnect.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Services\\DatabaseConnect.cs*",
-              "RelativeToolTip": "restaurantManager\\Services\\DatabaseConnect.cs*",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\Services\\DatabaseConnect.cs",
+              "RelativeToolTip": "restaurantManager\\Services\\DatabaseConnect.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-27T01:13:29.297Z",
@@ -191,8 +186,7 @@
               "RelativeToolTip": "restaurantManager\\ViewModels\\Admin\\menuManager.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAlwDgAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T12:12:33.862Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-29T12:12:33.862Z"
             },
             {
               "$type": "Document",
@@ -204,8 +198,7 @@
               "RelativeToolTip": "restaurantManager\\ViewModels\\Staff\\confirmPayFood.cs",
               "ViewState": "AgIAAJUAAAAAAAAAAAAswKQAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T01:44:42.669Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-27T01:44:42.669Z"
             },
             {
               "$type": "Document",
@@ -217,8 +210,7 @@
               "RelativeToolTip": "restaurantManager\\Services\\OrderService.cs",
               "ViewState": "AgIAAHUAAAAAAAAAAAAAwIMAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T12:10:41.355Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-29T12:10:41.355Z"
             },
             {
               "$type": "Document",
@@ -240,8 +232,7 @@
               "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# wpf\\restaurantManager\\App.xaml",
               "RelativeToolTip": "restaurantManager\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-27T10:52:35.616Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-27T10:52:35.616Z"
             },
             {
               "$type": "Document",
