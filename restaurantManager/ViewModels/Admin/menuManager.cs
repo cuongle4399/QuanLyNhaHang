@@ -37,8 +37,8 @@ namespace restaurantManager.ViewModels.Admin
                 string hinhAnhURL = row["HinhAnhURL"]?.ToString() ?? "";
                 string moTa = row["MoTa"]?.ToString() ?? "";
 
-                decimal gia = 0;
-                decimal.TryParse(row["Gia"]?.ToString(), out gia);
+                float gia = 0;
+                float.TryParse(row["Gia"]?.ToString(), out gia);
 
                 int loaiMonAn = 0;
                 int.TryParse(row["Loai"]?.ToString(), out loaiMonAn);
