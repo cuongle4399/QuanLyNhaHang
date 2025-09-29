@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using restaurantManager.Models;
 
 namespace restaurantManager.View.Fuction.Staff
 {
@@ -20,9 +21,23 @@ namespace restaurantManager.View.Fuction.Staff
     /// </summary>
     public partial class orderFood : UserControl
     {
+        ViewModels.Staff.orderFood vm;
+
         public orderFood()
         {
             InitializeComponent();
+
+            vm = new ViewModels.Staff.orderFood();
+
+            this.DataContext = vm;
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(vm.ThongBao) && !string.IsNullOrEmpty(vm.ThongBao))
+                {
+                    MessageBox.Show(vm.ThongBao);
+                }
+            };
         }
     }
 }
