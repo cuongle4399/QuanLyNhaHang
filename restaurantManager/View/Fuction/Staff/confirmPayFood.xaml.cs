@@ -20,9 +20,14 @@ namespace restaurantManager.View.Fuction.Staff
     /// </summary>
     public partial class confirmPayFood : UserControl
     {
+        ViewModels.Staff.confirmPayFood vm = new ViewModels.Staff.confirmPayFood();
+
         public confirmPayFood()
         {
             InitializeComponent();
+
+            this.DataContext = vm;
+            
         }
     }
 }

@@ -3,31 +3,452 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:restaurantManager.View.Fuction.Staff"
+             xmlns:convert="clr-namespace:restaurantManager.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#2E2E2E">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
+    <UserControl.Resources>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-        Text="Gói món"
-        TextAlignment="Center"
-        FontSize="28"
-        FontWeight="Bold" 
-        VerticalAlignment="Center"
-        Foreground="White"
-        Margin="0,0,0,20"
-        HorizontalAlignment="Left"/>
+        <!-- Material Design Brushes - Đã điều chỉnh -->
+        <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#4FC3F7"/>
+        <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="White"/>
+        <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#29B6F6"/>
+        <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="White"/>
+        <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#0288D1"/>
+        <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="White"/>
 
-        <Grid Grid.Row="1">
-            <!--Main-Conten-->
+        <!-- Accent colors -->
+        <SolidColorBrush x:Key="SuccessBrush" Color="#66BB6A"/>
+        <SolidColorBrush x:Key="WarningBrush" Color="#FFA726"/>
+        <SolidColorBrush x:Key="DangerBrush" Color="#EF5350"/>
+        <SolidColorBrush x:Key="InfoBrush" Color="#42A5F5"/>
+
+        <!-- Style cho Card -->
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#37474F"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" Direction="270" BlurRadius="15" ShadowDepth="5" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style cho nút tròn -->
+        <Style x:Key="CircleButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#29B6F6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}" Stroke="Transparent" StrokeThickness="0"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#0288D1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style cho nút chính -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#29B6F6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="20" 
+                            BorderThickness="0"
+                            Padding="10,0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#0288D1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style cho thẻ bàn -->
+        <Style x:Key="TableCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#455A64"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <!-- Pill button (filled) -->
+        <Style x:Key="PillButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#29B6F6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,5"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="15"
+                            Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#0288D1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Pill button (outlined) -->
+        <Style x:Key="PillOutlinedButtonStyle" TargetType="Button" BasedOn="{StaticResource PillButtonStyle}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#29B6F6"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+        </Style>
+
+        <!-- Rounded TextBox with Placeholder -->
+        <Style x:Key="RoundedTextBoxWithPlaceholderStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="#455A64"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <!-- Nền bo tròn -->
+                            <Border Background="{TemplateBinding Background}"
+                            CornerRadius="16"
+                            Padding="{TemplateBinding Padding}">
+                                <ScrollViewer x:Name="PART_ContentHost" Margin="0"/>
+                            </Border>
+
+                            <!-- Placeholder -->
+                            <TextBlock Text="Nhập từ khóa tìm kiếm..."
+           Foreground="#B0BEC5"
+           Margin="12,0,0,0"
+           IsHitTestVisible="False"
+           VerticalAlignment="Center"
+           Visibility="{Binding Text,
+                        RelativeSource={RelativeSource TemplatedParent},
+                        Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <convert:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#263238">
+        <!-- Header -->
+        <Grid Height="40" Background="#37474F" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Logo và tiêu đề -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="5,0">
+                <Ellipse Width="30" Height="30" Margin="0,0,10,0">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="/Resources/Image/logo/logo.ico" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock Text="NHÀ HÀNG" FontSize="18" Foreground="#4FC3F7" FontWeight="Bold" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Thanh tìm kiếm -->
+            <Grid Grid.Column="1" Width="400" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Text="{Binding TuKhoaTimKiem, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="0,0,10,0"
+                         Style="{StaticResource RoundedTextBoxWithPlaceholderStyle}"/>
+
+                <Button Grid.Column="1"
+                        Content="Tìm kiếm"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Height="Auto"
+                        Command="{Binding TimKiemCommand}"/>
+            </Grid>
+        </Grid>
+
+        <!-- Nội dung chính -->
+        <Grid Margin="0,50,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Phần chọn bàn -->
+            <Border Grid.Row="0" Style="{StaticResource CardStyle}" Height="Auto">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="CHỌN BÀN" FontSize="16" FontWeight="Bold" Margin="0,0,0,8" Foreground="#E0E0E0"/>
+
+                    <ScrollViewer Grid.Row="1" 
+                                  VerticalScrollBarVisibility="Auto" 
+                                  HorizontalAlignment="Stretch" 
+                                  HorizontalScrollBarVisibility="Auto">
+
+                        <ItemsControl ItemsSource="{Binding DanhSachBanAn}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="TableBorder"
+                                            Style="{StaticResource TableCardStyle}"
+                                            BorderThickness="2"
+                                            BorderBrush="Transparent">
+
+                                        <!-- Gắn sự kiện MouseDown vào Command -->
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseDown">
+                                                <i:InvokeCommandAction 
+                                                    Command="{Binding DataContext.ChonBanCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+
+                                        <Grid>
+                                            <Ellipse x:Name="TableEllipse" Width="40" Height="40" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{Binding MaBan}" 
+                                                       Foreground="#E0E0E0" FontWeight="Bold" 
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+
+                                    <DataTemplate.Triggers>
+                                        <!-- Bàn trống => xanh lá nhạt -->
+                                        <DataTrigger Binding="{Binding TrangThai}" Value="Trống">
+                                            <Setter TargetName="TableEllipse" Property="Fill" Value="#81C784"/>
+                                        </DataTrigger>
+
+                                        <!-- Bàn đã đặt => cam nhạt -->
+                                        <DataTrigger Binding="{Binding TrangThai}" Value="Đã đặt">
+                                            <Setter TargetName="TableEllipse" Property="Fill" Value="#FFB74D"/>
+                                        </DataTrigger>
+
+                                        <!-- Khi được chọn => border xanh cyan -->
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                            <Setter TargetName="TableBorder" Property="BorderBrush" Value="#4FC3F7"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- Phần thực đơn và giỏ hàng -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="71*"/>
+                    <ColumnDefinition Width="344*"/>
+                    <ColumnDefinition Width="385"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Thực đơn -->
+                <Grid Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Danh mục món ăn -->
+                    <Border Grid.Row="0" Background="#37474F" CornerRadius="8" Margin="0, 5, 5, 5" Padding="8">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Tất cả" Command="{Binding ChonTatCaCommand}" Style="{StaticResource PillButtonStyle}" Margin="4,0"/>
+                                <Button Content="Thức ăn" Command="{Binding ChonThucAnCommand}" Style="{StaticResource PillOutlinedButtonStyle}" Margin="4,0"/>
+                                <Button Content="Thức uống" Command="{Binding ChonThucUongCommand}" Style="{StaticResource PillOutlinedButtonStyle}" Margin="4,0"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+
+                    <!-- Danh sách món ăn -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="icMonAn" Margin="0,8,8,8" ItemsSource="{Binding DanhSachHienThi}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#37474F" CornerRadius="10" Margin="0,6,6,6" Padding="10" 
+                                        Width="150" Height="Auto">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="140"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Hình ảnh món ăn -->
+                                            <Border Grid.Row="0" CornerRadius="8" Margin="0,0,0,8" SnapsToDevicePixels="True">
+                                                <Grid>
+                                                    <!-- Lớp nền màu -->
+                                                    <Border Background="#455A64" CornerRadius="10"/>
+                                                    <!-- Ảnh phủ lên -->
+                                                    <Border CornerRadius="10">
+                                                        <Border.Background>
+                                                            <ImageBrush ImageSource="{Binding HinhAnhURL}" Stretch="UniformToFill"/>
+                                                        </Border.Background>
+                                                    </Border>
+                                                </Grid>
+                                            </Border>
+
+                                            <!-- Thông tin món ăn -->
+                                            <StackPanel Grid.Row="1">
+                                                <TextBlock Text="{Binding TenMonAn}" FontSize="14" FontWeight="Bold" TextWrapping="Wrap" Foreground="#E0E0E0"/>
+                                                <TextBlock Text="{Binding MoTa}" FontSize="12" Foreground="#B0BEC5" 
+                                                      TextWrapping="Wrap" Margin="0,4"/>
+                                                <TextBlock Text="{Binding TongTien, StringFormat={}{0:N0} đ}" 
+                                                      FontSize="14" FontWeight="Bold" Foreground="#4FC3F7"/>
+                                            </StackPanel>
+
+                                            <!-- Nút thêm món -->
+                                            <Button Grid.Row="2" Name="btnThemMonAn"
+                                                Content="THÊM VÀO GIỎ" Height="36" 
+                                                Style="{StaticResource PrimaryButtonStyle}" 
+                                                Margin="0,8,0,0"
+                                                Command="{Binding DataContext.ThemMonCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- Giỏ hàng -->
+                <Border Grid.Column="2" Background="#37474F" CornerRadius="10" Margin="0,5,0,5" Padding="12">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Tiêu đề giỏ hàng -->
+                        <Grid Grid.Row="0" Margin="0,0,0,10">
+                            <TextBlock Grid.Column="0" Text="GIỎ HÀNG" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Foreground="#E0E0E0"/>
+                        </Grid>
+
+                        <!-- Danh sách món trong giỏ -->
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl x:Name="icGioHang" ItemsSource="{Binding GioHang}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#455A64" CornerRadius="8" Margin="0,6" Padding="10">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- Thông tin món -->
+                                                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding TenMonAn}" FontSize="14" Width="100" FontWeight="Bold" 
+                                                          VerticalAlignment="Center" TextWrapping="Wrap" Foreground="#E0E0E0"/>
+
+                                                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
+                                                        <Button Content="-" 
+                                                                Style="{StaticResource CircleButtonStyle}"
+                                                                Command="{Binding DataContext.GiamSoLuongCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                CommandParameter="{Binding}"/>
+
+                                                        <TextBlock Text="{Binding SoLuong}" Width="28" TextAlignment="Center" 
+                                                              VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#E0E0E0"/>
+                                                        <Button Content="+" 
+                                                                Style="{StaticResource CircleButtonStyle}"
+                                                                Command="{Binding DataContext.TangSoLuongCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                CommandParameter="{Binding}"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+
+                                                <!-- Tổng giá -->
+                                                <TextBlock Grid.Column="1" 
+                                                           Text="{Binding TongTien, StringFormat={}{0:N0} đ}" 
+                                                           Foreground="#4FC3F7" FontSize="16" FontWeight="Bold"
+                                                           VerticalAlignment="Center" Width="100" TextWrapping="Wrap"
+                                                           TextAlignment="Right"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <!-- Tổng tiền và nút đặt hàng -->
+                        <StackPanel Grid.Row="2" Margin="0,10,0,0">
+                            <Border Background="#455A64" CornerRadius="8" Padding="10" Margin="0,0,0,10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="TỔNG CỘNG" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Foreground="#E0E0E0"/>
+                                    <TextBlock Grid.Column="1" x:Name="TotalText" Text="{Binding TongTienGioHang, StringFormat={}{0:N0} đ}" Foreground="#4FC3F7" 
+                                          FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+
+                            <Button Content="ĐẶT HÀNG NGAY" 
+                                    Style="{StaticResource PrimaryButtonStyle}"
+                                    Command="{Binding DataContext.XacNhanDatBanCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                            <Button Content="HỦY ĐƠN" 
+                                    Style="{StaticResource PillOutlinedButtonStyle}"
+                                    Command="{Binding HuyDonHangCommand}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

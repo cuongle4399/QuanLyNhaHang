@@ -23,6 +23,7 @@ namespace restaurantManager
             {
                 ScriptHome.TogglePassword(txtRegisterPassword, txtShowRegisterPassword, false);
                 ScriptHome.TogglePassword(txtRegisterConfirm, txtShowRegisterConfirm, false);
+                MessageBox.Show("i");
             };
         }
 

@@ -19,14 +19,13 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                   Text="Quản lý thực đơn"
+                   Text="QUẢN LÝ THỰC ĐƠN"
                    TextAlignment="Center"
                    FontSize="28"
                    FontWeight="Bold" 
-                   VerticalAlignment="Center"
-                   Foreground="White"
+                   Foreground="#FFD700"
                    Margin="0,0,0,20"
-                   HorizontalAlignment="Left"/>
+                   HorizontalAlignment="Center"/>
 
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>

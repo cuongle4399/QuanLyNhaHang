@@ -51,6 +51,19 @@
                     </Grid>
                 </TabItem>
 
+                <!-- Tab đổi mật khẩu -->
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="Food" Foreground="White" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Đổi mật khẩu" TextWrapping="Wrap" TextAlignment="Center"  HorizontalAlignment="Center" Foreground="White"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid Margin="16">
+                        <views:changePassword/>
+                    </Grid>
+                </TabItem>
+
                 <!-- Tab Đăng xuất -->
                 <TabItem x:Name="LogoutTab" PreviewMouseDown="LogoutTab_PreviewMouseDown">
                     <TabItem.Header>
