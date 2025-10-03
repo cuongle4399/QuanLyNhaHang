@@ -39,6 +39,25 @@ namespace restaurantManager.ViewModels.Admin
             get => _invoiceCountText;
             private set { _invoiceCountText = value; OnPropertyChanged(nameof(InvoiceCountText)); }
         }
+        public (DataRow invoiceRow, DataTable details) GetInvoiceWithDetails(DataRowView drv)
+        {
+            if (drv == null) return (null, null);
+
+            DataRow invoiceRow = drv.Row;
+            string maDonHang = Convert.ToString(invoiceRow["MaDonHang"]);
+            DataTable details = LoadInvoiceDetails(maDonHang);
+
+            return (invoiceRow, details);
+        }
+        public (DataRow invoiceHeader, DataTable details) GetInvoiceDataForDetail(DataRowView rowView)
+        {
+            if (rowView == null) return (null, null);
+
+            string ma = Convert.ToString(rowView.Row["MaDonHang"]);
+            var header = GetInvoiceHeader(ma);
+            var details = LoadInvoiceDetails(ma);
+            return (header, details);
+        }
 
         public revenueManager()
         {
@@ -76,7 +95,7 @@ namespace restaurantManager.ViewModels.Admin
         //lấy danh sách tất cả hóa đơn
         private DataTable GetInvoiceListAll()
         {
-            string sql = @"SELECT MaDonHang, NgayDat, TrangThai, MaBan, ThanhToanCuoi AS TongTien
+            string sql = @"SELECT MaDonHang, NgayDat, TrangThai, MaBan, TongTienGoc, GiaTriKhuyenMai AS KhuyenMai, ThanhToanCuoi AS TongTien
                            FROM DonHang ORDER BY NgayDat DESC";
             return DatabaseConnect.ExecuteTable(sql);
         }
@@ -117,6 +136,39 @@ namespace restaurantManager.ViewModels.Admin
                 new SqlParameter("@from", from.Date),
                 new SqlParameter("@to", to.Date));
             return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+        }
+        private DataRow GetInvoiceHeader(string maDonHang)
+        {
+            string sql = @"
+        SELECT  d.MaDonHang,
+                d.NgayDat,
+                d.TrangThai,
+                d.TongTienGoc,
+                d.GiaTriKhuyenMai,
+                d.ThanhToanCuoi,
+                km.TenChuongTrinh
+        FROM DonHang d
+        LEFT JOIN KhuyenMai km ON d.MaKhuyenMai = km.MaKhuyenMai
+        WHERE d.MaDonHang = @Ma";
+
+            var dt = DatabaseConnect.ExecuteTable(sql, new SqlParameter("@Ma", maDonHang));
+            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+        }
+
+        private DataTable LoadInvoiceDetails(string maDonHang)
+        {
+            string sql = @"
+        SELECT 
+            MA.TenMonAn AS TenMon,
+            CT.SoLuong,
+            CT.GiaTaiThoiDiem AS DonGia,
+            (CT.SoLuong * CT.GiaTaiThoiDiem) AS ThanhTien
+        FROM ChiTietDonHang CT
+        JOIN MonAn MA ON MA.MaMonAn = CT.MaMonAn
+        WHERE CT.MaDonHang = @MaDonHang
+        ORDER BY MA.TenMonAn;";
+
+            return DatabaseConnect.ExecuteTable(sql, new SqlParameter("@MaDonHang", maDonHang));
         }
 
         //thông báo thay đổi thuộc tính

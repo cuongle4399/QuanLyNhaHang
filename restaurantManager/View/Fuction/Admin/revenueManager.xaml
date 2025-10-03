@@ -50,6 +50,7 @@
 
             <DataGrid Grid.Row="2" x:Name="dgInvoices"
                       AutoGenerateColumns="True"
+                      MouseDoubleClick="dgInvoices_MouseDoubleClick"
                       IsReadOnly="True"
                       SelectionMode="Single"
                       SelectionUnit="FullRow"

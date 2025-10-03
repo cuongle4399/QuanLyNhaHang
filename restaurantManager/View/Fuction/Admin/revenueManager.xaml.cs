@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +58,20 @@ namespace restaurantManager.View.Fuction.Admin
             dgInvoices.ItemsSource = vm.Invoices;
             txtTotalRevenue.Text = vm.TotalRevenueText;
             txtInvoiceCount.Text = vm.InvoiceCountText;
+        }
+
+        private void dgInvoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (dgInvoices.SelectedItem is DataRowView drv)
+            {
+                var (invoiceRow, details) = vm.GetInvoiceDataForDetail(drv);
+
+                if (invoiceRow != null && details != null)
+                {
+                    var win = new InvoiceDetailWindow(invoiceRow, details);
+                    win.ShowDialog();
+                }
+            }
         }
     }
 }
