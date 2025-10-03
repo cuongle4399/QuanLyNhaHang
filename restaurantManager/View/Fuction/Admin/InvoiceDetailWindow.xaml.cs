@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using restaurantManager.Services;
 
 namespace restaurantManager.View.Fuction.Admin
 {
@@ -21,29 +23,37 @@ namespace restaurantManager.View.Fuction.Admin
         {
             InitializeComponent();
 
-            string tenKm = invoice.Table.Columns.Contains("TenChuongTrinh")
-                ? Convert.ToString(invoice["TenChuongTrinh"]) : "";
-            decimal giamKm = 0;
-            if (invoice.Table.Columns.Contains("GiaTriKhuyenMai"))
-                decimal.TryParse(Convert.ToString(invoice["GiaTriKhuyenMai"]), out giamKm);
+            //lấy trực tiếp các cột từ DonHang
+            decimal tongGoc = invoice.Table.Columns.Contains("TongTienGoc") && invoice["TongTienGoc"] != DBNull.Value
+                ? Convert.ToDecimal(invoice["TongTienGoc"])
+                : 0;
 
+            decimal giamKm = invoice.Table.Columns.Contains("GiaTriKhuyenMai") && invoice["GiaTriKhuyenMai"] != DBNull.Value
+                ? Convert.ToDecimal(invoice["GiaTriKhuyenMai"])
+                : 0;
+
+            decimal thanhToan = invoice.Table.Columns.Contains("ThanhToanCuoi") && invoice["ThanhToanCuoi"] != DBNull.Value
+                ? Convert.ToDecimal(invoice["ThanhToanCuoi"])
+                : 0;
+
+            string tenKm = invoice.Table.Columns.Contains("TenChuongTrinh")
+                ? Convert.ToString(invoice["TenChuongTrinh"])
+                : "";
+
+            // hiển thị thông tin
             txtInfo.Text =
                 $"Mã hóa đơn: {invoice["MaDonHang"]}\n" +
                 $"Ngày: {invoice["NgayDat"]}\n" +
                 $"Trạng thái: {invoice["TrangThai"]}\n" +
-                $"Khuyến mãi: {tenKm} ({giamKm:N0})";
-            dgDetails.ItemsSource = details.DefaultView;
+                $"Khuyến mãi: {tenKm}";
 
-            // tổng thanh toán
-            decimal tongCacMon = 0;
-            foreach (DataRow r in details.Rows)
-                tongCacMon += Convert.ToDecimal(r["ThanhTien"]);
+            //binding chi tiết món ăn
+            dgDetails.ItemsSource = details?.DefaultView;
 
-            decimal thanhToan = Math.Max(tongCacMon - giamKm, 0);
-            txtSubtotal.Text = $"Tổng các món: {tongCacMon:N0} VNĐ";
-            txtDiscountOrd.Text = $"Giảm khuyến mãi: {giamKm:N0} VNĐ";
-            txtTotal.Text = $"TỔNG THANH TOÁN: {thanhToan:N0} VNĐ";
+            //hiển thị tổng tiền
+            txtSubtotal.Text = $"Tổng tiền gốc: {tongGoc:N0} VNĐ";
+            txtDiscountOrd.Text = $"Khuyến mãi: {giamKm:N0} VNĐ";
+            txtTotal.Text = $"Thanh toán cuối: {thanhToan:N0} VNĐ";
         }
-
     }
 }

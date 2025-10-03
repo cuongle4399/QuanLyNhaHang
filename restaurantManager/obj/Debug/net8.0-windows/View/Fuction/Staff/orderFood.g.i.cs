@@ -53,7 +53,7 @@ namespace restaurantManager.View.Fuction.Staff {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/restaurantManager;V1.0.0.0;component/view/fuction/staff/orderfood.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/restaurantManager;component/view/fuction/staff/orderfood.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\View\Fuction\Staff\orderFood.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
