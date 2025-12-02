@@ -13,7 +13,7 @@ namespace restaurantManager.Services
         // TODO: Thay bằng thông tin SQL Server của bạn
         // - Nếu dùng SQL Authentication: "Server=.;Database=QuanLyNhaHang;User Id=sa;Password=123;"
         // - Nếu dùng Windows Authentication: "Server=.;Database=QuanLyNhaHang;Trusted_Connection=True;"
-        private static string connectionString = @"Server=HUYNHKHANG;Database=QuanLyNhaHang;Trusted_Connection=True;";
+        private static string connectionString = @"Server=CUONG-LE;Database=QuanLyNhaHang;Trusted_Connection=True;";
 
         /// <summary>
         /// Thực hiện INSERT, UPDATE, DELETE
