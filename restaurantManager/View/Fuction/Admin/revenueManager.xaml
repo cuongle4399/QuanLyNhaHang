@@ -3,31 +3,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:restaurantManager.View.Fuction.Admin"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid Background="#2E2E2E">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-        Text="Quản lý thu nhập"
-        TextAlignment="Center"
-        FontSize="28"
-        FontWeight="Bold" 
-        VerticalAlignment="Center"
-        Foreground="White"
-        Margin="0,0,0,20"
-        HorizontalAlignment="Left"/>
+        <DockPanel Grid.Row="0" Height="50">
+            <TextBlock Text="Quản lý doanh thu" Foreground="White"
+                       FontSize="28" FontWeight="Bold" Margin="10,5"/>
+        </DockPanel>
 
-        <Grid Grid.Row="1">
-            <!--Main-Conten-->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel Grid.Row="0">
+                <Border Width="180" Height="80" Background="#3B5998" Margin="5" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Doanh thu" Foreground="White"/>
+                        <TextBlock x:Name="txtTotalRevenue" Foreground="LightGreen" FontSize="16"/>
+                    </StackPanel>
+                </Border>
+                <Border Width="180" Height="80" Background="#E67E22" Margin="5" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Khách hàng" Foreground="White"/>
+                        <TextBlock x:Name="txtInvoiceCount" Foreground="Yellow" FontSize="16"/>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10" HorizontalAlignment="Left">
+                <Button Content="Tìm tất cả" Click="btnAll_Click" Width="110" Margin="5"/>
+                <TextBlock Text="Từ:" VerticalAlignment="Center"/>
+                <DatePicker x:Name="dpFrom" Width="130" Margin="5"/>
+                <TextBlock Text="Đến:" VerticalAlignment="Center"/>
+                <DatePicker x:Name="dpTo" Width="130" Margin="5"/>
+                <Button Content="Tìm theo ngày" Click="btnSearch_Click" Width="140" Margin="5"/>
+            </StackPanel>
+
+            <DataGrid Grid.Row="2" x:Name="dgInvoices"
+                      AutoGenerateColumns="True"
+                      MouseDoubleClick="dgInvoices_MouseDoubleClick"
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      AlternatingRowBackground="#646464"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         </Grid>
     </Grid>
 </UserControl>

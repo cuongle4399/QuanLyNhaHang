@@ -12,7 +12,7 @@ namespace restaurantManager.ViewModels
 {
     public class AddPromotionViewModel : BaseViewModel
     {
-        private readonly string _connectionString = "Data Source=DESKTOP-VQ8CCK0\\NHATNGUYEN;Initial Catalog=QuanLyNhaHang;Integrated Security=True";
+        private readonly string _connectionString = "Data Source=CUONG-LE;Initial Catalog=QuanLyNhaHang;Integrated Security=True";
         private KhuyenMai _selectedPromotion;
 
         public string TenChuongTrinh { get; set; }
