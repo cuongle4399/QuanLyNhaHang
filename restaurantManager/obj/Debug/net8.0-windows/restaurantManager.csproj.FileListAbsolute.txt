@@ -308,3 +308,5 @@ C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\n
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\restaurantManager.pdb
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\restaurantManager.genruntimeconfig.cache
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\ref\restaurantManager.dll
+C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\ViewModels\Admin\AddPromotionWindow.baml
+C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\ViewModels\Admin\AddPromotionWindow.g.cs
