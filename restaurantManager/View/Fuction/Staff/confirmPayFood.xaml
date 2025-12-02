@@ -27,7 +27,6 @@
 
         <!-- Card style -->
         <Style x:Key="CardStyle" TargetType="Border">
-            <Setter Property="Background" Value="#37474F"/>
             <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="Margin" Value="0"/>
@@ -131,7 +130,6 @@
 
         <!-- Table card -->
         <Style x:Key="TableCardStyle" TargetType="Border">
-            <Setter Property="Background" Value="#455A64"/>
             <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="Padding" Value="6"/>
             <Setter Property="Margin" Value="6"/>
@@ -142,7 +140,6 @@
 
         <!-- Rounded TextBox -->
         <Style x:Key="RoundedTextBoxStyle" TargetType="TextBox">
-            <Setter Property="Background" Value="#455A64"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Height" Value="32"/>
@@ -163,7 +160,7 @@
     <!-- ======================
      Layout chính
      ====================== -->
-    <Grid  x:Name="RootGrid" Focusable="True" Background="#263238">
+    <Grid  x:Name="RootGrid" Focusable="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <!-- Header -->
@@ -280,7 +277,7 @@
                     </StackPanel>
 
                     <!-- Danh sách món (chi tiết hóa đơn) -->
-                    <Border Grid.Row="1" Background="#455A64" CornerRadius="6" Padding="8">
+                    <Border Grid.Row="1" CornerRadius="6" Padding="8">
                         <DataGrid x:Name="dgChiTietDonHang" 
                                   ItemsSource="{Binding DanhSachChiTietCuaDonHang}"
                                   AutoGenerateColumns="False"
@@ -361,7 +358,7 @@
 
                     <!-- Footer: tóm tắt + nút -->
                     <StackPanel Grid.Row="2" Margin="0,10,0,0">
-                        <Border Background="#455A64" CornerRadius="8" Padding="10" Margin="0,0,0,8">
+                        <Border CornerRadius="8" Padding="10" Margin="0,0,0,8">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>

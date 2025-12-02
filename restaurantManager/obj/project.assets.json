@@ -7594,23 +7594,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\VO NGUYEN THANH TIN\\.nuget\\packages\\": {},
+    "C:\\Users\\Cuong Le\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\restaurantManager.csproj",
+      "projectUniqueName": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QuanLyNhaHang\\restaurantManager\\restaurantManager.csproj",
       "projectName": "restaurantManager",
-      "projectPath": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\restaurantManager.csproj",
-      "packagesPath": "C:\\Users\\VO NGUYEN THANH TIN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\VO NGUYEN THANH TIN\\OneDrive\\Desktop\\LEARNS\\DU_AN_QL_NHAHANG\\QuanLyNhaHang\\restaurantManager\\obj\\",
+      "projectPath": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QuanLyNhaHang\\restaurantManager\\restaurantManager.csproj",
+      "packagesPath": "C:\\Users\\Cuong Le\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QuanLyNhaHang\\restaurantManager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\VO NGUYEN THANH TIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Cuong Le\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7637,7 +7637,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -7675,7 +7675,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
