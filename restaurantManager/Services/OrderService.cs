@@ -55,7 +55,7 @@ namespace restaurantManager.Services
                 DataRow row = dt.Rows[0];
                 result = new KhuyenMai();
 
-                result.MaKhuyenMai = maKM;
+                result.MaKhuyenMai = (int)maKM;
                 result.TenChuongTrinh = row["TenChuongTrinh"].ToString().Trim();
                 result.MaCode = row["MaCode"].ToString().Trim();
                 result.LoaiGiamGia = row["LoaiGiamGia"].ToString().Trim();

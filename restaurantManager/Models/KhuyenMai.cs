@@ -1,29 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace restaurantManager.Models
 {
     public class KhuyenMai
-
     {
         public int MaKhuyenMai { get; set; }
-        public string MaGiamGia { get; set; } // MaCode từ bảng KhuyenMai
+        public string MaCode { get; set; }   // SỬA TÊN CHO TRÙNG DB
         public string TenChuongTrinh { get; set; }
-        public string LoaiGiamGia { get; set; } // "PhanTram" hoặc "TienCoDinh"
+        public string LoaiGiamGia { get; set; }
         public decimal GiaTriGiam { get; set; }
         public DateTime NgayBatDau { get; set; }
         public DateTime NgayKetThuc { get; set; }
-        public string TrangThai { get; set; } // "HoatDong" hoặc "HetHan"
+        public string TrangThai { get; set; }
 
-        // Tính toán từ dữ liệu
+        // BỔ SUNG cho đúng DB
+        public int? SoLuotSuDungToiDa { get; set; }
+        public int SoLuotDaSuDung { get; set; }
+
+        // Tính toán hiển thị
         public string GiaTri => LoaiGiamGia == "PhanTram"
             ? $"{GiaTriGiam}%"
             : $"{GiaTriGiam:N0}đ";
 
-        // Dữ liệu món ăn áp dụng (danh sách tên món)
         public string MonAn { get; set; }
 
         public KhuyenMai() { }
@@ -40,7 +38,7 @@ namespace restaurantManager.Models
             string monAnList)
         {
             MaKhuyenMai = maKhuyenMai;
-            MaGiamGia = maCode;
+            MaCode = maCode;
             TenChuongTrinh = tenChuongTrinh;
             LoaiGiamGia = loaiGiamGia;
             GiaTriGiam = giaTriGiam;
@@ -56,6 +54,6 @@ namespace restaurantManager.Models
         public int Total { get; set; }
         public int Active { get; set; }
         public int Expired { get; set; }
-        public decimal TotalSaved { get; set; } // Tổng tiền đã giảm (từ ChiTietDonHang)
+        public decimal TotalSaved { get; set; }
     }
 }
