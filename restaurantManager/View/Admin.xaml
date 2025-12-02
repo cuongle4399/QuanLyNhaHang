@@ -34,9 +34,12 @@
                             <TextBlock Text="Món ăn" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </TabItem.Header>
+
+                    
                     <Grid Margin="16" Background="#2E2E2E">
                         <views:menuManager/>
                     </Grid>
+
                 </TabItem>
 
                 <!-- Tab Nhân viên -->

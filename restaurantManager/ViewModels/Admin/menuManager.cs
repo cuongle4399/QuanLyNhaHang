@@ -37,8 +37,8 @@ namespace restaurantManager.ViewModels.Admin
                 string hinhAnhURL = row["HinhAnhURL"]?.ToString() ?? "";
                 string moTa = row["MoTa"]?.ToString() ?? "";
 
-                decimal gia = 0;
-                decimal.TryParse(row["Gia"]?.ToString(), out gia);
+                float gia = 0;
+                float.TryParse(row["Gia"]?.ToString(), out gia);
 
                 int loaiMonAn = 0;
                 int.TryParse(row["Loai"]?.ToString(), out loaiMonAn);
@@ -54,16 +54,25 @@ namespace restaurantManager.ViewModels.Admin
                 danhSachMonAn.Add(monAn);
             }
         }
-        public static void OpenFileImageFood()
+        public static bool OpenFileImageFood()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg|All files (*.*)|*.*";
-            openFileDialog.Title = "Chọn ảnh món ăn";
-            if(openFileDialog.ShowDialog() == true)
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image files (*.png;*.jpg)|*.png;*.jpg|All files (*.*)|*.*",
+                Title = "Chọn ảnh món ăn"
+            };
+
+            bool? result = openFileDialog.ShowDialog();
+
+            if (result == true && !string.IsNullOrEmpty(openFileDialog.FileName))
             {
                 filePathImage = openFileDialog.FileName;
+                return true;
             }
+
+            return false;
         }
+
         public static void ReloadDanhSachTheoTab(string tabName)
         {
             switch (tabName)

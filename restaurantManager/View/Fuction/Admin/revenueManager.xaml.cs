@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,56 @@ namespace restaurantManager.View.Fuction.Admin
     /// </summary>
     public partial class revenueManager : UserControl
     {
+        private ViewModels.Admin.revenueManager vm;
+
         public revenueManager()
         {
             InitializeComponent();
+            vm = new ViewModels.Admin.revenueManager();
+            this.DataContext = vm;
+
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var fromDate = dpFrom.SelectedDate ?? DateTime.Today;
+            var toDate = dpTo.SelectedDate ?? DateTime.Today;
+
+            if (fromDate > toDate)
+            {
+                MessageBox.Show("khoảng ngày không hợp lệ",
+                                "sai khoảng", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            vm.Search(fromDate, toDate);
+            Refresh();
+        }
+
+        private void btnAll_Click(object sender, RoutedEventArgs e)
+        {
+            vm.LoadAll();
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            dgInvoices.ItemsSource = vm.Invoices;
+            txtTotalRevenue.Text = vm.TotalRevenueText;
+            txtInvoiceCount.Text = vm.InvoiceCountText;
+        }
+
+        private void dgInvoices_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (dgInvoices.SelectedItem is DataRowView drv)
+            {
+                var (invoiceRow, details) = vm.GetInvoiceDataForDetail(drv);
+
+                if (invoiceRow != null && details != null)
+                {
+                    var win = new InvoiceDetailWindow(invoiceRow, details);
+                    win.ShowDialog();
+                }
+            }
         }
     }
 }
