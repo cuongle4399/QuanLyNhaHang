@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="View\Fuction\Admin\invoiceDetailWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Fuction\Admin\menuManager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -12,6 +15,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Fuction\Admin\staffManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Fuction\Staff\changePassword.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Fuction\Staff\confirmPayFood.xaml.cs">
@@ -26,5 +32,10 @@
     <Compile Update="View\Home.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\Fuction\Staff\changePassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>
