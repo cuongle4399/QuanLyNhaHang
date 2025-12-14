@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using restaurantManager.Models;
-
 namespace restaurantManager.View.Fuction.Staff
 {
     /// <summary>
@@ -26,11 +25,10 @@ namespace restaurantManager.View.Fuction.Staff
         public orderFood()
         {
             InitializeComponent();
-
             vm = new ViewModels.Staff.orderFood();
-
             this.DataContext = vm;
 
+            // ✅ FIX: Thêm event listener để hiển thị thông báo từ ViewModel
             vm.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == nameof(vm.ThongBao) && !string.IsNullOrEmpty(vm.ThongBao))

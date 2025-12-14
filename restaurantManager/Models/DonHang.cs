@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-
-using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace restaurantManager.Models
 {
@@ -17,70 +15,112 @@ namespace restaurantManager.Models
         private decimal _tongTien;
         private string _maNhanVien;
         private string _trangThai;
+        private string _hinhThucThanhToan;
         private string _maBan;
+
+        public DonHang()
+        {
+            _ngayDat = DateTime.Now;
+            _hinhThucThanhToan = "TienMat";
+        }
 
         public int MaDonHang
         {
             get => _maDonHang;
-            set => SetField(ref _maDonHang, value);
+            set
+            {
+                if (_maDonHang != value)
+                {
+                    _maDonHang = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         public DateTime NgayDat
         {
             get => _ngayDat;
-            set => SetField(ref _ngayDat, value);
+            set
+            {
+                if (_ngayDat != value)
+                {
+                    _ngayDat = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         public decimal TongTien
         {
             get => _tongTien;
-            set => SetField(ref _tongTien, value);
+            set
+            {
+                if (_tongTien != value)
+                {
+                    _tongTien = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         public string MaNhanVien
         {
             get => _maNhanVien;
-            set => SetField(ref _maNhanVien, value);
+            set
+            {
+                if (_maNhanVien != value)
+                {
+                    _maNhanVien = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         public string TrangThai
         {
             get => _trangThai;
-            set => SetField(ref _trangThai, value);
+            set
+            {
+                if (_trangThai != value)
+                {
+                    _trangThai = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        // ✅ PROPERTY CHÍNH: HinhThucThanhToan
+        public string HinhThucThanhToan
+        {
+            get => _hinhThucThanhToan;
+            set
+            {
+                if (_hinhThucThanhToan != value)
+                {
+                    _hinhThucThanhToan = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         public string MaBan
         {
             get => _maBan;
-            set => SetField(ref _maBan, value);
+            set
+            {
+                if (_maBan != value)
+                {
+                    _maBan = value;
+                    OnPropertyChanged();
+                }
+            }
         }
-
-        public DonHang (int maDonHang, DateTime ngayDat, decimal tongTien, string maNhanVien, string trangThai, string maBan)
-        {
-            MaDonHang = maDonHang;
-            NgayDat = ngayDat;
-            TongTien = tongTien;
-            MaNhanVien = maNhanVien;
-            TrangThai = trangThai;
-            MaBan = maBan;
-        }
-
-        public DonHang() { }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (EqualityComparer<T>.Default.Equals(field, value))
-                return false;
-
-            field = value;
-            OnPropertyChanged(propertyName);
-            return true;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
-

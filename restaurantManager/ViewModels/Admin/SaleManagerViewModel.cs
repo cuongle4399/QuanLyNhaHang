@@ -1,225 +1,234 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using restaurantManager.Models;
+using restaurantManager.ViewModel;
+using restaurantManager.ViewModels;
+using restaurantManager.View;
+using restaurantManager.Services;
+using System;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using restaurantManager.Models;
-using restaurantManager.ViewModel;
-using static restaurantManager.Models.KhuyenMai;
 
-namespace  restaurantManager.ViewModels.Admin
+namespace restaurantManager.ViewModels.Admin
 {
     public class SaleManagerViewModel : BaseViewModel
     {
-        public ObservableCollection<KhuyenMai> Promotions { get; set; }
-        public PromotionStats Stats { get; set; }
+        private KhuyenMai _selectedPromotion;
+        private string _searchText;
+        private ObservableCollection<KhuyenMai> _promotions;
 
-        public string SearchText { get; set; }
+        public ObservableCollection<KhuyenMai> Promotions
+        {
+            get => _promotions;
+            set { _promotions = value; OnPropertyChanged(); }
+        }
 
-        public ICommand LoadCommand { get; set; }
-        public ICommand SearchCommand { get; set; }
+        public KhuyenMai SelectedPromotion
+        {
+            get => _selectedPromotion;
+            set { _selectedPromotion = value; OnPropertyChanged(); }
+        }
+
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged();
+                // Gọi SearchPromotions thay vì LoadPromotions
+                SearchPromotions();
+            }
+        }
+
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
-        private readonly string _connectionString = "Data Source=DESKTOP-VQ8CCK0\\NHATNGUYEN;Initial Catalog=QuanLyNhaHang;Integrated Security=True";
-
         public SaleManagerViewModel()
         {
             Promotions = new ObservableCollection<KhuyenMai>();
-            Stats = new PromotionStats();
-            LoadCommand = new RelayCommand(LoadData);
-            SearchCommand = new RelayCommand(SearchPromotions);
-            AddCommand = new RelayCommand(AddPromotion);
-            EditCommand = new RelayCommand(EditPromotion);
-            DeleteCommand = new RelayCommand(DeletePromotion);
+            AddCommand = new RelayCommand(_ => AddPromotion());
+            EditCommand = new RelayCommand(param => EditPromotion(param as KhuyenMai));
+            DeleteCommand = new RelayCommand(param => DeletePromotion(param as KhuyenMai));
 
-            LoadData();
+            LoadPromotions();
         }
 
-        private void LoadData()
+        private void LoadPromotions()
         {
-            Promotions.Clear();
-            var promotions = GetPromotionsFromDatabase();
-            foreach (var p in promotions)
+            try
             {
-                Promotions.Add(p);
-            }
-            UpdateStats();
-        }
-
-        private List<KhuyenMai> GetPromotionsFromDatabase()
-        {
-            var result = new List<KhuyenMai>();
-
-            using (var conn = new SqlConnection(_connectionString))
-            {
-                conn.Open();
+                Promotions.Clear();
                 string sql = @"
                     SELECT 
-                        km.MaKhuyenMai,
-                        km.TenChuongTrinh,
-                        km.MaCode,
-                        km.LoaiGiamGia,
-                        km.GiaTriGiam,
-                        km.NgayBatDau,
-                        km.NgayKetThuc,
-                        km.TrangThai,
-                        km.SoLuotSuDungToiDa,
-                        km.SoLuotDaSuDung,
-                        STRING_AGG(ma.TenMonAn, ', ') AS MonAn
-                    FROM KhuyenMai km
-                    LEFT JOIN MonAnApDungKM kam ON km.MaKhuyenMai = kam.MaKhuyenMai
-                    LEFT JOIN MonAn ma ON kam.MaMonAn = ma.MaMonAn
-                    GROUP BY km.MaKhuyenMai, km.TenChuongTrinh, km.MaCode, km.LoaiGiamGia, 
-                             km.GiaTriGiam, km.NgayBatDau, km.NgayKetThuc, km.TrangThai,
-                             km.SoLuotSuDungToiDa, km.SoLuotDaSuDung
-                    ORDER BY km.MaKhuyenMai";
+                        MaKhuyenMai,
+                        TenChuongTrinh,
+                        MaCode,
+                        LoaiGiamGia,
+                        GiaTriGiam,
+                        NgayBatDau,
+                        NgayKetThuc,
+                        TrangThai,
+                        SoLuotSuDungToiDa,
+                        SoLuotDaSuDung
+                    FROM KhuyenMai
+                    ORDER BY NgayBatDau DESC";
 
-                using (var cmd = new SqlCommand(sql, conn))
+                DataTable dt = DatabaseConnect.ExecuteTable(sql);
+                foreach (DataRow row in dt.Rows)
                 {
-                    using (var reader = cmd.ExecuteReader())
+                    Promotions.Add(new KhuyenMai
                     {
-                        while (reader.Read())
-                        {
-                            var promo = new KhuyenMai
-                            {
-                                MaKhuyenMai = reader.GetInt32("MaKhuyenMai"),
-                                TenChuongTrinh = reader.GetString("TenChuongTrinh"),
-                                MaCode = reader.GetString("MaCode"),
-                                LoaiGiamGia = reader.GetString("LoaiGiamGia"),
-                                GiaTriGiam = reader.GetDecimal("GiaTriGiam"),
-                                NgayBatDau = reader.GetDateTime("NgayBatDau"),
-                                NgayKetThuc = reader.GetDateTime("NgayKetThuc"),
-                                TrangThai = reader.GetString("TrangThai"),
-                                SoLuotSuDungToiDa = reader.IsDBNull("SoLuotSuDungToiDa") ? null : reader.GetInt32("SoLuotSuDungToiDa"),
-                                SoLuotDaSuDung = reader.GetInt32("SoLuotDaSuDung")
-                            };
-                            result.Add(promo);
-                        }
-                    }
+                        MaKhuyenMai = (int)row["MaKhuyenMai"],
+                        TenChuongTrinh = row["TenChuongTrinh"].ToString(),
+                        MaCode = row["MaCode"].ToString(),
+                        LoaiGiamGia = row["LoaiGiamGia"].ToString(),
+                        GiaTriGiam = (decimal)row["GiaTriGiam"],
+                        NgayBatDau = (DateTime)row["NgayBatDau"],
+                        NgayKetThuc = (DateTime)row["NgayKetThuc"],
+                        TrangThai = row["TrangThai"].ToString(),
+                        SoLuotSuDungToiDa = row["SoLuotSuDungToiDa"] == DBNull.Value ? null : (int?)row["SoLuotSuDungToiDa"],
+                        SoLuotDaSuDung = (int)row["SoLuotDaSuDung"]
+                    });
                 }
             }
-
-            return result;
-        }
-
-        private void UpdateStats()
-        {
-            var total = Promotions.Count;
-            var active = Promotions.Count(p => p.TrangThai == "HoatDong");
-            var expired = Promotions.Count(p => p.TrangThai == "HetHan");
-
-            decimal totalSaved = 0;
-            using (var conn = new SqlConnection(_connectionString))
+            catch (Exception ex)
             {
-                conn.Open();
-                string sql = "SELECT SUM(GiaTriKhuyenMai) FROM DonHang WHERE GiaTriKhuyenMai IS NOT NULL";
-                using (var cmd = new SqlCommand(sql, conn))
-                {
-                    var obj = cmd.ExecuteScalar();
-                    if (obj != null && obj != DBNull.Value)
-                        totalSaved = Convert.ToDecimal(obj);
-                }
+                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message);
             }
-
-            Stats.Total = total;
-            Stats.Active = active;
-            Stats.Expired = expired;
-            Stats.TotalSaved = totalSaved;
         }
 
         private void SearchPromotions()
         {
+            // Nếu SearchText rỗng, tải lại tất cả
             if (string.IsNullOrWhiteSpace(SearchText))
             {
-                LoadData();
+                LoadPromotions();
                 return;
             }
 
-            var filtered = GetPromotionsFromDatabase()
-                .Where(p => p.MaCode.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
-                           p.TenChuongTrinh.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            Promotions.Clear();
-            foreach (var p in filtered)
-                Promotions.Add(p);
-        }
-
-        private KhuyenMai _selectedPromotion;
-        public KhuyenMai SelectedPromotion
-        {
-            get => _selectedPromotion;
-            set
+            try
             {
-                _selectedPromotion = value;
-                OnPropertyChanged();
+                Promotions.Clear();
+                string sql = @"
+                    SELECT 
+                        MaKhuyenMai,
+                        TenChuongTrinh,
+                        MaCode,
+                        LoaiGiamGia,
+                        GiaTriGiam,
+                        NgayBatDau,
+                        NgayKetThuc,
+                        TrangThai,
+                        SoLuotSuDungToiDa,
+                        SoLuotDaSuDung
+                    FROM KhuyenMai
+                    WHERE MaCode LIKE @search OR TenChuongTrinh LIKE @search
+                    ORDER BY NgayBatDau DESC";
+
+                var param = new SqlParameter("@search", $"%{SearchText}%");
+                DataTable dt = DatabaseConnect.ExecuteTable(sql, param);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    Promotions.Add(new KhuyenMai
+                    {
+                        MaKhuyenMai = (int)row["MaKhuyenMai"],
+                        TenChuongTrinh = row["TenChuongTrinh"].ToString(),
+                        MaCode = row["MaCode"].ToString(),
+                        LoaiGiamGia = row["LoaiGiamGia"].ToString(),
+                        GiaTriGiam = (decimal)row["GiaTriGiam"],
+                        NgayBatDau = (DateTime)row["NgayBatDau"],
+                        NgayKetThuc = (DateTime)row["NgayKetThuc"],
+                        TrangThai = row["TrangThai"].ToString(),
+                        SoLuotSuDungToiDa = row["SoLuotSuDungToiDa"] == DBNull.Value ? null : (int?)row["SoLuotSuDungToiDa"],
+                        SoLuotDaSuDung = (int)row["SoLuotDaSuDung"]
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
             }
         }
+
         private void AddPromotion()
         {
-            var window = new View.AddPromotionWindow();
-            window.ShowDialog();
-            if (window.DialogResult == true)
-                LoadData();
+            var dialog = new AddPromotionWindow();
+            if (dialog.ShowDialog() == true)
+            {
+                LoadPromotions();
+            }
         }
 
-        private void EditPromotion()
+        private void EditPromotion(KhuyenMai promotion)
         {
-            if (SelectedPromotion == null)
+            if (promotion == null)
             {
-                MessageBox.Show("Vui lòng chọn một khuyến mãi để sửa.");
+                MessageBox.Show("Chọn khuyến mãi để sửa!");
                 return;
             }
 
-            var window = new View.AddPromotionWindow(SelectedPromotion);
-            window.ShowDialog();
-            if (window.DialogResult == true)
-                LoadData();
+            var dialog = new AddPromotionWindow(promotion);
+            if (dialog.ShowDialog() == true)
+            {
+                LoadPromotions();
+            }
         }
 
-        private void DeletePromotion()
+        private void DeletePromotion(KhuyenMai promotion)
         {
-            if (SelectedPromotion == null)
+            if (promotion == null)
             {
-                MessageBox.Show("Vui lòng chọn một khuyến mãi để xóa.");
+                MessageBox.Show("Chọn khuyến mãi để xóa!");
                 return;
             }
 
-            var result = MessageBox.Show($"Bạn có chắc chắn xóa khuyến mãi '{SelectedPromotion.MaCode}'?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.No) return;
-
-            using (var conn = new SqlConnection(_connectionString))
+            if (MessageBox.Show($"Xóa khuyến mãi '{promotion.MaCode}'?", "Xác nhận", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                conn.Open();
-                using (var trans = conn.BeginTransaction())
+                try
                 {
-                    try
-                    {
-                        string deleteDetail = "DELETE FROM MonAnApDungKM WHERE MaKhuyenMai = @MaKhuyenMai";
-                        var cmdDetail = new SqlCommand(deleteDetail, conn, trans);
-                        cmdDetail.Parameters.AddWithValue("@MaKhuyenMai", SelectedPromotion.MaKhuyenMai);
-                        cmdDetail.ExecuteNonQuery();
+                    // Xóa các món ăn áp dụng khuyến mãi trước
+                    DatabaseConnect.ExecuteNonQuery(
+                        "DELETE FROM MonAnApDungKM WHERE MaKhuyenMai = @id",
+                        new SqlParameter("@id", promotion.MaKhuyenMai));
 
-                        string deleteMain = "DELETE FROM KhuyenMai WHERE MaKhuyenMai = @MaKhuyenMai";
-                        var cmdMain = new SqlCommand(deleteMain, conn, trans);
-                        cmdMain.Parameters.AddWithValue("@MaKhuyenMai", SelectedPromotion.MaKhuyenMai);
-                        cmdMain.ExecuteNonQuery();
+                    // Sau đó xóa khuyến mãi
+                    DatabaseConnect.ExecuteNonQuery(
+                        "DELETE FROM KhuyenMai WHERE MaKhuyenMai = @id",
+                        new SqlParameter("@id", promotion.MaKhuyenMai));
 
-                        trans.Commit();
-                        LoadData();
-                    }
-                    catch (Exception ex)
-                    {
-                        trans.Rollback();
-                        MessageBox.Show("Không thể xóa: " + ex.Message);
-                    }
+                    MessageBox.Show("Xóa thành công!");
+                    LoadPromotions();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa: " + ex.Message);
                 }
             }
         }
+    }
+
+    public class RelayCommand : ICommand
+    {
+        private readonly Action<object> _execute;
+        private readonly Predicate<object> _canExecute;
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
+        {
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _canExecute = canExecute;
+        }
+
+        public bool CanExecute(object parameter) => _canExecute?.Invoke(parameter) ?? true;
+        public void Execute(object parameter) => _execute(parameter);
     }
 }

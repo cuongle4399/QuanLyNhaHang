@@ -3,63 +3,133 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="1000"
+             FontFamily="Segoe UI">
 
-    <Grid Background="#2E2E2E">
+    <Grid Background="#F8F8F8">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0" Height="50">
-            <TextBlock Text="Quản lý doanh thu" Foreground="White"
-                       FontSize="28" FontWeight="Bold" Margin="10,5"/>
-        </DockPanel>
+        <!-- Header -->
+        <Border Grid.Row="0" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="20,0">
+            <TextBlock Text="QUẢN LÝ DOANH THU" 
+                       TextAlignment="Left"
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       Foreground="#1976D2"
+                       VerticalAlignment="Center"/>
+        </Border>
 
-        <Grid Grid.Row="1" Margin="10">
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <WrapPanel Grid.Row="0">
-                <Border Width="180" Height="80" Background="#3B5998" Margin="5" CornerRadius="8">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="Doanh thu" Foreground="White"/>
-                        <TextBlock x:Name="txtTotalRevenue" Foreground="LightGreen" FontSize="16"/>
+            <!-- Stats Cards - Hàng ngang -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
+                <!-- Total Revenue -->
+                <Border Background="White" CornerRadius="6" Padding="20" 
+                        BorderBrush="#E0E0E0" BorderThickness="1" Margin="0,0,15,0" Width="200">
+                    <StackPanel>
+                        <TextBlock Text="TỔNG DOANH THU" Foreground="#666" FontSize="12" Margin="0,0,0,8"/>
+                        <TextBlock Text="{Binding TotalRevenueText}" 
+                                   Foreground="#4CAF50" 
+                                   FontSize="22" 
+                                   FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
-                <Border Width="180" Height="80" Background="#E67E22" Margin="5" CornerRadius="8">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="Khách hàng" Foreground="White"/>
-                        <TextBlock x:Name="txtInvoiceCount" Foreground="Yellow" FontSize="16"/>
-                    </StackPanel>
-                </Border>
-            </WrapPanel>
 
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10" HorizontalAlignment="Left">
-                <Button Content="Tìm tất cả" Click="btnAll_Click" Width="110" Margin="5"/>
-                <TextBlock Text="Từ:" VerticalAlignment="Center"/>
-                <DatePicker x:Name="dpFrom" Width="130" Margin="5"/>
-                <TextBlock Text="Đến:" VerticalAlignment="Center"/>
-                <DatePicker x:Name="dpTo" Width="130" Margin="5"/>
-                <Button Content="Tìm theo ngày" Click="btnSearch_Click" Width="140" Margin="5"/>
+                <!-- Invoice Count -->
+                <Border Background="White" CornerRadius="6" Padding="20" 
+                        BorderBrush="#E0E0E0" BorderThickness="1" Width="200">
+                    <StackPanel>
+                        <TextBlock Text="SỐ HÓA ĐƠN" Foreground="#666" FontSize="12" Margin="0,0,0,8"/>
+                        <TextBlock Text="{Binding InvoiceCountText}" 
+                                   Foreground="#1976D2" 
+                                   FontSize="22"
+                                   FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
             </StackPanel>
 
-            <DataGrid Grid.Row="2" x:Name="dgInvoices"
-                      AutoGenerateColumns="True"
-                      MouseDoubleClick="dgInvoices_MouseDoubleClick"
-                      IsReadOnly="True"
-                      SelectionMode="Single"
-                      SelectionUnit="FullRow"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      CanUserResizeColumns="False"
-                      CanUserResizeRows="False"
-                      AlternatingRowBackground="#646464"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            <!-- Filter Bar -->
+            <Border Grid.Row="1" Background="White" CornerRadius="6" Padding="15" 
+                    Margin="0,0,0,15" BorderBrush="#E0E0E0" BorderThickness="1">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="🔄 Tất cả" Click="btnAll_Click" 
+                            Background="#1976D2" Foreground="White" FontWeight="Bold" FontSize="12"
+                            Padding="10,6" Height="34" Cursor="Hand" Margin="0,0,15,0"/>
+
+                    <TextBlock Text="Từ ngày:" VerticalAlignment="Center" 
+                               Foreground="#424242" FontSize="12" Margin="0,0,8,0"/>
+                    <DatePicker x:Name="dpFrom" Width="140" Height="34" Margin="0,0,15,0" 
+                                Background="White" Foreground="#212121" BorderBrush="#BDBDBD" BorderThickness="1"/>
+
+                    <TextBlock Text="Đến ngày:" VerticalAlignment="Center" 
+                               Foreground="#424242" FontSize="12" Margin="0,0,8,0"/>
+                    <DatePicker x:Name="dpTo" Width="140" Height="34" Margin="0,0,15,0" 
+                                Background="White" Foreground="#212121" BorderBrush="#BDBDBD" BorderThickness="1"/>
+
+                    <Button Content="🔍 Tìm kiếm" Click="btnSearch_Click" 
+                            Background="#FF9800" Foreground="White" FontWeight="Bold" FontSize="12"
+                            Padding="10,6" Height="34" Cursor="Hand"
+                            Style="{StaticResource MaterialDesignRaisedButton}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Data Grid -->
+            <Border Grid.Row="2" Background="White" CornerRadius="6" 
+                    BorderBrush="#E0E0E0" BorderThickness="1" Padding="0" ClipToBounds="True">
+                <DataGrid x:Name="dgInvoices"
+                          ItemsSource="{Binding Invoices}"
+                          AutoGenerateColumns="False"
+                          MouseDoubleClick="dgInvoices_MouseDoubleClick"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          CanUserResizeColumns="False"
+                          CanUserResizeRows="False"
+                          AlternatingRowBackground="#FAFAFA"
+                          Background="White"
+                          Foreground="#212121"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          RowHeight="38"
+                          BorderThickness="0">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#1976D2"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="10,8"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Padding" Value="10,6"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                            <Setter Property="BorderBrush" Value="#F0F0F0"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding MaDonHang}" Width="100"/>
+                        <DataGridTextColumn Header="Thời gian" Binding="{Binding NgayDat, StringFormat='dd/MM/yyyy HH:mm'}" Width="150"/>
+                        <DataGridTextColumn Header="Tổng tiền (đ)" Binding="{Binding TongTien, StringFormat='N0'}" Width="120"/>
+                        <DataGridTextColumn Header="Nhân viên" Binding="{Binding TenNhanVien}" Width="130"/>
+                        <DataGridTextColumn Header="Bàn" Binding="{Binding MaBan}" Width="80"/>
+                        <DataGridTextColumn Header="Thanh toán" Binding="{Binding HinhThucThanhToan}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>

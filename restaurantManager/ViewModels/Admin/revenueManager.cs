@@ -3,10 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Globalization;
-using System.Windows.Input;
-using System.Xml.Linq;
-using restaurantManager.Models;
+using System.Runtime.CompilerServices;
 using restaurantManager.Services;
 
 namespace restaurantManager.ViewModels.Admin
@@ -14,168 +11,201 @@ namespace restaurantManager.ViewModels.Admin
     public class revenueManager : INotifyPropertyChanged
     {
         private DataView _invoices;
-        private string _totalRevenueText = "0 VNĐ"; //tổng doanh thu hiển thị
-        private string _invoiceCountText = "0"; //số hóa đơn hiển thị
+        private string _totalRevenueText;
+        private string _invoiceCountText;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //dataView để hiển thị danh sách hóa đơn
         public DataView Invoices
         {
             get => _invoices;
-            private set { _invoices = value; OnPropertyChanged(nameof(Invoices)); }
+            set
+            {
+                if (_invoices != value)
+                {
+                    _invoices = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
-        //chuỗi hiển thị tổng doanh thu
         public string TotalRevenueText
         {
             get => _totalRevenueText;
-            private set { _totalRevenueText = value; OnPropertyChanged(nameof(TotalRevenueText)); }
+            set
+            {
+                if (_totalRevenueText != value)
+                {
+                    _totalRevenueText = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
-        //chuỗi hiển thị số hóa đơn
         public string InvoiceCountText
         {
             get => _invoiceCountText;
-            private set { _invoiceCountText = value; OnPropertyChanged(nameof(InvoiceCountText)); }
-        }
-        public (DataRow invoiceRow, DataTable details) GetInvoiceWithDetails(DataRowView drv)
-        {
-            if (drv == null) return (null, null);
-
-            DataRow invoiceRow = drv.Row;
-            string maDonHang = Convert.ToString(invoiceRow["MaDonHang"]);
-            DataTable details = LoadInvoiceDetails(maDonHang);
-
-            return (invoiceRow, details);
-        }
-        public (DataRow invoiceHeader, DataTable details) GetInvoiceDataForDetail(DataRowView rowView)
-        {
-            if (rowView == null) return (null, null);
-
-            string ma = Convert.ToString(rowView.Row["MaDonHang"]);
-            var header = GetInvoiceHeader(ma);
-            var details = LoadInvoiceDetails(ma);
-            return (header, details);
+            set
+            {
+                if (_invoiceCountText != value)
+                {
+                    _invoiceCountText = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         public revenueManager()
         {
+            LoadAll();
         }
 
-        //Load tất cả hóa đơn và tính tổng doanh thu
+        /// <summary>
+        /// Tải tất cả hóa đơn
+        /// </summary>
         public void LoadAll()
         {
-            var dt = GetInvoiceListAll();
+            string query = @"
+                SELECT 
+                    d.MaDonHang,
+                    d.NgayDat,
+                    d.TongTien,
+                    nv.HoTen AS TenNhanVien,
+                    d.MaBan,
+                    d.HinhThucThanhToan,
+                    d.TrangThai
+                FROM DonHang d
+                INNER JOIN NhanVien nv ON d.MaNhanVien = nv.MaNhanVien
+                WHERE d.TrangThai = 'DaHoanThanh'
+                ORDER BY d.NgayDat DESC";
+
+            DataTable dt = DatabaseConnect.ExecuteTable(query);
             Invoices = dt.DefaultView;
-            ApplySummary(GetRevenueSummaryAll());
+            UpdateStatistics();
         }
 
-        //
-        public void Search(DateTime from, DateTime to)
+        /// <summary>
+        /// Tìm kiếm doanh thu theo khoảng ngày
+        /// </summary>
+        public void Search(DateTime fromDate, DateTime toDate)
         {
-            var dt = GetInvoiceList(from, to);
-            Invoices = dt.DefaultView;
-            ApplySummary(GetRevenueSummary(from, to));
-        }
+            // Đảm bảo toDate bao gồm cả ngày cuối cùng (23:59:59)
+            DateTime adjustedToDate = toDate.AddDays(1).AddSeconds(-1);
 
-        //áp dụng tóm tắt doanh thu và số hóa đơn từ DataRow
-        private void ApplySummary(DataRow row)
-        {
-            decimal total = 0; int count = 0;
-            if (row != null)
+            string query = @"
+                SELECT 
+                    d.MaDonHang,
+                    d.NgayDat,
+                    d.TongTien,
+                    nv.HoTen AS TenNhanVien,
+                    d.MaBan,
+                    d.HinhThucThanhToan,
+                    d.TrangThai
+                FROM DonHang d
+                INNER JOIN NhanVien nv ON d.MaNhanVien = nv.MaNhanVien
+                WHERE d.TrangThai = 'DaHoanThanh'
+                  AND d.NgayDat >= @FromDate
+                  AND d.NgayDat <= @ToDate
+                ORDER BY d.NgayDat DESC";
+
+            SqlParameter[] parameters = new[]
             {
-                total = row.Field<decimal>("TongDoanhThu");
-                count = Convert.ToInt32(row["SoHoaDon"]);
+                new SqlParameter("@FromDate", fromDate),
+                new SqlParameter("@ToDate", adjustedToDate)
+            };
+
+            DataTable dt = DatabaseConnect.ExecuteTable(query, parameters);
+            Invoices = dt.DefaultView;
+            UpdateStatistics();
+        }
+
+        /// <summary>
+        /// Cập nhật thống kê tổng doanh thu và số hóa đơn
+        /// </summary>
+        private void UpdateStatistics()
+        {
+            if (Invoices == null || Invoices.Count == 0)
+            {
+                TotalRevenueText = "0 VNĐ";
+                InvoiceCountText = "0";
+                return;
             }
-            TotalRevenueText = string.Format(new CultureInfo("vi-VN"), "{0:N0} VNĐ", total);
-            InvoiceCountText = count.ToString();
+
+            decimal totalRevenue = 0;
+            int invoiceCount = Invoices.Count;
+
+            foreach (DataRowView row in Invoices)
+            {
+                if (row["TongTien"] != DBNull.Value)
+                {
+                    totalRevenue += Convert.ToDecimal(row["TongTien"]);
+                }
+            }
+
+            TotalRevenueText = totalRevenue.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) + " VNĐ";
+            InvoiceCountText = invoiceCount.ToString();
         }
 
-        //lấy danh sách tất cả hóa đơn
-        private DataTable GetInvoiceListAll()
+        /// <summary>
+        /// Lấy dữ liệu chi tiết hóa đơn
+        /// </summary>
+        public (DataRow invoiceRow, DataTable details) GetInvoiceDataForDetail(DataRowView drv)
         {
-            string sql = @"SELECT MaDonHang, NgayDat, TrangThai, MaBan, TongTienGoc, GiaTriKhuyenMai AS KhuyenMai, ThanhToanCuoi AS TongTien
-                           FROM DonHang ORDER BY NgayDat DESC";
-            return DatabaseConnect.ExecuteTable(sql);
+            if (drv == null)
+                return (null, null);
+
+            int maDonHang = Convert.ToInt32(drv["MaDonHang"]);
+
+            // Lấy thông tin hóa đơn
+            string queryInvoice = @"
+                SELECT 
+                    d.MaDonHang,
+                    d.NgayDat,
+                    nv.HoTen AS TenNhanVien,
+                    d.MaBan,
+                    d.HinhThucThanhToan,
+                    d.TongTien AS ThanhToanCuoi,
+                    ISNULL(SUM(ctd.SoTienGiam), 0) AS GiaTriKhuyenMai,
+                    d.TongTien + ISNULL(SUM(ctd.SoTienGiam), 0) AS TongTienGoc
+                FROM DonHang d
+                INNER JOIN NhanVien nv ON d.MaNhanVien = nv.MaNhanVien
+                LEFT JOIN ChiTietDonHang ctd ON d.MaDonHang = ctd.MaDonHang
+                WHERE d.MaDonHang = @MaDonHang
+                GROUP BY d.MaDonHang, d.NgayDat, nv.HoTen, d.MaBan, d.HinhThucThanhToan, d.TongTien";
+
+            DataTable dtInvoice = DatabaseConnect.ExecuteTable(queryInvoice,
+                new SqlParameter("@MaDonHang", maDonHang));
+
+            if (dtInvoice == null || dtInvoice.Rows.Count == 0)
+                return (null, null);
+
+            DataRow invoiceRow = dtInvoice.Rows[0];
+
+            // Lấy chi tiết các món ăn trong hóa đơn
+            string queryDetails = @"
+                SELECT 
+                    ma.TenMonAn,
+                    ctd.SoLuong,
+                    ma.Gia,
+                    ctd.TienGoc,
+                    ctd.SoTienGiam,
+                    ctd.ThanhToanCuoi,
+                    ISNULL(km.MaCode, 'Không') AS MaKhuyenMai
+                FROM ChiTietDonHang ctd
+                INNER JOIN MonAn ma ON ctd.MaMonAn = ma.MaMonAn
+                LEFT JOIN KhuyenMai km ON ctd.MaKhuyenMai = km.MaKhuyenMai
+                WHERE ctd.MaDonHang = @MaDonHang
+                ORDER BY ma.TenMonAn";
+
+            DataTable dtDetails = DatabaseConnect.ExecuteTable(queryDetails,
+                new SqlParameter("@MaDonHang", maDonHang));
+
+            return (invoiceRow, dtDetails);
         }
 
-        //lấy danh sách hóa đơn trong khoảng ngày
-        private DataTable GetInvoiceList(DateTime from, DateTime to)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            string sql = @"SELECT MaDonHang, NgayDat, TrangThai, MaBan, ThanhToanCuoi AS TongTien
-                           FROM DonHang
-                           WHERE CONVERT(date, NgayDat) BETWEEN @from AND @to
-                           ORDER BY NgayDat DESC";
-            return DatabaseConnect.ExecuteTable(sql,
-                new SqlParameter("@from", from.Date),
-                new SqlParameter("@to", to.Date));
-        }
-
-
-
-        //lấy tổng doanh thu và số hóa đơn cho tất cả thời gian
-        private DataRow GetRevenueSummaryAll()
-        {
-            string sql = @"SELECT ISNULL(SUM(ThanhToanCuoi),0) AS TongDoanhThu,
-                                  COUNT(*) AS SoHoaDon
-                           FROM DonHang";
-            var dt = DatabaseConnect.ExecuteTable(sql);
-            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
-        }
-
-
-        //lấy tất cả doanh thu và số hóa đơn trong khoảng ngày
-        private DataRow GetRevenueSummary(DateTime from, DateTime to)
-        {
-            string sql = @"SELECT ISNULL(SUM(ThanhToanCuoi),0) AS TongDoanhThu,
-                                  COUNT(*) AS SoHoaDon
-                           FROM DonHang
-                           WHERE CONVERT(date, NgayDat) BETWEEN @from AND @to";
-            var dt = DatabaseConnect.ExecuteTable(sql,
-                new SqlParameter("@from", from.Date),
-                new SqlParameter("@to", to.Date));
-            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
-        }
-        private DataRow GetInvoiceHeader(string maDonHang)
-        {
-            string sql = @"
-        SELECT  d.MaDonHang,
-                d.NgayDat,
-                d.TrangThai,
-                d.TongTienGoc,
-                d.GiaTriKhuyenMai,
-                d.ThanhToanCuoi,
-                km.TenChuongTrinh
-        FROM DonHang d
-        LEFT JOIN KhuyenMai km ON d.MaKhuyenMai = km.MaKhuyenMai
-        WHERE d.MaDonHang = @Ma";
-
-            var dt = DatabaseConnect.ExecuteTable(sql, new SqlParameter("@Ma", maDonHang));
-            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
-        }
-
-        private DataTable LoadInvoiceDetails(string maDonHang)
-        {
-            string sql = @"
-        SELECT 
-            MA.TenMonAn AS TenMon,
-            CT.SoLuong,
-            CT.GiaTaiThoiDiem AS DonGia,
-            (CT.SoLuong * CT.GiaTaiThoiDiem) AS ThanhTien
-        FROM ChiTietDonHang CT
-        JOIN MonAn MA ON MA.MaMonAn = CT.MaMonAn
-        WHERE CT.MaDonHang = @MaDonHang
-        ORDER BY MA.TenMonAn;";
-
-            return DatabaseConnect.ExecuteTable(sql, new SqlParameter("@MaDonHang", maDonHang));
-        }
-
-        //thông báo thay đổi thuộc tính
-        private void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

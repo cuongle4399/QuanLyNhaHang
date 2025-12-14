@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace restaurantManager.Models
 {
@@ -13,6 +18,10 @@ namespace restaurantManager.Models
         private decimal _soTienGiam;
         private decimal _thanhToanCuoi;
 
+        public ChiTietDonHang()
+        {
+        }
+
         public int MaDonHang
         {
             get => _maDonHang;
@@ -21,7 +30,7 @@ namespace restaurantManager.Models
                 if (_maDonHang != value)
                 {
                     _maDonHang = value;
-                    OnPropertyChanged(nameof(MaDonHang));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -34,7 +43,7 @@ namespace restaurantManager.Models
                 if (_maMonAn != value)
                 {
                     _maMonAn = value;
-                    OnPropertyChanged(nameof(MaMonAn));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -47,7 +56,7 @@ namespace restaurantManager.Models
                 if (_soLuong != value)
                 {
                     _soLuong = value;
-                    OnPropertyChanged(nameof(SoLuong));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -60,7 +69,7 @@ namespace restaurantManager.Models
                 if (_maKhuyenMai != value)
                 {
                     _maKhuyenMai = value;
-                    OnPropertyChanged(nameof(MaKhuyenMai));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -73,7 +82,7 @@ namespace restaurantManager.Models
                 if (_tienGoc != value)
                 {
                     _tienGoc = value;
-                    OnPropertyChanged(nameof(TienGoc));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -86,7 +95,7 @@ namespace restaurantManager.Models
                 if (_soTienGiam != value)
                 {
                     _soTienGiam = value;
-                    OnPropertyChanged(nameof(SoTienGiam));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -99,27 +108,16 @@ namespace restaurantManager.Models
                 if (_thanhToanCuoi != value)
                 {
                     _thanhToanCuoi = value;
-                    OnPropertyChanged(nameof(ThanhToanCuoi));
+                    OnPropertyChanged();
                 }
             }
         }
 
-        public ChiTietDonHang(int maDonHang, int maMonAn, int soLuong, int maKhuyenMai, decimal tienGoc, decimal soTienGiam, decimal thanhToanCuoi)
-        {
-            MaDonHang = maDonHang;
-            MaMonAn = maMonAn;
-            SoLuong = soLuong;
-            MaKhuyenMai = maKhuyenMai;
-            TienGoc = tienGoc;
-            SoTienGiam = soTienGiam;
-            ThanhToanCuoi = thanhToanCuoi;
-        }
-
-        public ChiTietDonHang() { }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged(string propertyName) =>
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

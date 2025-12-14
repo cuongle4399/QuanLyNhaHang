@@ -13,67 +13,65 @@
         Height="600"
         MinHeight="600"
         MinWidth="1000"
-        Width="1000">
-
-    <Grid Background="#2E2E2E">
-        <materialDesign:Card Background="#2E2E2E" Margin="0" Padding="0">
-            <TabControl  Background="#2E2E2E"
+        Width="1000"
+        Background="#FAFAFA">
+    <Grid Background="#FAFAFA">
+        <materialDesign:Card Background="#FFFFFF" Margin="0" Padding="0">
+            <TabControl Background="#FFFFFF"
                         SnapsToDevicePixels="True"
                         Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                         TabStripPlacement="Left"
                         materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
-                        Foreground="White">
-                <!-- TabItem chữ mặc định trắng -->
+                        Foreground="#212121">
 
                 <!-- Tab Gọi món -->
-                <TabItem>
+                <TabItem Background="#FFFFFF" Foreground="#212121">
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="Food" Foreground="White" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Gọi món" HorizontalAlignment="Center" Foreground="White"/>
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="Food" Foreground="#1976D2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Gọi món" HorizontalAlignment="Center" Foreground="#212121" Margin="0,8,0,0"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <Grid Margin="16">
+                    <Grid Margin="16" Background="#FAFAFA">
                         <views:orderFood/>
                     </Grid>
                 </TabItem>
 
                 <!-- Tab Tính tiền -->
-                <TabItem>
+                <TabItem Background="#FFFFFF" Foreground="#212121">
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="CreditCardSettingsOutline" Foreground="White" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Tính tiền" HorizontalAlignment="Center" Foreground="White"/>
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="CreditCardSettingsOutline" Foreground="#1976D2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Tính tiền" HorizontalAlignment="Center" Foreground="#212121" Margin="0,8,0,0"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <Grid Margin="16">
+                    <Grid Margin="16" Background="#FAFAFA">
                         <views:confirmPayFood/>
                     </Grid>
                 </TabItem>
 
-                <!-- Tab đổi mật khẩu -->
-                <TabItem>
+                <!-- Tab Đổi mật khẩu -->
+                <TabItem Background="#FFFFFF" Foreground="#212121">
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="Food" Foreground="White" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Đổi mật khẩu" TextWrapping="Wrap" TextAlignment="Center"  HorizontalAlignment="Center" Foreground="White"/>
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="LockReset" Foreground="#1976D2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Đổi mật khẩu" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Foreground="#212121" Margin="0,8,0,0"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <Grid Margin="16">
+                    <Grid Margin="16" Background="#FAFAFA">
                         <views:changePassword/>
                     </Grid>
                 </TabItem>
 
                 <!-- Tab Đăng xuất -->
-                <TabItem x:Name="LogoutTab" PreviewMouseDown="LogoutTab_PreviewMouseDown">
+                <TabItem x:Name="LogoutTab" PreviewMouseDown="LogoutTab_PreviewMouseDown" Background="#FFFFFF" Foreground="#212121">
                     <TabItem.Header>
                         <StackPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Width="24" Height="24" Kind="Logout" Foreground="White" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Đăng xuất" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,4,0,0" Foreground="White"/>
+                            <materialDesign:PackIcon Width="24" Height="24" Kind="Logout" Foreground="#F44336" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Đăng xuất" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#F44336" FontWeight="Bold"/>
                         </StackPanel>
                     </TabItem.Header>
                 </TabItem>
-
             </TabControl>
         </materialDesign:Card>
     </Grid>

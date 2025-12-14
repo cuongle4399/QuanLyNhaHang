@@ -268,10 +268,13 @@ C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\bin\Debug\n
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\bin\Debug\net8.0-windows\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\restaurantManager.csproj.AssemblyReference.cache
+C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\ViewModels\Admin\AddPromotionWindow.baml
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Admin\InvoiceDetailWindow.baml
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Admin\revenueManager.baml
+C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Admin\saleManager.baml
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Admin\staffManager.baml
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Home.baml
+C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\ViewModels\Admin\AddPromotionWindow.g.cs
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Admin.g.cs
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Admin\InvoiceDetailWindow.g.cs
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Admin\menuManager.g.cs
@@ -291,7 +294,6 @@ C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\n
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\App.baml
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Admin.baml
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Admin\menuManager.baml
-C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Admin\saleManager.baml
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Staff\changePassword.baml
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Staff\confirmPayFood.baml
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\View\Fuction\Staff\orderFood.baml
@@ -308,5 +310,3 @@ C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\n
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\restaurantManager.pdb
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\restaurantManager.genruntimeconfig.cache
 C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\ref\restaurantManager.dll
-C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\ViewModels\Admin\AddPromotionWindow.baml
-C:\Users\Cuong Le\Desktop\C# winform\QuanLyNhaHang\restaurantManager\obj\Debug\net8.0-windows\ViewModels\Admin\AddPromotionWindow.g.cs

@@ -1,36 +1,45 @@
-﻿using System;
+﻿using restaurantManager.Models;
+using restaurantManager.Services;
+using restaurantManager.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
-using restaurantManager.Models;
-using restaurantManager.ViewModel;
 
 namespace restaurantManager.ViewModels
 {
     public class AddPromotionViewModel : BaseViewModel
     {
-        private readonly string _connectionString = "Data Source=CUONG-LE;Initial Catalog=QuanLyNhaHang;Integrated Security=True";
+        private const string ConnectionString = @"Data Source=CUONG-LE;Initial Catalog=QuanLyNhaHang;Integrated Security=True";
         private KhuyenMai _selectedPromotion;
+        private string _tenChuongTrinh;
+        private string _maCode;
+        private string _loaiGiamGia;
+        private decimal _giaTriGiam;
+        private DateTime _ngayBatDau;
+        private DateTime _ngayKetThuc;
+        private int? _soLuotSuDungToiDa;
 
-        public string TenChuongTrinh { get; set; }
-        public string MaCode { get; set; }
-        public string LoaiGiamGia { get; set; }
-        public decimal GiaTriGiam { get; set; }
-        public DateTime NgayBatDau { get; set; }
-        public DateTime NgayKetThuc { get; set; }
-        public int? SoLuotSuDungToiDa { get; set; }
+        public string TenChuongTrinh { get => _tenChuongTrinh; set { _tenChuongTrinh = value; OnPropertyChanged(); } }
+        public string MaCode { get => _maCode; set { _maCode = value; OnPropertyChanged(); } }
+        public string LoaiGiamGia { get => _loaiGiamGia; set { _loaiGiamGia = value; OnPropertyChanged(); } }
+        public decimal GiaTriGiam { get => _giaTriGiam; set { _giaTriGiam = value; OnPropertyChanged(); } }
+        public DateTime NgayBatDau { get => _ngayBatDau; set { _ngayBatDau = value; OnPropertyChanged(); } }
+        public DateTime NgayKetThuc { get => _ngayKetThuc; set { _ngayKetThuc = value; OnPropertyChanged(); } }
+        public int? SoLuotSuDungToiDa { get => _soLuotSuDungToiDa; set { _soLuotSuDungToiDa = value; OnPropertyChanged(); } }
 
         public ObservableCollection<MonAnItem> MonAnList { get; set; }
         public List<int> SelectedMonAnList { get; set; } = new List<int>();
-
         public bool IsEditMode { get; set; }
 
         public AddPromotionViewModel()
         {
             MonAnList = new ObservableCollection<MonAnItem>();
+            NgayBatDau = DateTime.Now;
+            NgayKetThuc = DateTime.Now.AddDays(7);
+            LoaiGiamGia = "PhanTram";
             LoadMonAnList();
         }
 
@@ -38,7 +47,6 @@ namespace restaurantManager.ViewModels
         {
             IsEditMode = true;
             _selectedPromotion = promotion;
-
             TenChuongTrinh = promotion.TenChuongTrinh;
             MaCode = promotion.MaCode;
             LoaiGiamGia = promotion.LoaiGiamGia;
@@ -54,19 +62,23 @@ namespace restaurantManager.ViewModels
         private List<int> GetAppliedMonAnIds(int maKhuyenMai)
         {
             var list = new List<int>();
-            using (var conn = new SqlConnection(_connectionString))
+            try
             {
-                conn.Open();
-                string sql = "SELECT MaMonAn FROM MonAnApDungKM WHERE MaKhuyenMai = @MaKhuyenMai";
-                using (var cmd = new SqlCommand(sql, conn))
+                using (var conn = new SqlConnection(ConnectionString))
                 {
-                    cmd.Parameters.AddWithValue("@MaKhuyenMai", maKhuyenMai);
-                    using (var reader = cmd.ExecuteReader())
+                    conn.Open();
+                    using (var cmd = new SqlCommand("SELECT MaMonAn FROM MonAnApDungKM WHERE MaKhuyenMai = @MaKhuyenMai", conn))
                     {
-                        while (reader.Read())
-                            list.Add(reader.GetInt32("MaMonAn"));
+                        cmd.Parameters.AddWithValue("@MaKhuyenMai", maKhuyenMai);
+                        using (var reader = cmd.ExecuteReader())
+                            while (reader.Read())
+                                list.Add(reader.GetInt32(0));
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải món ăn: " + ex.Message);
             }
             return list;
         }
@@ -74,163 +86,212 @@ namespace restaurantManager.ViewModels
         private void LoadMonAnList()
         {
             MonAnList.Clear();
-            using (var conn = new SqlConnection(_connectionString))
-            {
-                conn.Open();
-                string sql = "SELECT MaMonAn, TenMonAn FROM MonAn ORDER BY TenMonAn";
-                using (var cmd = new SqlCommand(sql, conn))
-                {
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            MonAnList.Add(new MonAnItem
-                            {
-                                MaMonAn = reader.GetInt32("MaMonAn"),
-                                TenMonAn = reader.GetString("TenMonAn"),
-                                IsSelected = SelectedMonAnList.Contains(reader.GetInt32("MaMonAn"))
-                            });
-                        }
-                    }
-                }
-            }
-        }
-
-        public void Save()
-        {
-            if (string.IsNullOrWhiteSpace(TenChuongTrinh) || string.IsNullOrWhiteSpace(MaCode))
-            {
-                MessageBox.Show("Tên và mã giảm giá không được để trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (GiaTriGiam <= 0)
-            {
-                MessageBox.Show("Giá trị giảm phải lớn hơn 0!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (NgayKetThuc <= NgayBatDau)
-            {
-                MessageBox.Show("Ngày kết thúc phải sau ngày bắt đầu!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (LoaiGiamGia != "PhanTram" && LoaiGiamGia != "TienCoDinh")
-            {
-                MessageBox.Show("Loại giảm giá không hợp lệ!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (IsEditMode && !string.IsNullOrEmpty(_selectedPromotion.MaCode) && _selectedPromotion.MaCode != MaCode)
-            {
-                if (MaCodeExists(MaCode))
-                {
-                    MessageBox.Show("Mã giảm giá đã tồn tại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-            }
-            else if (!IsEditMode && MaCodeExists(MaCode))
-            {
-                MessageBox.Show("Mã giảm giá đã tồn tại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             try
             {
-                using (var conn = new SqlConnection(_connectionString))
+                using (var conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
-                    using (var trans = conn.BeginTransaction())
+                    using (var cmd = new SqlCommand("SELECT MaMonAn, TenMonAn FROM MonAn ORDER BY TenMonAn", conn))
                     {
-                        int maKhuyenMai = 0;
-
-                        if (IsEditMode)
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            string update = @"
-                                UPDATE KhuyenMai SET 
-                                    TenChuongTrinh = @TenChuongTrinh, MaCode = @MaCode, LoaiGiamGia = @LoaiGiamGia, 
-                                    GiaTriGiam = @GiaTriGiam, NgayBatDau = @NgayBatDau, NgayKetThuc = @NgayKetThuc, 
-                                    SoLuotSuDungToiDa = @SoLuotSuDungToiDa
-                                WHERE MaKhuyenMai = @MaKhuyenMai";
-                            var cmd = new SqlCommand(update, conn, trans);
-                            cmd.Parameters.AddWithValue("@TenChuongTrinh", TenChuongTrinh);
-                            cmd.Parameters.AddWithValue("@MaCode", MaCode);
-                            cmd.Parameters.AddWithValue("@LoaiGiamGia", LoaiGiamGia);
-                            cmd.Parameters.AddWithValue("@GiaTriGiam", GiaTriGiam);
-                            cmd.Parameters.AddWithValue("@NgayBatDau", NgayBatDau);
-                            cmd.Parameters.AddWithValue("@NgayKetThuc", NgayKetThuc);
-                            cmd.Parameters.AddWithValue("@SoLuotSuDungToiDa", SoLuotSuDungToiDa ?? (object)DBNull.Value);
-                            cmd.Parameters.AddWithValue("@MaKhuyenMai", _selectedPromotion.MaKhuyenMai);
-                            cmd.ExecuteNonQuery();
-                            maKhuyenMai = _selectedPromotion.MaKhuyenMai;
+                            while (reader.Read())
+                            {
+                                int maMonAn = reader.GetInt32(0);
+                                MonAnList.Add(new MonAnItem
+                                {
+                                    MaMonAn = maMonAn,
+                                    TenMonAn = reader.GetString(1),
+                                    IsSelected = SelectedMonAnList.Contains(maMonAn)
+                                });
+                            }
                         }
-                        else
-                        {
-                            string insert = @"
-                                INSERT INTO KhuyenMai (TenChuongTrinh, MaCode, LoaiGiamGia, GiaTriGiam, NgayBatDau, NgayKetThuc, TrangThai, SoLuotSuDungToiDa, SoLuotDaSuDung)
-                                VALUES (@TenChuongTrinh, @MaCode, @LoaiGiamGia, @GiaTriGiam, @NgayBatDau, @NgayKetThuc, 'HoatDong', @SoLuotSuDungToiDa, 0)";
-                            var cmd = new SqlCommand(insert, conn, trans);
-                            cmd.Parameters.AddWithValue("@TenChuongTrinh", TenChuongTrinh);
-                            cmd.Parameters.AddWithValue("@MaCode", MaCode);
-                            cmd.Parameters.AddWithValue("@LoaiGiamGia", LoaiGiamGia);
-                            cmd.Parameters.AddWithValue("@GiaTriGiam", GiaTriGiam);
-                            cmd.Parameters.AddWithValue("@NgayBatDau", NgayBatDau);
-                            cmd.Parameters.AddWithValue("@NgayKetThuc", NgayKetThuc);
-                            cmd.Parameters.AddWithValue("@SoLuotSuDungToiDa", SoLuotSuDungToiDa ?? (object)DBNull.Value);
-                            cmd.ExecuteNonQuery();
-                            maKhuyenMai = (int)cmd.ExecuteScalar();
-                        }
-
-                        // Xóa liên kết cũ
-                        string deleteDetail = "DELETE FROM MonAnApDungKM WHERE MaKhuyenMai = @MaKhuyenMai";
-                        var cmdDelete = new SqlCommand(deleteDetail, conn, trans);
-                        cmdDelete.Parameters.AddWithValue("@MaKhuyenMai", maKhuyenMai);
-                        cmdDelete.ExecuteNonQuery();
-
-                        // Thêm mới
-                        foreach (var item in MonAnList.Where(m => m.IsSelected))
-                        {
-                            string insertDetail = "INSERT INTO MonAnApDungKM (MaKhuyenMai, MaMonAn) VALUES (@MaKhuyenMai, @MaMonAn)";
-                            var cmdInsert = new SqlCommand(insertDetail, conn, trans);
-                            cmdInsert.Parameters.AddWithValue("@MaKhuyenMai", maKhuyenMai);
-                            cmdInsert.Parameters.AddWithValue("@MaMonAn", item.MaMonAn);
-                            cmdInsert.ExecuteNonQuery();
-                        }
-
-                        trans.Commit();
-                        MessageBox.Show(IsEditMode ? "Cập nhật thành công!" : "Thêm mới thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
-                        
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Lỗi tải món ăn: " + ex.Message);
+            }
+        }
+
+        public void Save()
+        {
+            if (!ValidateInput()) return;
+
+            try
+            {
+                using (var conn = new SqlConnection(ConnectionString))
+                {
+                    conn.Open();
+                    using (var trans = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            int maKhuyenMai = SavePromotion(conn, trans);
+                            SaveMonAnApDung(conn, trans, maKhuyenMai);
+                            trans.Commit();
+                            MessageBox.Show(IsEditMode ? "Cập nhật thành công!" : "Thêm mới thành công!",
+                                "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            trans.Rollback();
+                            throw ex;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lưu dữ liệu: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool ValidateInput()
+        {
+            if (string.IsNullOrWhiteSpace(TenChuongTrinh))
+            {
+                MessageBox.Show("Tên chương trình không được để trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(MaCode))
+            {
+                MessageBox.Show("Mã giảm giá không được để trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (GiaTriGiam <= 0)
+            {
+                MessageBox.Show("Giá trị giảm phải lớn hơn 0!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (NgayKetThuc <= NgayBatDau)
+            {
+                MessageBox.Show("Ngày kết thúc phải sau ngày bắt đầu!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Kiểm tra LoaiGiamGia - phải là "PhanTram" hoặc "TienCoDinh"
+            if (string.IsNullOrEmpty(LoaiGiamGia) ||
+                (LoaiGiamGia != "PhanTram" && LoaiGiamGia != "TienCoDinh"))
+            {
+                MessageBox.Show("Vui lòng chọn loại giảm giá (Giảm % hoặc Giảm tiền)!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (SoLuotSuDungToiDa.HasValue && SoLuotSuDungToiDa <= 0)
+            {
+                MessageBox.Show("Số lượt sử dụng tối đa phải lớn hơn 0!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!IsEditMode && MaCodeExists(MaCode))
+            {
+                MessageBox.Show("Mã giảm giá đã tồn tại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (IsEditMode && _selectedPromotion.MaCode != MaCode && MaCodeExists(MaCode))
+            {
+                MessageBox.Show("Mã giảm giá đã tồn tại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private int SavePromotion(SqlConnection conn, SqlTransaction trans)
+        {
+            if (IsEditMode)
+            {
+                var cmd = new SqlCommand(@"UPDATE KhuyenMai SET 
+                    TenChuongTrinh=@TenChuongTrinh, 
+                    MaCode=@MaCode, 
+                    LoaiGiamGia=@LoaiGiamGia, 
+                    GiaTriGiam=@GiaTriGiam, 
+                    NgayBatDau=@NgayBatDau, 
+                    NgayKetThuc=@NgayKetThuc, 
+                    SoLuotSuDungToiDa=@SoLuotSuDungToiDa 
+                    WHERE MaKhuyenMai=@MaKhuyenMai", conn, trans);
+
+                cmd.Parameters.AddWithValue("@TenChuongTrinh", TenChuongTrinh ?? "");
+                cmd.Parameters.AddWithValue("@MaCode", MaCode ?? "");
+                cmd.Parameters.AddWithValue("@LoaiGiamGia", LoaiGiamGia ?? "PhanTram");
+                cmd.Parameters.AddWithValue("@GiaTriGiam", GiaTriGiam);
+                cmd.Parameters.AddWithValue("@NgayBatDau", NgayBatDau);
+                cmd.Parameters.AddWithValue("@NgayKetThuc", NgayKetThuc);
+                cmd.Parameters.AddWithValue("@SoLuotSuDungToiDa", SoLuotSuDungToiDa ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@MaKhuyenMai", _selectedPromotion.MaKhuyenMai);
+                cmd.ExecuteNonQuery();
+                return _selectedPromotion.MaKhuyenMai;
+            }
+            else
+            {
+                var cmd = new SqlCommand(@"INSERT INTO KhuyenMai 
+                    (TenChuongTrinh, MaCode, LoaiGiamGia, GiaTriGiam, 
+                    NgayBatDau, NgayKetThuc, TrangThai, SoLuotSuDungToiDa, SoLuotDaSuDung) 
+                    VALUES 
+                    (@TenChuongTrinh, @MaCode, @LoaiGiamGia, @GiaTriGiam, 
+                    @NgayBatDau, @NgayKetThuc, 'HoatDong', @SoLuotSuDungToiDa, 0);
+                    SELECT SCOPE_IDENTITY();", conn, trans);
+
+                cmd.Parameters.AddWithValue("@TenChuongTrinh", TenChuongTrinh ?? "");
+                cmd.Parameters.AddWithValue("@MaCode", MaCode ?? "");
+                cmd.Parameters.AddWithValue("@LoaiGiamGia", LoaiGiamGia ?? "PhanTram");
+                cmd.Parameters.AddWithValue("@GiaTriGiam", GiaTriGiam);
+                cmd.Parameters.AddWithValue("@NgayBatDau", NgayBatDau);
+                cmd.Parameters.AddWithValue("@NgayKetThuc", NgayKetThuc);
+                cmd.Parameters.AddWithValue("@SoLuotSuDungToiDa", SoLuotSuDungToiDa ?? (object)DBNull.Value);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        private void SaveMonAnApDung(SqlConnection conn, SqlTransaction trans, int maKhuyenMai)
+        {
+            new SqlCommand("DELETE FROM MonAnApDungKM WHERE MaKhuyenMai = @MaKhuyenMai", conn, trans)
+            { Parameters = { new SqlParameter("@MaKhuyenMai", maKhuyenMai) } }.ExecuteNonQuery();
+
+            foreach (var monAn in MonAnList.Where(m => m.IsSelected))
+            {
+                var cmd = new SqlCommand("INSERT INTO MonAnApDungKM (MaKhuyenMai, MaMonAn) VALUES (@MaKhuyenMai, @MaMonAn)", conn, trans);
+                cmd.Parameters.AddWithValue("@MaKhuyenMai", maKhuyenMai);
+                cmd.Parameters.AddWithValue("@MaMonAn", monAn.MaMonAn);
+                cmd.ExecuteNonQuery();
             }
         }
 
         private bool MaCodeExists(string maCode)
         {
-            using (var conn = new SqlConnection(_connectionString))
+            try
             {
-                conn.Open();
-                string sql = "SELECT COUNT(*) FROM KhuyenMai WHERE MaCode = @MaCode";
-                using (var cmd = new SqlCommand(sql, conn))
+                using (var conn = new SqlConnection(ConnectionString))
                 {
-                    cmd.Parameters.AddWithValue("@MaCode", maCode);
-                    return (int)cmd.ExecuteScalar() > 0;
+                    conn.Open();
+                    using (var cmd = new SqlCommand("SELECT COUNT(*) FROM KhuyenMai WHERE MaCode = @MaCode", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaCode", maCode);
+                        return (int)cmd.ExecuteScalar() > 0;
+                    }
                 }
             }
+            catch
+            {
+                return false;
+            }
         }
-
-        public void Cancel() => Application.Current.MainWindow.Close();
     }
 
-    public class MonAnItem
+    public class MonAnItem : BaseViewModel
     {
-        public int MaMonAn { get; set; }
-        public string TenMonAn { get; set; }
-        public bool IsSelected { get; set; }
+        private int _maMonAn;
+        private string _tenMonAn;
+        private bool _isSelected;
+
+        public int MaMonAn { get => _maMonAn; set { _maMonAn = value; OnPropertyChanged(); } }
+        public string TenMonAn { get => _tenMonAn; set { _tenMonAn = value; OnPropertyChanged(); } }
+        public bool IsSelected { get => _isSelected; set { _isSelected = value; OnPropertyChanged(); } }
     }
 }

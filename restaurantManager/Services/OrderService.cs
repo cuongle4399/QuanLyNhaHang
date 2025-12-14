@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,343 +12,190 @@ namespace restaurantManager.Services
 {
     public class OrderService
     {
-        // THÊM STATIC EVENT ĐỒNG BỘ TRẠNG THÁI BÀN
-        public static event Action<string, string> OnTrangThaiBanThayDoi;
-
-        // Method cập nhật trạng thái bàn - THÊM KÍCH HOẠT EVENT
-        public void CapNhatTrangThaiBan(string maBan, string trangThaiMoi)
+        // ✅ FIX: Thêm method lấy danh sách bàn từ DB
+        public ObservableCollection<BanAn> LayDanhSachBanAnTuDb()
         {
-            // Code hiện tại của bạn...
-            string sql = "UPDATE BanAn SET TrangThai = @trangThai WHERE MaBan = @maBan";
-            DatabaseConnect.ExecuteNonQuery(sql,
-                new SqlParameter("@trangThai", trangThaiMoi),
-                new SqlParameter("@maBan", maBan));
+            var query = @"SELECT MaBan, SoGhe, TrangThai FROM BanAn";
+            var result = new ObservableCollection<BanAn>();
 
-            // KÍCH HOẠT EVENT - THÔNG BÁO CHO CÁC MÀN HÌNH KHÁC
-            OnTrangThaiBanThayDoi?.Invoke(maBan, trangThaiMoi);
-        }
-
-        public  int LayMaKhuyenMaiCuaMonAn(int maMonAn)
-        {
-            int maKhuyenMai;
-
-            string sql = @"SELECT MaKhuyenMai FROM MonAnApDungKM WHERE MaMonAn = @maMonAn";
-
-            maKhuyenMai = Convert.ToInt32(DatabaseConnect.ExecuteScalar(sql, new SqlParameter("@maMonAn", maMonAn)));
-
-            return maKhuyenMai;
-        }
-
-        public  KhuyenMai LayKhuyenMaiTheoMaKhuyenMai(int? maKM)
-        {
-            KhuyenMai result = null;
-
-            string sql = "SELECT * FROM KhuyenMai WHERE MaKhuyenMai = @maKhuyenMai";
-            SqlParameter[] parameters = {
-                new SqlParameter("@maKhuyenMai", maKM)
-            };
-
-            DataTable dt = DatabaseConnect.ExecuteTable(sql, parameters);
-
-            if (dt != null && dt.Rows.Count > 0)
+            try
             {
-                DataRow row = dt.Rows[0];
-                result = new KhuyenMai();
-
-                result.MaKhuyenMai = (int)maKM;
-                result.TenChuongTrinh = row["TenChuongTrinh"].ToString().Trim();
-                result.MaCode = row["MaCode"].ToString().Trim();
-                result.LoaiGiamGia = row["LoaiGiamGia"].ToString().Trim();
-                result.GiaTriGiam = Convert.ToDecimal(row["GiaTriGiam"]);
-                result.NgayBatDau = Convert.ToDateTime(row["NgayBatDau"]);
-                result.NgayKetThuc = Convert.ToDateTime(row["NgayKetThuc"]);
-                result.TrangThai = row["TrangThai"].ToString().Trim();
-                result.SoLuotSuDungToiDa = Convert.ToInt32(row["SoLuotSuDungToiDa"]);
-                result.SoLuotDaSuDung = Convert.ToInt32(row["SoLuotDaSuDung"]);
+                var dt = DatabaseConnect.ExecuteTable(query);
+                foreach (DataRow row in dt.Rows)
+                {
+                    result.Add(new BanAn
+                    {
+                        MaBan = row["MaBan"].ToString(),
+                        SoGhe = (int)row["SoGhe"],
+                        TrangThai = row["TrangThai"].ToString(),
+                        IsSelected = false
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Lỗi khi lấy danh sách bàn: " + ex.Message);
             }
 
             return result;
         }
 
-        public  ObservableCollection<int> LayDanhSachMonAnKM()
+        // ✅ FIX: Thêm method lấy danh sách món ăn từ DB
+        public ObservableCollection<MonAn> LayDanhSachMonAnTuBd()
         {
-            ObservableCollection<int> DanhSachMaMonAnCoKhuyenMai = new ObservableCollection<int>();
+            var query = @"SELECT MaMonAn, TenMonAn, Gia, MoTa, HinhAnhURL, Loai FROM MonAn";
+            var result = new ObservableCollection<MonAn>();
 
-            string sql = @"SELECT MaMonAn FROM MonAnApDungKM";
-            DataTable dt = DatabaseConnect.ExecuteTable(sql);
-
-            foreach (DataRow dr in dt.Rows)
+            try
             {
-                DanhSachMaMonAnCoKhuyenMai.Add(Convert.ToInt32(dr["MaMonAn"]));
-            }
-
-            return DanhSachMaMonAnCoKhuyenMai;
-        }
-
-        // Hàm này thực hiện việc lấy dữ liệu bảng "BanAn" từ database
-        public  ObservableCollection<BanAn> LayDanhSachBanAnTuDb()
-        {
-            ObservableCollection<BanAn> ListBanAn = new ObservableCollection<BanAn>();
-
-            DataTable dt = DatabaseConnect.ExecuteTable("SELECT MaBan, SoGhe, TrangThai FROM BanAn");
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                string maBan = dr["MaBan"].ToString().Trim();
-                int soGhe = Convert.ToInt32(dr["SoGhe"]);
-                string trangThai = dr["TrangThai"].ToString().Trim();
-
-                ListBanAn.Add(new BanAn
+                var dt = DatabaseConnect.ExecuteTable(query);
+                foreach (DataRow row in dt.Rows)
                 {
-                    MaBan = maBan,
-                    SoGhe = soGhe,
-                    TrangThai = trangThai
-                });
+                    result.Add(new MonAn
+                    {
+                        MaMonAn = (int)row["MaMonAn"],
+                        TenMonAn = row["TenMonAn"].ToString(),
+                        Gia = (decimal)row["Gia"],
+                        MoTa = row["MoTa"].ToString(),
+                        HinhAnhURL = row["HinhAnhURL"].ToString(),
+                        Loai = (int)row["Loai"],
+                        SoLuong = 1
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Lỗi khi lấy danh sách món ăn: " + ex.Message);
             }
 
-            return ListBanAn;
-        }
-
-        // Load danh sách món ăn từ database
-        public  ObservableCollection<MonAn> LayDanhSachMonAnTuBd()
-        {
-            ObservableCollection<MonAn> ListBanAn = new ObservableCollection<MonAn>();
-
-            string sql = @"SELECT 
-                                MaMonAn, 
-                                TenMonAn, 
-                                Gia, 
-                                MoTa,
-                                HinhAnhURL, 
-                                Loai
-                            FROM MonAn";
-
-            DataTable dt = DatabaseConnect.ExecuteTable(sql);
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                int maMonAn = Convert.ToInt32(dr["MaMonAn"]);
-                string tenMonAn = dr["TenMonAn"].ToString().Trim();
-                float gia = float.Parse(dr["Gia"].ToString().Trim());
-                string moTa = dr["MoTa"].ToString().Trim();
-                string hinhAnhURL = dr["HinhAnhURL"].ToString().Trim(); ;
-                if (hinhAnhURL[0] != '/') hinhAnhURL = '/' + hinhAnhURL;
-                int loai = Convert.ToInt32(dr["Loai"]);
-
-                ListBanAn.Add(new MonAn
-                {
-                    MaMonAn = maMonAn,
-                    TenMonAn = tenMonAn,
-                    Gia = gia,
-                    MoTa = moTa,
-                    HinhAnhURL = hinhAnhURL,
-                    Loai = loai
-                });
-            }
-
-            return ListBanAn;
-        }
-
-  
-
-        public  int ChenDonHang(DonHang dh)
-        {
-            string sql = @"
-                            INSERT INTO DonHang (NgayDat, 
-                                                TongTien, 
-                                                MaNhanVien, 
-                                                TrangThai, 
-                                                MaBan)
-                            OUTPUT INSERTED.MaDonHang
-                            VALUES (@NgayDat, @TongTien, @MaNhanVien, @TrangThai, @MaBan)";
-
-            object result = DatabaseConnect.ExecuteScalar(sql,
-                new SqlParameter("@NgayDat", dh.NgayDat),
-                new SqlParameter("@TongTien", dh.TongTien),
-                new SqlParameter("@MaNhanVien", dh.MaNhanVien),
-                new SqlParameter("@TrangThai", dh.TrangThai),
-                new SqlParameter("@MaBan", dh.MaBan));
-            return result != null ? Convert.ToInt32(result) : -1;
-        }
-
-        public  bool ChenChiTietDonHang(ChiTietDonHang ct)
-        {
-            string sql = @"INSERT INTO ChiTietDonHang 
-                                            (MaDonHang, 
-                                            MaMonAn, 
-                                            SoLuong, 
-                                            TienGoc, 
-                                            SoTienGiam, 
-                                            ThanhToanCuoi, 
-                                            MaKhuyenMai)
-                            VALUES (@MaDonHang, @MaMonAn, @SoLuong, @TienGoc, 
-                                    @SoTienGiam, @ThanhToanCuoi, @MaKhuyenMai)";
-
-            return DatabaseConnect.ExecuteNonQuery(sql,
-                new SqlParameter("@MaDonHang", ct.MaDonHang),
-                new SqlParameter("@MaMonAn", ct.MaMonAn),
-                new SqlParameter("@SoLuong", ct.SoLuong),
-                new SqlParameter("@TienGoc", ct.TienGoc),
-                new SqlParameter("@SoTienGiam", ct.SoTienGiam),
-                new SqlParameter("@ThanhToanCuoi", ct.ThanhToanCuoi),
-                new SqlParameter("@MaKhuyenMai", (object?)ct.MaKhuyenMai ?? DBNull.Value));
-        }
-
-        public  DonHang LayDonHangMoiNhatCuaBan(string maBan)
-        {
-            var dt = DatabaseConnect.ExecuteTable(
-                        @"SELECT 
-                            TOP 1 * 
-                        FROM DonHang 
-                        WHERE MaBan=@ma AND TrangThai='DangXuLy' ORDER BY NgayDat DESC",
-                new SqlParameter("@ma", maBan));
-            
-            if (dt.Rows.Count == 0) return null;
-            var row = dt.Rows[0];
-            return new DonHang
-            {
-                MaDonHang = Convert.ToInt32(row["MaDonHang"]),
-                NgayDat = Convert.ToDateTime(row["NgayDat"]),
-                TongTien = Convert.ToDecimal(row["TongTien"]),
-                MaNhanVien = row["MaNhanVien"].ToString(),
-                TrangThai = row["TrangThai"].ToString(),
-                MaBan = row["MaBan"].ToString()
-            };
-        }
-
-        public  List<(int MaMonAn, string TenMonAn, decimal Gia, int SoLuong, decimal TienGoc, decimal SoTienGiam, decimal ThanhToanCuoi, int? MaKhuyenMai)> GetChiTietByOrder(int maDonHang)
-        {
-            var result = new List<(int, string, decimal, int, decimal, decimal, decimal, int?)>();
-            var sql = @"SELECT ct.MaMonAn, m.TenMonAn, m.Gia, ct.SoLuong, ct.TienGoc, ct.SoTienGiam, ct.ThanhToanCuoi, ct.MaKhuyenMai
-                FROM ChiTietDonHang ct
-                LEFT JOIN MonAn m ON ct.MaMonAn = m.MaMonAn
-                WHERE ct.MaDonHang = @ma";
-            var dt = DatabaseConnect.ExecuteTable(sql, new SqlParameter("@ma", maDonHang));
-            foreach (DataRow r in dt.Rows)
-            {
-                int ma = Convert.ToInt32(r["MaMonAn"]);
-                string ten = r["TenMonAn"].ToString();
-                decimal gia = Convert.ToDecimal(r["Gia"]);
-                int sl = Convert.ToInt32(r["SoLuong"]);
-                decimal tienGoc = Convert.ToDecimal(r["TienGoc"]);
-                decimal soTienGiam = Convert.ToDecimal(r["SoTienGiam"]);
-                decimal thanh = Convert.ToDecimal(r["ThanhToanCuoi"]);
-                int? makm = r["MaKhuyenMai"] != DBNull.Value ? (int?)Convert.ToInt32(r["MaKhuyenMai"]) : null;
-                result.Add((ma, ten, gia, sl, tienGoc, soTienGiam, thanh, makm));
-            }
             return result;
         }
 
-        public  List<KhuyenMai> GetActivePromotions()
+        // ✅ FIX: Thêm method lấy danh sách món ăn có khuyến mãi
+        public ObservableCollection<int> LayDanhSachMonAnKM()
         {
-            var promotions = new List<KhuyenMai>();
-            var dt = DatabaseConnect.ExecuteTable(
-                "SELECT * FROM KhuyenMai WHERE TrangThai = 'HoatDong' AND NgayBatDau <= GETDATE() AND NgayKetThuc >= GETDATE()");
-            foreach (DataRow row in dt.Rows)
+            var query = @"SELECT DISTINCT MaMonAn FROM MonAnApDungKM";
+            var result = new ObservableCollection<int>();
+
+            try
             {
-                promotions.Add(new KhuyenMai
+                var dt = DatabaseConnect.ExecuteTable(query);
+                foreach (DataRow row in dt.Rows)
                 {
-                    MaKhuyenMai = Convert.ToInt32(row["MaKhuyenMai"]),
-                    TenChuongTrinh = row["TenChuongTrinh"].ToString(),
-                    MaCode = row["MaCode"].ToString(),
-                    LoaiGiamGia = row["LoaiGiamGia"].ToString(),
-                    GiaTriGiam = decimal.Parse(row["GiaTriGiam"].ToString().Trim()),
-                    NgayBatDau = Convert.ToDateTime(row["NgayBatDau"]),
-                    NgayKetThuc = Convert.ToDateTime(row["NgayKetThuc"]),
-                    TrangThai = row["TrangThai"].ToString(),
-                    SoLuotSuDungToiDa = row["SoLuotSuDungToiDa"] != DBNull.Value ? (int?)Convert.ToInt32(row["SoLuotSuDungToiDa"]) : null,
-                    SoLuotDaSuDung = Convert.ToInt32(row["SoLuotDaSuDung"])
-                });
-            }
-            return promotions;
-        }
-
-        public  bool IsDishInPromotion(int maKhuyenMai, int maMonAn)
-        {
-            var result = DatabaseConnect.ExecuteScalar(
-                "SELECT COUNT(*) FROM MonAnApDungKM WHERE MaKhuyenMai = @maKM AND MaMonAn = @maMon",
-                new SqlParameter("@maKM", maKhuyenMai),
-                new SqlParameter("@maMon", maMonAn));
-            return Convert.ToInt32(result) > 0;
-        }
-
-        public  void IncrementPromotionUsage(int maKhuyenMai)
-        {
-            DatabaseConnect.ExecuteNonQuery(
-                "UPDATE KhuyenMai SET SoLuotDaSuDung = SoLuotDaSuDung + 1 WHERE MaKhuyenMai = @maKM",
-                new SqlParameter("@maKM", maKhuyenMai));
-        }
-
-        public  void PayOrder(int maDonHang, string maBan, List<ChiTietDonHang> details, string paymentMethod)
-        {
-            // vì DatabaseConnect không hỗ trợ transaction sẵn
-            // ta vẫn phải dùng thủ công SqlConnection + SqlTransaction
-            using (var conn = new SqlConnection(@"Server=LAPTOP-JLIOMIRV\ADMIN;Database=QuanLyNhaHang;Trusted_Connection=True;"))
-            {
-                conn.Open();
-                using (var tran = conn.BeginTransaction())
-                {
-                    try
+                    if (int.TryParse(row["MaMonAn"].ToString(), out int maMonAn))
                     {
-                        foreach (var it in details)
-                        {
-                            string updCt = @"UPDATE ChiTietDonHang
-                                     SET SoTienGiam = @soTienGiam, ThanhToanCuoi = @thanhToan
-                                     WHERE MaDonHang = @maDH AND MaMonAn = @maMon";
-                            using var cmdUpdCt = new SqlCommand(updCt, conn, tran);
-                            cmdUpdCt.Parameters.AddWithValue("@soTienGiam", it.SoTienGiam);
-                            cmdUpdCt.Parameters.AddWithValue("@thanhToan", it.ThanhToanCuoi);
-                            cmdUpdCt.Parameters.AddWithValue("@maDH", maDonHang);
-                            cmdUpdCt.Parameters.AddWithValue("@maMon", it.MaMonAn);
-                            cmdUpdCt.ExecuteNonQuery();
-                        }
-
-                        string updDh = "UPDATE DonHang SET TrangThai = 'DaHoanThanh', HinhThucThanhToan = @paymentMethod WHERE MaDonHang = @ma";
-                        using var cmdUpdDh = new SqlCommand(updDh, conn, tran);
-                        cmdUpdDh.Parameters.AddWithValue("@paymentMethod", paymentMethod);
-                        cmdUpdDh.Parameters.AddWithValue("@ma", maDonHang);
-                        cmdUpdDh.ExecuteNonQuery();
-
-                        string updBan = "UPDATE BanAn SET TrangThai = 'Trống' WHERE MaBan = @maBan";
-                        using var cmdUpdBan = new SqlCommand(updBan, conn, tran);
-                        cmdUpdBan.Parameters.AddWithValue("@maBan", maBan);
-                        cmdUpdBan.ExecuteNonQuery();
-
-                        tran.Commit();
-                    }
-                    catch
-                    {
-                        tran.Rollback();
-                        throw;
+                        result.Add(maMonAn);
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Lỗi khi lấy danh sách khuyến mãi: " + ex.Message);
+            }
+
+            return result;
         }
 
-        public  List<(int MaMonAn, string TenMonAn, decimal Gia, int SoLuong, decimal TienGoc, decimal SoTienGiam, decimal ThanhToanCuoi, int? MaKhuyenMai)> GetChiTietByTable(string maBan)
+        // ✅ FIX: Thêm method cập nhật trạng thái bàn
+        public bool CapNhatTrangThaiBan(string maBan, string trangThai)
         {
-            var result = new List<(int, string, decimal, int, decimal, decimal, decimal, int?)>();
-            var sql = @"
-        SELECT ma.TenMonAn, ctdh.SoLuong, ctdh.TienGoc, ctdh.SoTienGiam, ctdh.ThanhToanCuoi, 
-               ma.MaMonAn, ma.Gia, ctdh.MaKhuyenMai
-        FROM DonHang dh
-        INNER JOIN ChiTietDonHang ctdh ON dh.MaDonHang = ctdh.MaDonHang 
-        INNER JOIN MonAn ma ON ma.MaMonAn = ctdh.MaMonAn
-        WHERE dh.TrangThai = 'DangXuLy' AND dh.MaBan = @maBan";
-            var dt = DatabaseConnect.ExecuteTable(sql, new SqlParameter("@maBan", maBan));
-            foreach (DataRow r in dt.Rows)
+            var query = @"UPDATE BanAn SET TrangThai = @TrangThai WHERE MaBan = @MaBan";
+            var parameters = new[]
             {
-                int ma = Convert.ToInt32(r["MaMonAn"]);
-                string ten = r["TenMonAn"].ToString();
-                decimal gia = Convert.ToDecimal(r["Gia"]);
-                int sl = Convert.ToInt32(r["SoLuong"]);
-                decimal tienGoc = Convert.ToDecimal(r["TienGoc"]);
-                decimal soTienGiam = Convert.ToDecimal(r["SoTienGiam"]);
-                decimal thanh = Convert.ToDecimal(r["ThanhToanCuoi"]);
-                int? makm = r["MaKhuyenMai"] != DBNull.Value ? (int?)Convert.ToInt32(r["MaKhuyenMai"]) : null;
-                result.Add((ma, ten, gia, sl, tienGoc, soTienGiam, thanh, makm));
-            }
-            return result;
+                new SqlParameter("@MaBan", maBan),
+                new SqlParameter("@TrangThai", trangThai)
+            };
+
+            return DatabaseConnect.ExecuteNonQuery(query, parameters);
+        }
+
+        // ✅ FIX: Thêm method chèn đơn hàng
+        public int ChenDonHang(DonHang donHang)
+        {
+            var query = @"
+                INSERT INTO DonHang (NgayDat, TongTien, MaNhanVien, TrangThai, HinhThucThanhToan, MaBan)
+                VALUES (@NgayDat, @TongTien, @MaNhanVien, @TrangThai, @HinhThucThanhToan, @MaBan);
+                SELECT SCOPE_IDENTITY();
+            ";
+
+            var parameters = new[]
+            {
+                new SqlParameter("@NgayDat", donHang.NgayDat),
+                new SqlParameter("@TongTien", donHang.TongTien),
+                new SqlParameter("@MaNhanVien", donHang.MaNhanVien),
+                new SqlParameter("@TrangThai", donHang.TrangThai),
+                new SqlParameter("@HinhThucThanhToan", donHang.HinhThucThanhToan ?? "TienMat"),
+                new SqlParameter("@MaBan", donHang.MaBan ?? (object)DBNull.Value)
+            };
+
+            var result = DatabaseConnect.ExecuteScalar(query, parameters);
+            return result != null && int.TryParse(result.ToString(), out int maDH) ? maDH : -1;
+        }
+
+        // ✅ FIX: Thêm method chèn chi tiết đơn hàng
+        public bool ChenChiTietDonHang(ChiTietDonHang chiTiet)
+        {
+            var query = @"
+                INSERT INTO ChiTietDonHang (MaDonHang, MaMonAn, SoLuong, MaKhuyenMai, TienGoc, SoTienGiam, ThanhToanCuoi)
+                VALUES (@MaDonHang, @MaMonAn, @SoLuong, @MaKhuyenMai, @TienGoc, @SoTienGiam, @ThanhToanCuoi);
+            ";
+
+            var parameters = new[]
+            {
+                new SqlParameter("@MaDonHang", chiTiet.MaDonHang),
+                new SqlParameter("@MaMonAn", chiTiet.MaMonAn),
+                new SqlParameter("@SoLuong", chiTiet.SoLuong),
+                new SqlParameter("@MaKhuyenMai", chiTiet.MaKhuyenMai ?? (object)DBNull.Value),
+                new SqlParameter("@TienGoc", chiTiet.TienGoc),
+                new SqlParameter("@SoTienGiam", chiTiet.SoTienGiam),
+                new SqlParameter("@ThanhToanCuoi", chiTiet.ThanhToanCuoi)
+            };
+
+            return DatabaseConnect.ExecuteNonQuery(query, parameters);
+        }
+
+        // ✅ FIX: Thêm method lấy mã khuyến mãi của món ăn
+        public int? LayMaKhuyenMaiCuaMonAn(int maMonAn)
+        {
+            var query = @"
+                SELECT TOP 1 MaKhuyenMai 
+                FROM MonAnApDungKM 
+                WHERE MaMonAn = @MaMonAn
+            ";
+
+            var parameters = new[] { new SqlParameter("@MaMonAn", maMonAn) };
+            var result = DatabaseConnect.ExecuteScalar(query, parameters);
+
+            return result != null && int.TryParse(result.ToString(), out int maKM) ? maKM : (int?)null;
+        }
+
+        // ✅ FIX: Thêm method lấy thông tin khuyến mãi
+        public KhuyenMai LayKhuyenMaiTheoMaKhuyenMai(int? maKhuyenMai)
+        {
+            if (maKhuyenMai == null) return null;
+
+            var query = @"
+                SELECT MaKhuyenMai, TenChuongTrinh, LoaiGiamGia, GiaTriGiam, NgayBatDau, NgayKetThuc, TrangThai
+                FROM KhuyenMai
+                WHERE MaKhuyenMai = @MaKhuyenMai
+            ";
+
+            var parameters = new[] { new SqlParameter("@MaKhuyenMai", maKhuyenMai) };
+            var dt = DatabaseConnect.ExecuteTable(query, parameters);
+
+            if (dt.Rows.Count == 0) return null;
+
+            var row = dt.Rows[0];
+            return new KhuyenMai
+            {
+                MaKhuyenMai = (int)row["MaKhuyenMai"],
+                TenChuongTrinh = row["TenChuongTrinh"].ToString(),
+                LoaiGiamGia = row["LoaiGiamGia"].ToString(),
+                GiaTriGiam = (decimal)row["GiaTriGiam"],
+                NgayBatDau = (DateTime)row["NgayBatDau"],
+                NgayKetThuc = (DateTime)row["NgayKetThuc"],
+                TrangThai = row["TrangThai"].ToString()
+            };
         }
     }
 }

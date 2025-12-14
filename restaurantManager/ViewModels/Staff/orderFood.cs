@@ -1,88 +1,114 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
-
-using restaurantManager.Models;
-using System.Data;
-using restaurantManager.Services;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-
-using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Command;
+using restaurantManager.Models;
+using restaurantManager.Services;
 using restaurantManager.Messages;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace restaurantManager.ViewModels.Staff
 {
     public class orderFood : INotifyPropertyChanged
     {
+        private readonly OrderService _orderService;
+
+        public ObservableCollection<BanAn> DanhSachBanAn { get; set; }
+        public ObservableCollection<MonAn> DanhSachMonAn { get; set; }
+
+        private ObservableCollection<MonAn> _danhSachHienThi;
+        public ObservableCollection<MonAn> DanhSachHienThi
+        {
+            get => _danhSachHienThi;
+            set { _danhSachHienThi = value; OnPropertyChanged(); }
+        }
+
+        public ObservableCollection<MonAn> GioHang { get; set; } = new ObservableCollection<MonAn>();
+
+        public decimal TongTienGioHang => GioHang.Sum(m => Convert.ToDecimal(m.Gia) * m.SoLuong);
+
+        private string _tuKhoaTimKiem;
+        public string TuKhoaTimKiem
+        {
+            get => _tuKhoaTimKiem;
+            set { _tuKhoaTimKiem = value; OnPropertyChanged(); }
+        }
+
+        private BanAn _banDangChon;
+        public BanAn BanDangChon
+        {
+            get => _banDangChon;
+            set
+            {
+                if (_banDangChon == value) return;
+
+                if (_banDangChon != null) _banDangChon.IsSelected = false;
+                _banDangChon = value;
+                if (_banDangChon != null) _banDangChon.IsSelected = true;
+
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<int> DanhSachMonAnCoKM { get; set; }
+
+        private string _thongBao;
+        public string ThongBao
+        {
+            get => _thongBao;
+            set { _thongBao = value; OnPropertyChanged(); }
+        }
+
+        public ICommand ChonBanCommand { get; }
+        public ICommand ThemMonCommand { get; }
+        public ICommand TangSoLuongCommand { get; }
+        public ICommand GiamSoLuongCommand { get; }
+        public ICommand XacNhanDatBanCommand { get; }
+        public ICommand HuyDonHangCommand { get; }
+        public ICommand TimKiemCommand { get; }
         public ICommand ChonTatCaCommand { get; }
         public ICommand ChonThucAnCommand { get; }
         public ICommand ChonThucUongCommand { get; }
-
-        public ICommand HuyDonHangCommand { get; }
-
-        public ICommand ChonBanCommand { get; }
-
-        public ICommand ThemMonCommand { get; }
-
-        public ICommand TangSoLuongCommand { get; }
-
-        public ICommand GiamSoLuongCommand { get; }
-
-        public ICommand XacNhanDatBanCommand { get; }
-        public ICommand TimKiemCommand { get; }
-
-        private readonly OrderService _orderService;
 
         public orderFood()
         {
             _orderService = new OrderService();
 
-            // ✅ Đăng ký lắng nghe cập nhật từ confirmPayFood
+            DanhSachBanAn = _orderService.LayDanhSachBanAnTuDb();
+            DanhSachMonAn = _orderService.LayDanhSachMonAnTuBd();
+            DanhSachMonAnCoKM = _orderService.LayDanhSachMonAnKM();
+            DanhSachHienThi = DanhSachMonAn;
+
             Messenger.Default.Register<BanAnUpdatedMessage>(this, msg =>
             {
-                var ban = DanhSachBanAn.FirstOrDefault(b => b.MaBan == msg.MaBan);
+                var ban = DanhSachBanAn?.FirstOrDefault(b => b.MaBan == msg.MaBan);
                 if (ban != null)
                 {
                     ban.TrangThai = msg.TrangThai;
-                    OnPropertyChanged(nameof(DanhSachBanAn));
+                    var idx = DanhSachBanAn.IndexOf(ban);
+                    DanhSachBanAn.RemoveAt(idx);
+                    DanhSachBanAn.Insert(idx, ban);
                 }
             });
-
-            LoaiDangChon = -1;
-            ChonTatCaCommand = new RelayCommand(() => LoaiDangChon = -1);
-            ChonThucAnCommand = new RelayCommand(() => LoaiDangChon = 0);
-            ChonThucUongCommand = new RelayCommand(() => LoaiDangChon = 1);
-
-            HuyDonHangCommand = new RelayCommand(() => { GioHang.Clear(); OnPropertyChanged(nameof(TongTienGioHang)); });
 
             ChonBanCommand = new RelayCommand<BanAn>(ban =>
             {
                 if (ban == null) return;
-
-                // Đặt bàn được chọn
                 BanDangChon = ban;
-
-                // Reset IsSelected tất cả bàn
-                foreach (var b in DanhSachBanAn)
-                    b.IsSelected = false;
-
-                // Đánh dấu bàn đang chọn
-                ban.IsSelected = true;
             });
 
             ThemMonCommand = new RelayCommand<MonAn>(mon =>
             {
-                if (mon == null) return;
+                if (BanDangChon == null)
+                {
+                    MessageBox.Show("Vui lòng chọn bàn trước khi gọi món!", "Nhắc nhở");
+                    return;
+                }
 
-                // Kiểm tra nếu món đã có trong giỏ thì tăng số lượng
                 var monTrongGio = GioHang.FirstOrDefault(m => m.MaMonAn == mon.MaMonAn);
                 if (monTrongGio != null)
                 {
@@ -90,312 +116,177 @@ namespace restaurantManager.ViewModels.Staff
                 }
                 else
                 {
-                    // Copy đối tượng để không ảnh hưởng đến DanhSachMonAn
                     GioHang.Add(new MonAn
                     {
                         MaMonAn = mon.MaMonAn,
                         TenMonAn = mon.TenMonAn,
                         Gia = mon.Gia,
-                        MoTa = mon.MoTa,
                         HinhAnhURL = mon.HinhAnhURL,
-                        Loai = mon.Loai,
                         SoLuong = 1
                     });
                 }
-
-                // Notify thay đổi tổng tiền
                 OnPropertyChanged(nameof(TongTienGioHang));
             });
 
             TangSoLuongCommand = new RelayCommand<MonAn>(mon =>
             {
-                if (mon == null) return;
-                mon.SoLuong++;
-                OnPropertyChanged(nameof(TongTienGioHang)); // cập nhật tổng tiền
+                if (mon != null)
+                {
+                    mon.SoLuong++;
+                    OnPropertyChanged(nameof(TongTienGioHang));
+                }
             });
 
             GiamSoLuongCommand = new RelayCommand<MonAn>(mon =>
             {
-                if (mon == null) return;
-
-                if (mon.SoLuong > 1)
+                if (mon != null)
                 {
-                    mon.SoLuong--;
-                }
-                else
-                {
-                    // Nếu số lượng = 1 thì giảm nữa sẽ xóa khỏi giỏ
-                    GioHang.Remove(mon);
-                }
+                    if (mon.SoLuong > 1)
+                        mon.SoLuong--;
+                    else
+                        GioHang.Remove(mon);
 
-                OnPropertyChanged(nameof(TongTienGioHang));
+                    OnPropertyChanged(nameof(TongTienGioHang));
+                }
+            });
+
+            HuyDonHangCommand = new RelayCommand(() =>
+            {
+                if (GioHang.Count > 0)
+                {
+                    var result = MessageBox.Show("Bạn có chắc muốn hủy đơn hàng này?", "Xác nhận",
+                        MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        GioHang.Clear();
+                        OnPropertyChanged(nameof(TongTienGioHang));
+                    }
+                }
             });
 
             TimKiemCommand = new RelayCommand(() =>
             {
                 if (string.IsNullOrWhiteSpace(TuKhoaTimKiem))
-                {
-                    // Nếu rỗng thì hiển thị tất cả
                     DanhSachHienThi = DanhSachMonAn;
-                }
                 else
-                {
-                    // Lọc danh sách theo từ khóa
                     DanhSachHienThi = new ObservableCollection<MonAn>(
-                        DanhSachMonAn.Where(m =>
-                            m.TenMonAn.Contains(TuKhoaTimKiem, StringComparison.OrdinalIgnoreCase) ||
-                            m.MoTa.Contains(TuKhoaTimKiem, StringComparison.OrdinalIgnoreCase))
-                    );
-                }
+                        DanhSachMonAn.Where(m => m.TenMonAn.ToLower().Contains(TuKhoaTimKiem.ToLower())));
             });
 
+            ChonTatCaCommand = new RelayCommand(() => DanhSachHienThi = DanhSachMonAn);
+            ChonThucAnCommand = new RelayCommand(() =>
+                DanhSachHienThi = new ObservableCollection<MonAn>(DanhSachMonAn.Where(m => m.Loai == 0)));
+            ChonThucUongCommand = new RelayCommand(() =>
+                DanhSachHienThi = new ObservableCollection<MonAn>(DanhSachMonAn.Where(m => m.Loai == 1)));
+
             XacNhanDatBanCommand = new RelayCommand(() => XacNhanDatBan(SessionUser.UserName));
-
-
-            DanhSachBanAn = _orderService.LayDanhSachBanAnTuDb();
-            DanhSachMonAn = _orderService.LayDanhSachMonAnTuBd();
-
-            DanhSachMonAnCoKM = _orderService.LayDanhSachMonAnKM();
-
-            LocDanhSachTheoLoai();
         }
 
-        private string _tuKhoaTimKiem;
-        public string TuKhoaTimKiem
+        private void XacNhanDatBan(string maNV)
         {
-            get => _tuKhoaTimKiem;
-            set
+            if (BanDangChon == null)
             {
-                if (_tuKhoaTimKiem != value)
-                {
-                    _tuKhoaTimKiem = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public ObservableCollection<int> _danhSachMonAnCoKM;
-        public ObservableCollection<int> DanhSachMonAnCoKM
-        {
-            get => _danhSachMonAnCoKM;
-            set
-            {
-                _danhSachMonAnCoKM = value;
-                OnPropertyChanged();
-            }
-        }
-        public float TongTienGioHang
-        {
-            get => GioHang.Sum(m => m.Gia * m.SoLuong);
-        }
-
-        private BanAn _banDangChon;
-
-        public BanAn BanDangChon
-        {
-            get => _banDangChon;
-            set
-            {
-                if (_banDangChon == value) return; // Chọn bàn đã chọn
-
-                // Bỏ chọn bàn dã chọn
-                if (_banDangChon != null)
-                    _banDangChon.IsSelected = false;
-
-                _banDangChon = value; // Cập nhật lại bàn mới chọn
-
-                // Đặt trạng thái là đã chọn
-                if (_banDangChon != null)
-                    _banDangChon.IsSelected = true;
-
-                OnPropertyChanged(); // nếu cần notify SelectedItem binding
-            }
-        }
-
-        private ObservableCollection<MonAn> _gioHang = new ObservableCollection<MonAn>();
-
-        public ObservableCollection<MonAn> GioHang
-        {
-            get => _gioHang;
-            set
-            {
-                if (_gioHang != value)
-                {
-                    _gioHang = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        // Muốn load danh sách bàn ăn thì cần phải có danh sách bàn ăn
-        private ObservableCollection<BanAn> _danhSachBanAn = new ObservableCollection<BanAn>();
-
-        public ObservableCollection<BanAn> DanhSachBanAn
-        {
-            get => _danhSachBanAn;
-            set
-            {
-                if (_danhSachBanAn != value)
-                {
-                    _danhSachBanAn = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private ObservableCollection<MonAn> _danhSachHienThi;
-        public ObservableCollection<MonAn> DanhSachHienThi
-        {
-            get => _danhSachHienThi;
-            set
-            {
-                _danhSachHienThi = value;
-                OnPropertyChanged();
-            }
-        }
-
-        // Muốn load món ăn thì cần có danh sách bàn ăn
-        private ObservableCollection<MonAn> _danhSachMonAn = new ObservableCollection<MonAn>();
-
-        public ObservableCollection<MonAn> DanhSachMonAn
-        {
-            get => _danhSachMonAn;
-            set
-            {
-                if (_danhSachMonAn != value)
-                {
-                    _danhSachMonAn = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private int _loaiDangChon;
-        public int LoaiDangChon
-        {
-            get => _loaiDangChon;
-            set
-            {
-                _loaiDangChon = value;
-                OnPropertyChanged(nameof(LoaiDangChon));
-                LocDanhSachTheoLoai(); // Khi thay đổi loại -> cập nhật danh sách hiển thị
-            }
-        }
-
-
-        private string _thongBao;
-        public string ThongBao
-        {
-            get => _thongBao;
-            set
-            {
-                _thongBao = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        public void XacNhanDatBan(string maNV)
-        {
-            var selectedBan = DanhSachBanAn.FirstOrDefault(b => b.IsSelected);
-
-            if (selectedBan == null || GioHang.Count == 0)
-            {
-                // Không gọi MessageBox ở đây
-                ThongBao = "Chọn bàn và món trước khi xác nhận!";
+                MessageBox.Show("Vui lòng chọn bàn trước!", "Thông báo");
                 return;
             }
 
-            if (selectedBan.TrangThai == "Đã đặt")
+            if (GioHang.Count == 0)
             {
-                ThongBao = $"Bàn {selectedBan.MaBan} đã có khách, vui lòng chọn bàn khác!";
+                MessageBox.Show("Giỏ hàng đang trống! Vui lòng thêm món.", "Thông báo");
                 return;
             }
 
-            // Gọi service để update DB
-            _orderService.CapNhatTrangThaiBan(selectedBan.MaBan, "Đã đặt");
-
-            var dh = new DonHang
+            if (BanDangChon.TrangThai == "Đã đặt")
             {
-                NgayDat = DateTime.Now,
-                MaBan = selectedBan.MaBan,
-                MaNhanVien = maNV,
-                TrangThai = "DangXuLy",
-                TongTien = 0
-            };
+                MessageBox.Show($"Bàn {BanDangChon.MaBan} đang có khách. Vui lòng chọn bàn trống!", "Thông báo");
+                return;
+            }
 
-            int maDH = _orderService.ChenDonHang(dh);
-
-
-            foreach (var mon in GioHang)
+            try
             {
-
-                decimal soTienGiam = 0;
-                int? maKM = null;
-                KhuyenMai khuyenMai;
-
-                if (DanhSachMonAnCoKM.Contains(mon.MaMonAn)) // Có khuyến mãi
+                // 1. Cập nhật trạng thái bàn
+                bool capNhatBan = _orderService.CapNhatTrangThaiBan(BanDangChon.MaBan, "Đã đặt");
+                if (!capNhatBan)
                 {
-                    maKM = _orderService.LayMaKhuyenMaiCuaMonAn(mon.MaMonAn);
-
-                    khuyenMai = _orderService.LayKhuyenMaiTheoMaKhuyenMai(maKM);
-
-                    if (khuyenMai.LoaiGiamGia == "PhanTram") // Giảm theo phần trăm
-                    {
-                        soTienGiam = (Convert.ToDecimal(mon.Gia) * mon.SoLuong) * (khuyenMai.GiaTriGiam / 100);
-                    }
-                    else if (khuyenMai.LoaiGiamGia == "TienCoDinh")
-                    {
-                        soTienGiam = khuyenMai.GiaTriGiam;
-                    }
-                }
-
-                bool ok = _orderService.ChenChiTietDonHang(new ChiTietDonHang
-                {
-                    MaDonHang = maDH,
-                    MaMonAn = mon.MaMonAn,
-                    SoLuong = mon.SoLuong,
-                    MaKhuyenMai = maKM,
-                    TienGoc = Convert.ToDecimal(mon.Gia) * mon.SoLuong,
-                    SoTienGiam = soTienGiam,
-                    ThanhToanCuoi = (Convert.ToDecimal(mon.Gia) * mon.SoLuong) - soTienGiam
-                });
-
-                if (!ok)
-                {
-                    MessageBox.Show("Đặt hàng thất bại.");
+                    MessageBox.Show("Lỗi khi cập nhật trạng thái bàn!", "Lỗi");
                     return;
                 }
+
+                // 2. Tạo đơn hàng mới
+                var dh = new DonHang
+                {
+                    NgayDat = DateTime.Now,
+                    MaBan = BanDangChon.MaBan,
+                    MaNhanVien = string.IsNullOrEmpty(maNV) ? "admin" : maNV,
+                    TrangThai = "DangXuLy",
+                    TongTien = 0
+                };
+
+                int maDH = _orderService.ChenDonHang(dh);
+
+                if (maDH <= 0)
+                {
+                    MessageBox.Show("Lỗi khi tạo đơn hàng!", "Lỗi");
+                    _orderService.CapNhatTrangThaiBan(BanDangChon.MaBan, "Trống");
+                    return;
+                }
+
+                // 3. Insert chi tiết đơn hàng
+                foreach (var mon in GioHang)
+                {
+                    decimal giaGoc = Convert.ToDecimal(mon.Gia);
+                    decimal soTienGiam = 0;
+                    int? maKM = null;
+
+                    // Kiểm tra khuyến mãi
+                    if (DanhSachMonAnCoKM != null && DanhSachMonAnCoKM.Contains(mon.MaMonAn))
+                    {
+                        maKM = _orderService.LayMaKhuyenMaiCuaMonAn(mon.MaMonAn);
+                        if (maKM.HasValue)
+                        {
+                            var km = _orderService.LayKhuyenMaiTheoMaKhuyenMai(maKM);
+                            if (km != null)
+                            {
+                                if (km.LoaiGiamGia == "PhanTram")
+                                    soTienGiam = (giaGoc * mon.SoLuong) * (km.GiaTriGiam / 100);
+                                else if (km.LoaiGiamGia == "TienCoDinh")
+                                    soTienGiam = km.GiaTriGiam;
+                            }
+                        }
+                    }
+
+                    decimal tienGoc = giaGoc * mon.SoLuong;
+                    decimal thanhToanCuoi = tienGoc - soTienGiam;
+
+                    _orderService.ChenChiTietDonHang(new ChiTietDonHang
+                    {
+                        MaDonHang = maDH,
+                        MaMonAn = mon.MaMonAn,
+                        SoLuong = mon.SoLuong,
+                        MaKhuyenMai = maKM,
+                        TienGoc = tienGoc,
+                        SoTienGiam = soTienGiam,
+                        ThanhToanCuoi = thanhToanCuoi
+                    });
+                }
+
+                MessageBox.Show("Đặt món thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Cập nhật UI
+                BanDangChon.TrangThai = "Đã đặt";
+                Messenger.Default.Send(new BanAnUpdatedMessage(BanDangChon.MaBan, "Đã đặt"));
+
+                GioHang.Clear();
+                OnPropertyChanged(nameof(TongTienGioHang));
+                BanDangChon = null;
             }
-
-            selectedBan.TrangThai = "Đã đặt";
-            GioHang.Clear();
-            OnPropertyChanged(nameof(TongTienGioHang));
-            ThongBao = "Xác nhận đặt bàn thành công!";
-
-            // Gửi message để confirmPayFood cập nhật
-            Messenger.Default.Send(new BanAnUpdatedMessage(selectedBan.MaBan, "Đã đặt"));
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Lỗi");
+            }
         }
 
-
-        private void LocDanhSachTheoLoai()
-        {
-            if (LoaiDangChon == -1)
-            {
-                DanhSachHienThi = DanhSachMonAn;
-            }
-            else
-            {
-                DanhSachHienThi = new ObservableCollection<MonAn>(
-                    // Khi món ăn thuộc loại đang chọn thì thêm vào danh sách hiển thị
-                    DanhSachMonAn.Where(m => m.Loai == LoaiDangChon)
-                );
-            }
-        }
-
-
-
-        // INotifyPropertyChanged implementation
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace restaurantManager.Models
 {
@@ -7,24 +8,28 @@ namespace restaurantManager.Models
     {
         private int _maMonAn;
         private string _tenMonAn;
-        private float _gia;
+        private decimal _gia;
         private string _moTa;
         private string _hinhAnhURL;
         private int _loai;
-        private int _soLuong;
-        private bool _isSelected;
+        private int _soLuong = 1;
 
-        public bool IsSelected
+        // ✅ Constructor mặc định
+        public MonAn()
         {
-            get => _isSelected;
-            set
-            {
-                if (_isSelected != value)
-                {
-                    _isSelected = value;
-                    OnPropertyChanged(nameof(IsSelected));
-                }
-            }
+            _soLuong = 1;
+        }
+
+        // ✅ Constructor với 6 tham số (phù hợp với LoadDanhSachMonAn)
+        public MonAn(int maMonAn, string tenMonAn, decimal gia, string moTa, string hinhAnhURL, int loai)
+        {
+            _maMonAn = maMonAn;
+            _tenMonAn = tenMonAn;
+            _gia = gia;
+            _moTa = moTa;
+            _hinhAnhURL = hinhAnhURL;
+            _loai = loai;
+            _soLuong = 1;
         }
 
         public int MaMonAn
@@ -35,7 +40,7 @@ namespace restaurantManager.Models
                 if (_maMonAn != value)
                 {
                     _maMonAn = value;
-                    OnPropertyChanged(nameof(MaMonAn));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -48,12 +53,12 @@ namespace restaurantManager.Models
                 if (_tenMonAn != value)
                 {
                     _tenMonAn = value;
-                    OnPropertyChanged(nameof(TenMonAn));
+                    OnPropertyChanged();
                 }
             }
         }
 
-        public float Gia
+        public decimal Gia
         {
             get => _gia;
             set
@@ -61,8 +66,8 @@ namespace restaurantManager.Models
                 if (_gia != value)
                 {
                     _gia = value;
-                    OnPropertyChanged(nameof(Gia));
-                    OnPropertyChanged(nameof(TongTien)); // cập nhật tổng tiền khi giá thay đổi
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(TongTien));
                 }
             }
         }
@@ -75,7 +80,7 @@ namespace restaurantManager.Models
                 if (_moTa != value)
                 {
                     _moTa = value;
-                    OnPropertyChanged(nameof(MoTa));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -88,7 +93,7 @@ namespace restaurantManager.Models
                 if (_hinhAnhURL != value)
                 {
                     _hinhAnhURL = value;
-                    OnPropertyChanged(nameof(HinhAnhURL));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -101,7 +106,7 @@ namespace restaurantManager.Models
                 if (_loai != value)
                 {
                     _loai = value;
-                    OnPropertyChanged(nameof(Loai));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -114,37 +119,23 @@ namespace restaurantManager.Models
                 if (_soLuong != value)
                 {
                     _soLuong = value;
-                    OnPropertyChanged(nameof(SoLuong));
-                    OnPropertyChanged(nameof(TongTien)); // cập nhật tổng tiền khi số lượng thay đổi
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(TongTien));
                 }
             }
         }
 
-        // Property tính tổng tiền cho từng món
-        public float TongTien => SoLuong * Gia;
-
-        public MonAn(int maMonAn, string tenMonAn, float gia, string moTa, string hinhAnhURL, int loai)
+        // Computed property
+        public decimal TongTien
         {
-            MaMonAn = maMonAn;
-            TenMonAn = tenMonAn;
-            Gia = gia;
-            MoTa = moTa;
-            HinhAnhURL = hinhAnhURL;
-            Loai = loai;
-            SoLuong = 1;
+            get => Gia * SoLuong;
         }
 
-        public MonAn()
-        {
-            SoLuong = 1;
-        }
-
-        // Triển khai INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }
