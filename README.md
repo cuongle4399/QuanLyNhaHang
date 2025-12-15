@@ -33,6 +33,9 @@ Hệ thống sử dụng **SQL Server** để lưu trữ dữ liệu, theo kiế
    - Chạy script SQL trong thư mục `Database/`  
 4. Cập nhật `Connection String` trong `Services/DatabaseConnect.cs`  
 5. Build & Run  
+Hoặc tải bản đã được build ở Releases
+Sau đó import database là chạy dc
+
 
 ---
 
@@ -50,66 +53,6 @@ Hệ thống sử dụng **SQL Server** để lưu trữ dữ liệu, theo kiế
   - `orderFood`  
 
 ---
-
-### 3. Hướng dẫn quy trình làm việc cho thành viên
-
-#### 🔹 Bước 1: Clone repo
-```bash
-git clone https://github.com/cuongle4399/quanlynhahang.git
-cd quanlynhahang
-```
-
-#### 🔹 Bước 2: Cập nhật code mới nhất
-```bash
-git checkout main
-git pull origin main
-```
-
-#### 🔹 Bước 3: Checkout sang nhánh đã được phân công
-Ví dụ phụ trách `OrderFood`:
-```bash
-git checkout orderFood
-git pull origin orderFood
-```
-
-#### 🔹 Bước 4: Code + Commit
-```bash
-git add .
-git commit -m "Thêm chức năng OrderFood"
-```
-
-#### 🔹 Bước 5: Push nhánh lên GitHub
-```bash
-git push origin orderFood
-```
-
-#### 🔹 Bước 6: Tạo Pull Request (PR)
-- Lên GitHub → chọn nhánh `orderFood`  
-- Tạo PR merge vào `test`  
-- Sau khi test OK → Leader sẽ merge `test` → `main`  
-
----
-
-### 4. Merge code (chỉ Leader thực hiện)
-
-#### Merge vào `test` để kiểm thử
-```bash
-git checkout test
-git pull origin test
-git merge orderFood
-git push origin test
-```
-
-#### Merge code ổn định vào `main`
-```bash
-git checkout main
-git pull origin main
-git merge test
-git push origin main
-```
-
----
-
 ## 👨‍💻 Tác giả
 - **Cường Lê** – Team Leader & Developer
 - **Nguyễn Võ Thành Tín** – Developer
