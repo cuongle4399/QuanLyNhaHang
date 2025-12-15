@@ -48,18 +48,56 @@
                 <Button Content="Tìm theo ngày" Click="btnSearch_Click" Width="140" Margin="5"/>
             </StackPanel>
 
-            <DataGrid Grid.Row="2" x:Name="dgInvoices"
-                      AutoGenerateColumns="True"
-                      MouseDoubleClick="dgInvoices_MouseDoubleClick"
-                      IsReadOnly="True"
-                      SelectionMode="Single"
-                      SelectionUnit="FullRow"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      CanUserResizeColumns="False"
-                      CanUserResizeRows="False"
-                      AlternatingRowBackground="#646464"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            <Grid Grid.Row="2" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid Grid.Column="0" x:Name="dgInvoices"
+                          ItemsSource="{Binding Invoices}" 
+                          AutoGenerateColumns="False"
+                          MouseDoubleClick="dgInvoices_MouseDoubleClick"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          CanUserResizeColumns="False"
+                          CanUserResizeRows="False"
+                          AlternatingRowBackground="#646464"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="dgInvoices_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã ĐH" Binding="{Binding MaDonHang}" Width="80"/>
+                        <DataGridTextColumn Header="Ngày đặt" Binding="{Binding NgayDat, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Width="150"/>
+                        <DataGridTextColumn Header="Bàn" Binding="{Binding MaBan}" Width="80"/>
+                        <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TongTien, StringFormat={}{0:N0}}" Width="100"/>
+                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Border Grid.Column="2" Background="#3B3B3B" CornerRadius="5" Padding="5">
+                    <DockPanel>
+                        <TextBlock Text="Top Món Bán Chạy" DockPanel.Dock="Top" 
+                                   Foreground="Gold" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+
+                        <DataGrid ItemsSource="{Binding TopDishes}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal"
+                                  Background="Transparent"
+                                  RowBackground="Transparent">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Tên món" Binding="{Binding TenMonAn}" Width="150" Foreground="White"/>
+                                <DataGridTextColumn Header="SL" Binding="{Binding SoLuongBan}" Width="60" Foreground="White"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </Border>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

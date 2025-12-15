@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\restaurantManager",
+    "\\restaurantManager\\View",
+    "\\restaurantManager\\ViewModels\\Admin",
+    "\\restaurantManager\\View\\Fuction",
+    "\\restaurantManager\\View\\Fuction\\Admin",
+    "\\restaurantManager\\View\\Fuction\\Staff"
+  ],
+  "SelectedNode": "\\restaurantManager\\View\\Fuction\\Admin\\InvoiceDetailWindow.xaml.cs",
+  "PreviewInSolutionExplorer": false
+}

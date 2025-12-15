@@ -23,37 +23,58 @@ namespace restaurantManager.View.Fuction.Admin
         {
             InitializeComponent();
 
-            //lấy trực tiếp các cột từ DonHang
-            decimal tongGoc = invoice.Table.Columns.Contains("TongTienGoc") && invoice["TongTienGoc"] != DBNull.Value
-                ? Convert.ToDecimal(invoice["TongTienGoc"])
-                : 0;
+            //thêm cột thành tiền nếu chưa có
+            if (!details.Columns.Contains("ThanhTien"))
+            {
+                details.Columns.Add("ThanhTien", typeof(decimal));
+            }
 
+            //tính tiền lại từng món và tổng tiền gốc
+            decimal tongGocThucTe = 0;
+
+            foreach (DataRow row in details.Rows)
+            {
+                //lấy số lượng và đơn giá
+                decimal sl = row["SoLuong"] != DBNull.Value ? Convert.ToDecimal(row["SoLuong"]) : 0;
+                decimal gia = row["DonGia"] != DBNull.Value ? Convert.ToDecimal(row["DonGia"]) : 0;
+
+                //tính từng món
+                decimal thanhTien = sl * gia;
+
+                //gán vào bảng hiển thị
+                row["ThanhTien"] = thanhTien;
+
+                //cộng vào tổng gốc
+                tongGocThucTe += thanhTien;
+            }
+
+            //lấy thông tin khuyến mãi nếu có
             decimal giamKm = invoice.Table.Columns.Contains("GiaTriKhuyenMai") && invoice["GiaTriKhuyenMai"] != DBNull.Value
                 ? Convert.ToDecimal(invoice["GiaTriKhuyenMai"])
-                : 0;
-
-            decimal thanhToan = invoice.Table.Columns.Contains("ThanhToanCuoi") && invoice["ThanhToanCuoi"] != DBNull.Value
-                ? Convert.ToDecimal(invoice["ThanhToanCuoi"])
                 : 0;
 
             string tenKm = invoice.Table.Columns.Contains("TenChuongTrinh")
                 ? Convert.ToString(invoice["TenChuongTrinh"])
                 : "";
 
-            // hiển thị thông tin
+            //tính thanh toán cuối
+            decimal thanhToanCuoi = tongGocThucTe - giamKm;
+            if (thanhToanCuoi < 0) thanhToanCuoi = 0; //không được âm
+
+            //đổ dữ liệu vào thông tin hóa đơn
             txtInfo.Text =
                 $"Mã hóa đơn: {invoice["MaDonHang"]}\n" +
                 $"Ngày: {invoice["NgayDat"]}\n" +
                 $"Trạng thái: {invoice["TrangThai"]}\n" +
                 $"Khuyến mãi: {tenKm}";
 
-            //binding chi tiết món ăn
+            //đưa dữ liệu vào lưới
             dgDetails.ItemsSource = details?.DefaultView;
 
-            //hiển thị tổng tiền
-            txtSubtotal.Text = $"Tổng tiền gốc: {tongGoc:N0} VNĐ";
+            //hiển thị chi tiết tiền
+            txtSubtotal.Text = $"Tổng tiền gốc: {tongGocThucTe:N0} VNĐ";
             txtDiscountOrd.Text = $"Khuyến mãi: {giamKm:N0} VNĐ";
-            txtTotal.Text = $"Thanh toán cuối: {thanhToan:N0} VNĐ";
+            txtTotal.Text = $"Thanh toán cuối: {thanhToanCuoi:N0} VNĐ";
         }
     }
 }

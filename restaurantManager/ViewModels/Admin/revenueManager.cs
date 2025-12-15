@@ -59,6 +59,12 @@ namespace restaurantManager.ViewModels.Admin
             return (header, details);
         }
 
+        private DataView _topDishes;
+        public DataView TopDishes
+        {
+            get => _topDishes;
+            private set { _topDishes = value; OnPropertyChanged(nameof(TopDishes)); }
+        }
         public revenueManager()
         {
         }
@@ -69,6 +75,9 @@ namespace restaurantManager.ViewModels.Admin
             var dt = GetInvoiceListAll();
             Invoices = dt.DefaultView;
             ApplySummary(GetRevenueSummaryAll());
+
+            //thêm dòng này: Load mặc định top món ăn toàn thời gian
+            TopDishes = GetTopDishes(DateTime.MinValue, DateTime.MaxValue).DefaultView;
         }
 
         //
@@ -77,9 +86,47 @@ namespace restaurantManager.ViewModels.Admin
             var dt = GetInvoiceList(from, to);
             Invoices = dt.DefaultView;
             ApplySummary(GetRevenueSummary(from, to));
+
+            //thêm dòng này: Load top món ăn theo khoảng ngày chọn
+            TopDishes = GetTopDishes(from, to).DefaultView;
+        }
+
+        private DataTable GetTopDishes(DateTime from, DateTime to)
+        {
+            //query này join 3 bảng để tính tổng số lượng bán ra của từng món
+            string sql = @"
+                SELECT TOP 5 
+                    m.TenMonAn, 
+                    SUM(ct.SoLuong) AS SoLuongBan,
+                    SUM(ct.SoLuong * ct.GiaTaiThoiDiem - ct.SoTienGiam) AS DoanhThuMon
+                FROM ChiTietDonHang ct
+                JOIN DonHang dh ON ct.MaDonHang = dh.MaDonHang
+                JOIN MonAn m ON ct.MaMonAn = m.MaMonAn
+                WHERE dh.NgayDat BETWEEN @from AND @to AND dh.TrangThai = 'DaHoanThanh'
+                GROUP BY m.TenMonAn
+                ORDER BY SoLuongBan DESC";
+
+            //xử lý ngày min/max cho trường hợp LoadAll
+            var pFrom = (from == DateTime.MinValue) ? (object)DBNull.Value : from.Date;
+            var pTo = (to == DateTime.MaxValue) ? (object)DBNull.Value : to.Date;
+
+            //nếu load all (Min/Max value) thì chỉnh lại query một chút hoặc đơn giản là set date rộng ra
+            if (from == DateTime.MinValue)
+            {
+                //set ngày rất xa để lấy tất cả
+                return DatabaseConnect.ExecuteTable(sql,
+                    new SqlParameter("@from", "2000-01-01"),
+                    new SqlParameter("@to", "2100-01-01"));
+            }
+
+            return DatabaseConnect.ExecuteTable(sql,
+                new SqlParameter("@from", from.Date),
+                new SqlParameter("@to", to.Date));
         }
 
         //áp dụng tóm tắt doanh thu và số hóa đơn từ DataRow
+
+
         private void ApplySummary(DataRow row)
         {
             decimal total = 0; int count = 0;

@@ -73,5 +73,10 @@ namespace restaurantManager.View.Fuction.Admin
                 }
             }
         }
+
+        private void dgInvoices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
